@@ -32,8 +32,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
-    }
+        switch (true) {
+            case Auth::user()->user_type_id == 1:
+                return redirect()->intended(RouteServiceProvider::HOME);
+            case Auth::user()->user_type_id == 2:
+                return redirect('/admin/dashboard');
+            case Auth::user()->user_type_id == 3:
+                return redirect('/blogger/dashboard');
+            default:
+                return '/';
+        }    }
 
     /**
      * Destroy an authenticated session.
