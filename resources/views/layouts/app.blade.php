@@ -485,8 +485,8 @@
                 </a><a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
                 <div class='dashboard-nav-dropdown accomodation'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accomodation </a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="{{url('accomodation/add-hotel')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddHotel') ? 'active' : '' }}">Hotels</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
+                        <a href="{{url('accomodation/add-hotel')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddHotel') ? 'active' : '' }}">Add Hotels</a>
+                        <a href="{{url('accomodation/hotel-list')}}" class="dashboard-nav-dropdown-item {{ Route::is('HotelList') ? 'active' : '' }}" class="dashboard-nav-dropdown-item">Hotel Lists</a>
                         <a href="#" class="dashboard-nav-dropdown-item">Images</a>
                         <a href="#" class="dashboard-nav-dropdown-item">Video</a>
                     </div>
@@ -539,6 +539,10 @@
             }
         });
         if("{{ Route::is('GetAddHotel') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+               
+        }
+        if("{{ Route::is('HotelList') ? 'active' : '' }}"=='active'){
             $(".accomodation").toggleClass("show")
                
         }
