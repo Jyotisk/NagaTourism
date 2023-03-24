@@ -20,6 +20,7 @@ class CreateHotelDetailsTable extends Migration
             $table->string('contact_no');
             $table->string('email');
             $table->bigInteger('user_id');
+            $table->bigInteger('status');
             $table->unique(['hotel_name','contact_no','email']);
             $table->timestamps();
         });
