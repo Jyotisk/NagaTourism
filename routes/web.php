@@ -28,6 +28,10 @@ Route::group(['prefix' => 'accomodation'], function () {
     Route::get('add-hotel', [AccomodationController::class, 'GetAddHotel'])->name('GetAddHotel');
     Route::post('addhotel', [AccomodationController::class, 'AddHotel'])->name('AddHotel');
     Route::get('hotel-list', [AccomodationController::class, 'HotelList'])->name('HotelList');
+    Route::get('datatable-hotel-list', [AccomodationController::class, 'DatatableHotelList'])->name('DatatableHotelList');
+    Route::post('GetEditHotelData', [AccomodationController::class, 'GetEditHotelData'])->name('GetEditHotelData');
+    Route::post('EditHotelData', [AccomodationController::class, 'EditHotelData'])->name('EditHotelData');
+    Route::post('DeleteHotelData', [AccomodationController::class, 'DeleteHotelData'])->name('DeleteHotelData');
 
-
+    
 });
