@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Accomodation\AccomodationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+require __DIR__.'/auth.php';
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+//accomodation
+Route::group(['prefix' => 'accomodation'], function () {
+    Route::get('add-hotel', [AccomodationController::class, 'GetAddHotel'])->name('GetAddHotel');
+    Route::post('addhotel', [AccomodationController::class, 'AddHotel'])->name('AddHotel');
+    Route::get('hotel-list', [AccomodationController::class, 'HotelList'])->name('HotelList');
+
+
+});
