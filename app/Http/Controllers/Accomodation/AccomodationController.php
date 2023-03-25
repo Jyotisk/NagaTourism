@@ -27,10 +27,10 @@ class AccomodationController extends Controller
             if ($request->ajax()) {
 
                 $validator=Validator::make($request->all(), [
-                    'hotel_name' => 'required|string|max:255',
-                    'location' => 'required',
-                    'contact_no' => 'required|unique:hotel_details',
-                    'email' => 'required|string|email|max:255|unique:hotel_details',        
+                    'hotel_name.*' => 'required|string|max:255',
+                    'location.*' => 'required',
+                    'contact_no.*' => 'required|unique:hotel_details',
+                    'email.*' => 'required|string|email|max:255|unique:hotel_details',        
                 ]);
                 if ($validator->fails()) {
         
@@ -69,7 +69,7 @@ class AccomodationController extends Controller
      
         } catch (Exception $e) {
             return response()->json([
-                'messege' => 'error',
+                'messege' => $e,
                 'request' =>'Something Went Wrong',
             ]);        }
     }
