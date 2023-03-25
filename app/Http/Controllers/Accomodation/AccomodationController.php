@@ -27,18 +27,18 @@ class AccomodationController extends Controller
             if ($request->ajax()) {
 
                 $validator=Validator::make($request->all(), [
-                    'hotel_name.*' => 'required|string|max:255',
-                    'location.*' => 'required',
-                    'contact_no.*' => 'required|unique:hotel_details',
-                    'email.*' => 'required|string|email|max:255|unique:hotel_details',        
+                    'hotel_name' => 'required|string|max:255',
+                    'location' => 'required',
+                    'contact_no' => 'required|unique:hotel_details',
+                    'email' => 'required|string|email|max:255|unique:hotel_details',        
                 ]);
-                if ($validator->fails()) {
+                // if ($validator->fails()) {
         
-                    return response()->json([
-                        'msg' => 'validationFails',
-                        'error' => $validator->errors()
-                    ]);
-                }else{
+                //     return response()->json([
+                //         'msg' => 'validationFails',
+                //         'error' => $validator->errors()
+                //     ]);
+                // }else{
                     $details = [];
                     for ($i = 0; $i < count($request->hotel_name); $i++) {
                         $details[] = [
@@ -63,13 +63,13 @@ class AccomodationController extends Controller
                         'messege' => 'success',
                         'request' =>'Hotel details successfully Inserted',
                     ]);
-                }
+                // }
             }
 
      
         } catch (Exception $e) {
             return response()->json([
-                'messege' => $e,
+                'messege' => 'error',
                 'request' =>'Something Went Wrong',
             ]);        }
     }
