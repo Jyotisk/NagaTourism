@@ -30,7 +30,7 @@
                             <a href="#">
                                 <i class="fa-regular fa-lock-keyhole"></i>
                                 <span>Login</span>
-                            </a>
+                            </a> 
                         </div>
                     </div>
                 </div>
