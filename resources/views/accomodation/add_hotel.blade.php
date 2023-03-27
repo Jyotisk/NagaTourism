@@ -88,8 +88,6 @@
             dataType: "json",
             encode: true,
         }).done(function(data) {
-            console.log(data);
-
             if (data.messege == 'success') {
                 Swal.fire({
                         title: "Success",
@@ -105,6 +103,9 @@
                             // window.location = "http://gratiatechnology.live/social/public/proforma-download/" + data.data;
                         }
                     });
+            }
+            if(data.messege=="validationFails"){
+                console.log(data.error);
             }
             if (data.messege == 'error') {
                 Swal.fire({
