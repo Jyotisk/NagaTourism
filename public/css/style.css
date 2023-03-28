@@ -12,6 +12,12 @@
 
 * {
     font-family: "Open Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #fff;
 }
 
 .head-title {
@@ -36,107 +42,154 @@ a {
     width: 10%;
 }
 
-/* .slider-nav-wrapper {
-    background-image: url("../img/pic-1.webp");
-    background-size: cover;
-} */
-
-/** SLIDESHOW **/
-.slideshow {
-    list-style-type: none;
-}
-
-/* .slideshow,
-.slideshow:after {
-    top: -16px; 
-    position: fixed;
+/* Carousel */
+#carouselImageSlider.carousel {
     width: 100%;
-    height: 100%;
-    left: 0px;
-    z-index: 0;
-} */
-
-.slider-title {
-    position: relative;
-    top: 100%;
+    z-index: -1;
+    margin-top: -7%;
 }
 
-.slider-title h3 {
+#carouselImageSlider .carousel-item {
+    max-height: 100vh;
+    background-color: #333;
+}
+
+#carouselImageSlider .carousel-caption {
+    right: 30%;
+    top: 36%;
+    text-align: left;
+}
+
+#carouselImageSlider .carousel-caption h3 {
     font-size: 100px;
-    color: #fff;
 }
 
-.slider-title p {
-    color: #fff;
+#carouselImageSlider .carousel-indicators {
+    top: 30%;
+    left: -64%;
+    align-items: center;
 }
 
-.slideshow li span {
+#carouselImageSlider .carousel-indicators .active {
+    height: 8px;
+}
+
+#carouselImageSlider .img-overlay {
+    opacity: 0.7;
+}
+
+/* News Section */
+.news-section {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    /* top: 0px; */
-    left: 0px;
-    color: transparent;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    opacity: 0;
-    z-index: 0;
-    animation: imageAnimation 20s linear infinite 0s;
+    width: 56%;
+    left: 44%;
+    top: 89.4%;
 }
 
-.slideshow li:nth-child(1) span {
-    background-image: url("../img/pic-1.webp");
-    background-size: cover;
-}
-.slideshow li:nth-child(2) span {
-    background-image: url("../img/pic-2.jpg");
-    background-size: cover;
-    animation-delay: 6s;
-}
-.slideshow li:nth-child(3) span {
-    background-image: url("../img/pic-3.png");
-    background-size: cover;
-    animation-delay: 12s;
+.news-section .card {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-@keyframes imageAnimation {
-    0% {
-        opacity: 0;
-        animation-timing-function: ease-in;
-    }
-    25% {
-        opacity: 0.25;
-        animation-timing-function: ease-out;
-    }
-    50% {
-        opacity: 1;
-        animation-timing-function: ease-out;
-    }
-
-    100% {
-        opacity: 0;
-    }
+.news-section .card .border-left {
+    border-right: 2px solid #94a3b8;
 }
 
-@keyframes titleAnimation {
-    0% {
-        opacity: 0;
-    }
-    8% {
-        opacity: 1;
-    }
-    17% {
-        opacity: 1;
-    }
-    19% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
+.news-section .carousel-control-next,
+.news-section .carousel-control-prev {
+    filter: invert(100%) sepia(8%) saturate(7467%) hue-rotate(62deg)
+        brightness(106%) contrast(112%);
+    opacity: 0.8;
 }
 
-.no-cssanimations .cb-slideshow li span {
-    opacity: 1;
+.news-section .carousel-inner {
+    width: 76%;
+}
+
+.news-section .carousel-control-prev {
+    left: 75%;
+}
+
+/* About Carousel */
+.about-wrapper {
+    padding-top: 100px;
+}
+
+.slide_navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-direction: column;
+}
+
+.slider {
+    /* background-color: teal; */
+    max-width: 1400px;
+    color: #fff;
+    /* grid-template-columns: 35% 65%; */
+    position: relative;
+    display: flex;
+}
+
+.slider .content_container {
+    padding: 40px;
+}
+
+.slider .slides {
+    overflow-y: auto;
+    max-height: 500px;
+    scrollbar-width: none;
+}
+
+.slider .slides::-webkit-scrollbar {
+    display: none;
+}
+
+.slider .slides .slide {
+    min-height: calc(110% - 80px);
+    display: flex;
+    padding: 40px;
+    color: #333;
+    align-items: center;
+}
+
+.slide_navigation li {
+    list-style: none;
+}
+
+.slide_navigation li a.dot::before {
+    border: 2px solid #f44336;
+    background-color: #f44336;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+}
+
+.slide_navigation li a.dot::before,
+.slide_navigation li a.dot::after {
+    display: block;
+    /* position: absolute; */
+    content: "";
+    border-radius: 50%;
+    /* top: 50%; */
+    transition: all 0.3s ease;
+}
+
+.image-wrapper {
+    position: relative;
+    gap: 1.5em;
+}
+
+.image-wrapper .image img {
+    width: 284px;
+    height: 330px;
+    object-fit: cover;
+}
+
+.image-wrapper .image:nth-child(2) {
+    position: absolute;
+    left: 50%;
+    z-index: -1;
+    top: 30%;
 }
