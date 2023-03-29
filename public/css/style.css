@@ -20,6 +20,15 @@ header {
     background-color: #fff;
 }
 
+img {
+    border-radius: 0.5em;
+}
+
+.main-text {
+    font-size: 15px;
+    color: #94a3b8;
+}
+
 .head-title {
     font-family: "Arthur-Hill";
 }
@@ -114,12 +123,13 @@ a {
 /* About Carousel */
 .about-wrapper {
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .slide_navigation {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-direction: column;
 }
 
@@ -138,6 +148,8 @@ a {
 
 .slider .slides {
     overflow-y: auto;
+    /* height: 500px; */
+    /* min-height: 500px; */
     max-height: 500px;
     scrollbar-width: none;
 }
@@ -147,7 +159,9 @@ a {
 }
 
 .slider .slides .slide {
-    min-height: calc(110% - 80px);
+    /* min-height: calc(110% - 80px);
+    min-height: 650px; */
+    height: 100%;
     display: flex;
     padding: 40px;
     color: #333;
@@ -166,14 +180,36 @@ a {
     transform: translateY(-50%);
 }
 
+.slide_navigation li.active a.dot::after {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f44336;
+    transform: translateY(-50%) scale(1);
+    right: -15px;
+}
+
 .slide_navigation li a.dot::before,
 .slide_navigation li a.dot::after {
     display: block;
-    /* position: absolute; */
+    position: absolute;
     content: "";
     border-radius: 50%;
     /* top: 50%; */
     transition: all 0.3s ease;
+}
+
+.scroll-warpper .slides .slide h1 {
+    font-size: 50px;
+    color: #333;
+}
+
+/* .scroll-warpper .slides .slide p {
+    font-size: 21px;
+    color: #94a3b8;
+} */
+
+.scroll-warpper .slides .slide a {
+    color: #27aae1;
 }
 
 .image-wrapper {
@@ -192,4 +228,100 @@ a {
     left: 50%;
     z-index: -1;
     top: 30%;
+}
+
+/* Where to visit section */
+.visit-wrapper {
+    background: url("../img/bg-nagaland.png");
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+}
+
+.visit-wrapper .visit-section {
+    margin-bottom: 6.5rem;
+}
+
+.visit-wrapper h1 {
+    font-size: 50px;
+    color: #333;
+}
+
+/* .visit-wrapper p {
+    font-size: 18px;
+    color: #94a3b8;
+} */
+
+.visit-wrapper a,
+.events-wrapper a,
+.scroll-warpper .slides .slide a {
+    color: #27aae1;
+}
+
+.mySwiper .card {
+    width: 300px;
+    border: none;
+}
+
+.mySwiper .card h6 {
+    font-size: 15px;
+    width: 70%;
+}
+
+.mySwiper .swiper-wrapper {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+}
+
+.swiper-pagination {
+    position: unset !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #fcb041 !important;
+}
+
+.mySwiper .card img {
+    width: auto;
+    height: 168px;
+    object-fit: cover;
+}
+
+.mySwiper .swiper-slide {
+    width: auto !important;
+}
+
+.things-section .card {
+    width: auto;
+    border: 0;
+}
+
+.things-section .card img {
+    width: 238px;
+    height: 358px;
+    object-fit: cover;
+}
+
+.things-section p {
+    color: #333;
+}
+
+/* Upcomming Events Section */
+.events-wrapper .event-pic {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* .events-wrapper p {
+    font-size: 15px;
+    color: #94a3b8;
+} */
+
+.events-wrapper .card {
+    border: 0.5px solid #f1f5f9;
+}
+
+.events-wrapper .card:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

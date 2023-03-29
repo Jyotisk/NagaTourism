@@ -8,8 +8,7 @@
     <title>Tourism Nagaland</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/owl-carousel.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/owl-carousel-default-theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/swiper.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -181,10 +180,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-1 d-flex align-items-center">
-                    <ul class="slide_navigation position-relative">
-                        <li><a href="#slide_1" class="dot active"></a></li>
-                        <li><a href="#slide_2" class="dot"></a></li>
-                        <li><a href="#slide_3" class="dot"></a></li>
+                    <ul class="slide_navigation position-relative" id="slider-menu">
+                        <li class="link active" data-scroll="slide_1"><a data-scroll="slide_1" href="#slide_1" class="dot"></a></li>
+                        <li class="link" data-scroll="slide_2"><a data-scroll="slide_2" href="#slide_2" class="dot"></a></li>
+                        <li class="link" data-scroll="slide_3"><a data-scroll="slide_3" href="#slide_3" class="dot"></a></li>
                     </ul>
                 </div>
                 <div class="col-5">
@@ -203,122 +202,489 @@
                     <div class="scroll-warpper">
                         <section class="slider">
                             <div class="slides">
-                                <div class="slide">
+                                <div id="slide_1" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1>Slide 1</h1>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <h1 class="head-title">About Nagaland</h1>
+                                        <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
+
+                                        <a href="#">
+                                            See more
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
                                     </div>
                                 </div>
 
-                                <div class="slide">
+                                <div id="slide_2" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1>Slide 2</h1>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <h1 class="head-title">About Nagaland</h1>
+                                        <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
+
+                                        <a href="#">
+                                            See more
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
                                     </div>
                                 </div>
 
-                                <div class="slide">
+                                <div id="slide_3" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1>Slide 3</h1>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <h1 class="head-title">About Nagaland</h1>
+                                        <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
+
+                                        <a href="#">
+                                            See more
+                                            <i class="fa-solid fa-chevron-right"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </section>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Emd of About Section -->
+
+    <!-- Where to visit section -->
+    <div class="visit-wrapper">
+        <div class="container">
+            <div class="row g-4 visit-section">
+                <div class="col-4 d-flex align-items-center">
+                    <div class="d-flex flex-column">
+                        <h1 class="head-title">Where to visit now</h1>
+                        <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
+
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-1.jpeg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Doyang Hydro Project
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-2.jpg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Touphema Tourist Village
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-3.jpg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Khezhakeno Village and Chida Resort
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-1.jpeg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Doyang Hydro Project
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-2.jpg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Touphema Tourist Village
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="card h-100">
+                                    <img src="{{asset('img/visit-3.jpg')}}" alt="Visit Now Pic">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6>
+                                                Khezhakeno Village and Chida Resort
+                                            </h6>
+                                            <p>
+                                                <i class="fa-regular fa-heart"></i>
+                                            </p>
+                                        </div>
+                                        <p class="mb-0 main-text">
+                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4 things-section g-4">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h1 class="head-title">Things to do</h1>
+                        <a href="#">
+                            See more
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-evenly">
+                        <div class="card h-100">
+                            <img src="{{asset('img/things_1.jpg')}}" alt="Things to do">
+                            <div class="card-body">
+                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                    Offroading
+                                    <i class="fa-regular fa-heart"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card h-100">
+                            <img src="{{asset('img/things_2.jpg')}}" alt="Things to do">
+                            <div class="card-body">
+                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                    Trekking
+                                    <i class="fa-regular fa-heart"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card h-100">
+                            <img src="{{asset('img/things_3.jpg')}}" alt="Things to do">
+                            <div class="card-body">
+                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                    Bike Rides
+                                    <i class="fa-regular fa-heart"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card h-100">
+                            <img src="{{asset('img/things_4.jpeg')}}" alt="Things to do">
+                            <div class="card-body">
+                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                    Camping
+                                    <i class="fa-regular fa-heart"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card h-100">
+                            <img src="{{asset('img/things_5.jpg')}}" alt="Things to do">
+                            <div class="card-body">
+                                <p class="mb-0 d-flex align-items-center justify-content-between">
+                                    Cycling
+                                    <i class="fa-regular fa-heart"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Where to visit section -->
+
+    <!-- Upcomming Events -->
+    <div class="events-wrapper">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="head-title">Upcomming Events</h1>
+                </div>
+                <div class="col-12 mt-4">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="row g-3">
+                                        <div class="col-3">
+                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>Tuluni Festival</h6>
+                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>08 July, 2023</h6>
+                                            <p class="mb-0 main-text">Start Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>15 July, 2023</h6>
+                                            <p class="mb-0 main-text">End Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <a href="#">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="row g-3">
+                                        <div class="col-3">
+                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>Tuluni Festival</h6>
+                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>08 July, 2023</h6>
+                                            <p class="mb-0 main-text">Start Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>15 July, 2023</h6>
+                                            <p class="mb-0 main-text">End Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <a href="#">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="row g-3">
+                                        <div class="col-3">
+                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>Tuluni Festival</h6>
+                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>08 July, 2023</h6>
+                                            <p class="mb-0 main-text">Start Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>15 July, 2023</h6>
+                                            <p class="mb-0 main-text">End Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <a href="#">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="row g-3">
+                                        <div class="col-3">
+                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>Tuluni Festival</h6>
+                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>08 July, 2023</h6>
+                                            <p class="mb-0 main-text">Start Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>15 July, 2023</h6>
+                                            <p class="mb-0 main-text">End Date</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div>
+                                        <div class="col-3 d-flex flex-column align-items-end">
+                                            <a href="#">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <a href="#">
+                            View all
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Upcomming Events -->
 </body>
 
 <script src="{{asset('js/jquery.js')}}"></script>
-<script src="{{asset('js/owl-carousel.js')}}"></script>
-<script src="{{asset('js/scrollify.js')}}"></script>
 <script src="{{asset('js/popper.js')}}"></script>
 <script src="{{asset('js/bootstrap.js')}}"></script>
+<script src="{{asset('js/swiper.js')}}"></script>
 
 <script>
-    (function() {
-        "use strict";
+    $(function() {
 
-        // Vertical Slider object
-        const vertical_slider = {
+        var link = $('#slider-menu li.link');
 
-            // Slide class name
-            slider_class: ".slider",
+        // Run the scrNav when scroll
+        $(".slides").on('scroll', function() {
+            scrNav();
+        });
 
-            // Show slide
-            show_slide: function(slide_id, context_item) {
-                const slide_container = context_item.closest(this.slider_class).querySelector(".slides");
-                if (slide_container) {
-                    const slides = slide_container.querySelectorAll(".slide");
-                    if (slides && slides[slide_id]) {
+        // scrNav function 
+        // Change active dot according to the active section in the window
+        function scrNav() {
+            var sTop = $(".slides").scrollTop();
+            $('.slide-content').each(function() {
+                var id = $(this).attr('id'),
+                    offset = $(this).offset().top - 600,
+                    height = $(this).height();
 
-                        // Scroll to active slide
-                        slide_container.scrollTo({
-                            top: slides[slide_id].offsetTop,
-                            behavior: "smooth"
-                        });
-
-
-                        // Set active context item
-                        const active_context_item = context_item.closest(".slide_navigation").querySelector(".active");
-                        if (active_context_item) {
-                            active_context_item.classList.remove("active");
-                        }
-
-                        context_item.classList.add("active");
-                    }
+                if (sTop >= offset && sTop < offset + height) {
+                    link.removeClass('active');
+                    $("#slider-menu").find('[data-scroll="' + id + '"]').addClass('active');
                 }
-            },
+            });
+        }
+        scrNav();
+    });
+</script>
 
-            // Initialize slide
-            init_slider: function(slider) {
-
-                const navigation_items = slider.querySelectorAll(".slide_navigation a");
-
-                if (navigation_items) {
-                    Object.keys(navigation_items).forEach(function(key) {
-                        navigation_items[key].onclick = function(e) {
-                            e.preventDefault();
-
-                            vertical_slider.show_slide(key, navigation_items[key]);
-                        };
-                    });
-                }
-
-            },
-
-            // Initialize sliders
-            init: function() {
-
-                // Iterate over each slider
-                document.querySelectorAll(this.slider_class).forEach((slider) => this.init_slider(slider));
-
-            }
-        };
-
-        // Initialize sliders
-        vertical_slider.init();
-    }());
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 2,
+        spaceBetween: 30,
+        freeMode: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
 </script>
 
 </html>
