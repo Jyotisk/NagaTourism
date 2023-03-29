@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Accomodation\AccomodationController;
+use App\Http\Controllers\DesignatedOfficial\DesignatedOfficialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +61,14 @@ Route::group(['prefix' => 'accomodation'], function () {
     Route::post('GetEditRegisteredGuideData', [AccomodationController::class, 'GetEditRegisteredGuideData'])->name('GetEditRegisteredGuideData');
     Route::post('DeleteRegisteredGuideData', [AccomodationController::class, 'DeleteRegisteredGuideData'])->name('DeleteRegisteredGuideData');
     
+});
+
+Route::group(['prefix' => 'designated-official'], function () {
+    Route::get('add-official', [DesignatedOfficialController::class, 'GetAddOfficial'])->name('GetAddOfficial');
+    Route::post('AddOfficial', [DesignatedOfficialController::class, 'AddOfficial'])->name('AddOfficial');
+    Route::get('official-list', [DesignatedOfficialController::class, 'OfficialList'])->name('OfficialList');
+    Route::get('DatatableOfficialList', [DesignatedOfficialController::class, 'DatatableOfficialList'])->name('DatatableOfficialList');
+    Route::post('EditOfficialData', [DesignatedOfficialController::class, 'EditOfficialData'])->name('EditOfficialData');
+    Route::post('GetEditOfficialData', [DesignatedOfficialController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
+    Route::post('DeleteOfficialData', [DesignatedOfficialController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
 });

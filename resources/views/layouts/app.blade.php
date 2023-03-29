@@ -495,8 +495,12 @@
                         <a href="{{Route('RegisteredGuideList')}}" class="dashboard-nav-dropdown-item {{ Route::is('RegisteredGuideList') ? 'active' : '' }}">Registered Guide Lists</a>
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
-                    <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Subscribed</a><a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a><a href="#" class="dashboard-nav-dropdown-item">Banned</a><a href="#" class="dashboard-nav-dropdown-item">New</a></div>
+                <div class='dashboard-nav-dropdown official'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                    <a href="{{Route('GetAddOfficial')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddOfficial') ? 'active' : '' }}">Add Official</a>
+                        <a href="{{Route('OfficialList')}}" class="dashboard-nav-dropdown-item {{ Route::is('OfficialList') ? 'active' : '' }}">Official Lists</a>
+
+                    </div>
                 </div>
                 <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Payments </a>
                     <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
@@ -572,6 +576,14 @@
         }
         if("{{ Route::is('RegisteredGuideList') ? 'active' : '' }}"=='active'){
             $(".accomodation").toggleClass("show")
+               
+        }
+        if("{{ Route::is('OfficialList') ? 'active' : '' }}"=='active'){
+            $(".official").toggleClass("show")
+               
+        }
+        if("{{ Route::is('GetAddOfficial') ? 'active' : '' }}"=='active'){
+            $(".official").toggleClass("show")
                
         }
     });
