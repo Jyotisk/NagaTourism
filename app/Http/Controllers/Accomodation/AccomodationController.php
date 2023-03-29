@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Homestay\HomestayDetail;
 use App\Models\TravelOperator\TravelOperatorDetail;
 use App\Models\RegisteredGuide\RegisteredGuideDetail;
+
 class AccomodationController extends Controller
 {
     public function GetAddHotel()
@@ -27,20 +28,23 @@ class AccomodationController extends Controller
         try {
             if ($request->ajax()) {
                 for ($i = 0; $i < count($request->hotel_name); $i++) {
-                $validator = Validator::make($request->all(), [
-                    'hotel_name.*' => 'required|string|max:255',
-                    'location.*' => 'required',
-                    'contact_no.*' => 'required|unique:hotel_details',
-                    'email.*' => 'required|email|max:255',
-                ],
-                [
-                    'hotel_name.*.required' => 'You must provide a hotel name',
-                    'location.*.required' => 'You must provide a location',
-                    'contact_no.*.required' => 'You must provide a contact no',
-                    'email.*.required' => 'You must provide a wmail',
+                    $validator = Validator::make(
+                        $request->all(),
+                        [
+                            'hotel_name.*' => 'required|string|max:255',
+                            'location.*' => 'required',
+                            'contact_no.*' => 'required|unique:hotel_details',
+                            'email.*' => 'required|email|max:255',
+                        ],
+                        [
+                            'hotel_name.*.required' => 'You must provide a hotel name',
+                            'location.*.required' => 'You must provide a location',
+                            'contact_no.*.required' => 'You must provide a contact no',
+                            'email.*.required' => 'You must provide a wmail',
 
-                ]);
-            }
+                        ]
+                    );
+                }
                 if ($validator->fails()) {
 
                     return response()->json([
@@ -123,39 +127,50 @@ class AccomodationController extends Controller
             'data' => 'updated successfully'
         ]);
     }
-    public function GetAddhomestay(){
+    public function GetAddhomestay()
+    {
         return view('accomodation.add_homestay');
     }
-    public function AddHomestay(Request $request){
+    public function AddHomestay(Request $request)
+    {
         try {
             if ($request->ajax()) {
-                // $validator = Validator::make($request->all(), [
-                //     'homestay_name.*' => 'required|string|max:255',
-                //     'location.*' => 'required',
-                //     'contact_no.*' => 'required|unique:homestay_data',
-                //     'email.*' => 'required|email|max:255',
-                // ],
-                // [
-                //     'homestay_name.*.required' => 'You must provide a hotel name',
-                //     'location.*.required' => 'You must provide a location',
-                //     'contact_no.*.required' => 'You must provide a contact no',
-                //     'email.*.required' => 'You must provide a wmail',
+                $validator = Validator::make(
+                    $request->all(),
+                    [
+                        'homestay_name.*' => 'required|string|max:255',
+                        'location.*' => 'required',
+                        // 'contact_no.*' => 'required|digits:10|unique:homestay_details',
+                        'contact_no.*' => 'required|digits:10',
+                        'email.*' => 'email|max:255|nullable',
+                        'alt_email.*' => 'email|max:255|nullable',
+                        'alt_contact_no.*' => 'digits:10|nullable',
 
-                // ]);
-                // if ($validator->fails()) {
+                    ],
+                    [
+                        'homestay_name.*.required' => 'You must provide a hotel name',
+                        'location.*.required' => 'You must provide a location',
+                        'contact_no.*.required' => 'You must provide a contact no',
+                        // 'email.*.email' => 'You must provide a email',
 
-                //     return response()->json([
-                //         'messege' => 'validationFails',
-                //         'error' => $validator->errors()
-                //     ]);
-                // } else {
+                    ]
+                );
+
+                if ($validator->fails()) {
+                    return response()->json([
+                        'messege' => 'validationFails',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
                     $details = [];
                     for ($i = 0; $i < count($request->homestay_name); $i++) {
                         $details[] = [
                             'homestay_name' => $request->homestay_name[$i],
                             'location' => $request->location[$i],
-                            'contact_no' => $request->contact_number[$i],
+                            'contact_no' => $request->contact_no[$i],
+                            'alt_contact_no' => $request->alt_contact_no[$i],
                             'email' => $request->email[$i],
+                            'alt_email' => $request->alt_email[$i],
                             'status' => 1,
                             'user_id' => Auth::user()->id,
                             'created_at' => Carbon::now(),
@@ -171,12 +186,11 @@ class AccomodationController extends Controller
                     }
                     return response()->json([
                         'messege' => 'success',
-                        'request' => 'Hotel details successfully Inserted',
+                        'request' => 'Homestay Data successfully Inserted',
                     ]);
-                // }
+                }
             }
         } catch (Exception $e) {
-            return $e;
             return response()->json([
                 'messege' => 'error',
                 'request' => 'Something Went Wrong',
@@ -213,22 +227,62 @@ class AccomodationController extends Controller
     }
     public function EditHomestayData(Request $request)
     {
-        $data = HomestayDetail::where('id', $request->homestay_id)->first();
-        $data->homestay_name = $request->homestay_name;
-        $data->location = $request->location;
-        $data->contact_no = $request->contact_no;
-        $data->email = $request->email;
-        $data->save();
-        return  response()->json([
-            'message' => 'success',
-            'data' => 'updated successfully'
-        ]);
+        try {
+            if ($request->ajax()) {
+                $validator = Validator::make(
+                    $request->all(),
+                    [
+                        'homestay_name' => 'required|string|max:255',
+                        'location' => 'required',
+                        // 'contact_no' => 'required|digits:10|unique:homestay_details',
+                        'contact_no' => 'required|digits:10',
+                        'email' => 'email|max:255|nullable',
+                        'alt_email' => 'email|max:255|nullable',
+                        'alt_contact_no' => 'digits:10|nullable',
+
+                    ],
+                    [
+                        'homestay_name.required' => 'You must provide a hotel name',
+                        'location.required' => 'You must provide a location',
+                        'contact_no.required' => 'You must provide a contact no',
+                        // 'email.*.email' => 'You must provide a email',
+                    ]
+                );
+
+                if ($validator->fails()) {
+                    return response()->json([
+                        'message' => 'validationFails',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
+                    $data = HomestayDetail::where('id', $request->homestay_id)->first();
+                    $data->homestay_name = $request->homestay_name;
+                    $data->location = $request->location;
+                    $data->alt_contact_no = $request->alt_contact_no;
+                    $data->contact_no = $request->contact_no;
+                    $data->email = $request->email;
+                    $data->alt_email = $request->alt_email;
+                    $data->save();
+                    return  response()->json([
+                        'message' => 'success',
+                        'data' => 'updated successfully'
+                    ]);
+                }
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'messege' => 'error',
+                'request' => 'Something Went Wrong',
+            ]);
+        }
     }
 
-    public function GetAddTravelOperator(){
+    public function GetAddTravelOperator()
+    {
         return view('accomodation.add_travel_operator');
     }
-    public function AddTravelOperator(Request $request){
+    public function AddTravelOperator(Request $request)
+    {
         try {
             if ($request->ajax()) {
                 // $validator = Validator::make($request->all(), [
@@ -251,30 +305,30 @@ class AccomodationController extends Controller
                 //         'error' => $validator->errors()
                 //     ]);
                 // } else {
-                    $details = [];
-                    for ($i = 0; $i < count($request->name); $i++) {
-                        $details[] = [
-                            'name' => $request->name[$i],
-                            'address' => $request->address[$i],
-                            'contact_no' => $request->contact_number[$i],
-                            'email' => $request->email[$i],
-                            'status' => 1,
-                            'user_id' => Auth::user()->id,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
+                $details = [];
+                for ($i = 0; $i < count($request->name); $i++) {
+                    $details[] = [
+                        'name' => $request->name[$i],
+                        'address' => $request->address[$i],
+                        'contact_no' => $request->contact_number[$i],
+                        'email' => $request->email[$i],
+                        'status' => 1,
+                        'user_id' => Auth::user()->id,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
 
-                        ];
-                    }
-                    $details = collect($details);
-                    $chunks = $details->chunk(500);
+                    ];
+                }
+                $details = collect($details);
+                $chunks = $details->chunk(500);
 
-                    foreach ($chunks as $chunk) {
-                        TravelOperatorDetail::insert($chunk->toArray());
-                    }
-                    return response()->json([
-                        'messege' => 'success',
-                        'request' => 'Hotel details successfully Inserted',
-                    ]);
+                foreach ($chunks as $chunk) {
+                    TravelOperatorDetail::insert($chunk->toArray());
+                }
+                return response()->json([
+                    'messege' => 'success',
+                    'request' => 'Hotel details successfully Inserted',
+                ]);
                 // }
             }
         } catch (Exception $e) {
@@ -328,10 +382,12 @@ class AccomodationController extends Controller
     }
 
 
-    public function GetAddRegisteredGuide(){
+    public function GetAddRegisteredGuide()
+    {
         return view('accomodation.add_registered_guide');
     }
-    public function AddRegisteredGuide(Request $request){
+    public function AddRegisteredGuide(Request $request)
+    {
         try {
             if ($request->ajax()) {
                 // $validator = Validator::make($request->all(), [
@@ -354,30 +410,30 @@ class AccomodationController extends Controller
                 //         'error' => $validator->errors()
                 //     ]);
                 // } else {
-                    $details = [];
-                    for ($i = 0; $i < count($request->name); $i++) {
-                        $details[] = [
-                            'name' => $request->name[$i],
-                            'address' => $request->address[$i],
-                            'contact_no' => $request->contact_number[$i],
-                            'email' => $request->email[$i],
-                            'status' => 1,
-                            'user_id' => Auth::user()->id,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
+                $details = [];
+                for ($i = 0; $i < count($request->name); $i++) {
+                    $details[] = [
+                        'name' => $request->name[$i],
+                        'address' => $request->address[$i],
+                        'contact_no' => $request->contact_number[$i],
+                        'email' => $request->email[$i],
+                        'status' => 1,
+                        'user_id' => Auth::user()->id,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
 
-                        ];
-                    }
-                    $details = collect($details);
-                    $chunks = $details->chunk(500);
+                    ];
+                }
+                $details = collect($details);
+                $chunks = $details->chunk(500);
 
-                    foreach ($chunks as $chunk) {
-                        RegisteredGuideDetail::insert($chunk->toArray());
-                    }
-                    return response()->json([
-                        'messege' => 'success',
-                        'request' => 'Hotel details successfully Inserted',
-                    ]);
+                foreach ($chunks as $chunk) {
+                    RegisteredGuideDetail::insert($chunk->toArray());
+                }
+                return response()->json([
+                    'messege' => 'success',
+                    'request' => 'Hotel details successfully Inserted',
+                ]);
                 // }
             }
         } catch (Exception $e) {
@@ -429,5 +485,4 @@ class AccomodationController extends Controller
             'data' => 'updated successfully'
         ]);
     }
-
 }

@@ -17,11 +17,12 @@ class CreateHotelDetailsTable extends Migration
             $table->id();
             $table->string('hotel_name');
             $table->string('location');
-            $table->string('contact_no');
-            $table->string('email');
+            $table->bigInteger('contact_no');
+            $table->bigInteger('alt_contact_no')->nullable();
+            $table->string('email')->nullable();
+            $table->string('alt_email')->nullable();
             $table->bigInteger('user_id');
             $table->bigInteger('status');
-            $table->unique(['hotel_name','contact_no','email']);
             $table->timestamps();
         });
     }

@@ -17,8 +17,10 @@ class CreateHomestayDetailsTable extends Migration
             $table->id();
             $table->string('homestay_name');
             $table->string('location');
-            $table->string('contact_no')->unique();
+            $table->bigInteger('contact_no');
+            $table->bigInteger('alt_contact_no')->nullable();
             $table->string('email')->nullable();
+            $table->string('alt_email')->nullable();
             $table->bigInteger('user_id');
             $table->bigInteger('status');
             $table->timestamps();
