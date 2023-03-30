@@ -124,7 +124,7 @@
             dataType: "json",
             encode: true,
         }).done(function(data) {
-            if (data.messege == 'success') {
+            if (data.message == 'success') {
                 Swal.fire({
                         title: "Success",
                         text: "Homestay data has been saved successfully",
@@ -140,7 +140,7 @@
                         }
                     });
             }
-            if (data.messege == "validationFails") {
+            if (data.message == "validationFails") {
                 var message=[]
                 $.each(data.error, function(index, value) {
                     const textValue = index.split(".");
@@ -151,7 +151,7 @@
                 $("#validation_message").html(message)
                 $('#error_modal').modal('show');
             }
-            if (data.messege == 'error') {
+            if (data.message == 'error') {
                 Swal.fire({
                     title: "Failed",
                     text: "Something Went Wrong",

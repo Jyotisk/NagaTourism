@@ -23,7 +23,7 @@ class DesignatedOfficialController extends Controller
                     'official_type' => 'required',
                     'name.*' => 'required|string|max:255',
                     'address.*' => 'required',
-                    'contact_no.*' => 'required|unique:designated_official_details',
+                    'contact_no.*' => 'required',
                     'email.*' => 'max:255',
                 ],
                 [
@@ -36,7 +36,7 @@ class DesignatedOfficialController extends Controller
                 if ($validator->fails()) {
 
                     return response()->json([
-                        'messege' => 'validationFails',
+                        'message' => 'validationFails',
                         'error' => $validator->errors()
                     ]);
                 } else {
@@ -45,7 +45,7 @@ class DesignatedOfficialController extends Controller
                         $details[] = [
                             'name' => $request->name[$i],
                             'address' => $request->address[$i],
-                            'contact_no' => $request->contact_number[$i],
+                            'contact_no' => $request->contact_no[$i],
                             'email' => $request->email[$i],
                             'official_type'=>$request->official_type,
                             'status' => 1,
@@ -62,7 +62,7 @@ class DesignatedOfficialController extends Controller
                         DesignatedOfficialDetail::insert($chunk->toArray());
                     }
                     return response()->json([
-                        'messege' => 'success',
+                        'message' => 'success',
                         'request' => 'Designated Official details successfully Inserted',
                     ]);
                 }
@@ -70,7 +70,7 @@ class DesignatedOfficialController extends Controller
         } catch (Exception $e) {
             return $e;
             return response()->json([
-                'messege' => 'error',
+                'message' => 'error',
                 'request' => 'Something Went Wrong',
             ]);
         }
