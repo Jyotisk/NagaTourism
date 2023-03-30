@@ -134,9 +134,7 @@
                     })
                     .then((willStore) => {
                         if (willStore) {
-                            // location.reload("http://gratiatechnology.live/social/public/proforma-download/"+data.data);
                             location.reload();
-                            // window.location = "http://gratiatechnology.live/social/public/proforma-download/" + data.data;
                         }
                     });
             }

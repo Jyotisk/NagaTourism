@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\DesignatedOfficial;
+namespace App\Http\Controllers\Destination;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,15 +8,15 @@ use Exception;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Destination\DestinationDetail;;;
 
-use App\Models\DesignatedOfficial\DesignatedOfficialDetail;;
-class DesignatedOfficialController extends Controller
+class DestinationController extends Controller
 {
-
-    public function GetAddOfficial(){
-        return view('designated_official.designated_official');
+    public function GetAddDestination(){
+        return view('destination.add_destination');
     }
-    public function AddOfficial(Request $request){
+    public function AddDestination(Request $request){
+        return $request;
         try {
             if ($request->ajax()) {
                 $validator = Validator::make($request->all(), [
@@ -63,7 +63,7 @@ class DesignatedOfficialController extends Controller
                     $chunks = $details->chunk(500);
 
                     foreach ($chunks as $chunk) {
-                        DesignatedOfficialDetail::insert($chunk->toArray());
+                        DestinationDetail::insert($chunk->toArray());
                     }
                     return response()->json([
                         'message' => 'success',
@@ -85,7 +85,7 @@ class DesignatedOfficialController extends Controller
     }
     public function DatatableOfficialList(Request $request)
     {
-        $to_list = DesignatedOfficialDetail::where(['status'=> 1,'official_type'=>$request->official_type])->get();
+        $to_list = DestinationDetail::where(['status'=> 1,'official_type'=>$request->official_type])->get();
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);
@@ -94,12 +94,12 @@ class DesignatedOfficialController extends Controller
     {
         return  response()->json([
             'message' => 'success',
-            'data' => DesignatedOfficialDetail::where('id', $request->id)->first()
+            'data' => DestinationDetail::where('id', $request->id)->first()
         ]);
     }
     public function DeleteOfficialData(Request $request)
     {
-        $data = DesignatedOfficialDetail::where('id', $request->id)->first();
+        $data = DestinationDetail::where('id', $request->id)->first();
         $data->status = 0;
         $data->save();
         return  response()->json([
@@ -138,7 +138,7 @@ class DesignatedOfficialController extends Controller
                         'error' => $validator->errors()
                     ]);
                 } else {
-                    $data = DesignatedOfficialDetail::where('id', $request->id)->first();
+                    $data = DestinationDetail::where('id', $request->id)->first();
                     $data->name = $request->name;
                     $data->address = $request->address;
                     $data->contact_no = $request->contact_no;

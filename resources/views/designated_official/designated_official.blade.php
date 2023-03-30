@@ -11,14 +11,14 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Add Registered Guide</h3>
+                        <h3>Add Designated Official Details</h3>
                     </div>
                     <div class='card-body'>
                         <form id="add_Official">
                             @csrf
                             <div class="row justify-content-center  text-center">
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label"><b>Offical</b></label>
+                                    <label for="inputPassword5" class="form-label"><b>SELECT OFFICIAL TYPE</b></label>
                                     <select name="official_type" id="" class="form-control">
                                         <option disabled selected>Select Official</option>
                                         <option value="1">Designated Offical</option>
@@ -142,9 +142,7 @@
                     })
                     .then((willStore) => {
                         if (willStore) {
-                            // location.reload("http://gratiatechnology.live/social/public/proforma-download/"+data.data);
                             location.reload();
-                            // window.location = "http://gratiatechnology.live/social/public/proforma-download/" + data.data;
                         }
                     });
             }
@@ -153,8 +151,12 @@
                 $.each(data.error, function(index, value) {
                     const textValue = index.split(".");
                     const line_number = parseInt(textValue[1]) + 1;
-                    message.push('<li><b class="text-danger">Validation error on row number ' + line_number + ' </b>: ' + value + '</li>');
-                    // $("#validation_message").html('<li><b class="text-danger">Validation error on row number '+line_number+' </b>: '+value+'</li>')
+                    if(index=='official_type'){
+                        message.push('<li><b class="text-danger">Validation error</b>: ' + value + '</li>');
+                    }else{
+                        message.push('<li><b class="text-danger">Validation error on row number ' + line_number + ' </b>: ' + value + '</li>');
+                        // $("#validation_message").html('<li><b class="text-danger">Validation error on row number '+line_number+' </b>: '+value+'</li>')
+                    }
                 });
                 $("#validation_message").html(message)
                 $('#error_modal').modal('show');
