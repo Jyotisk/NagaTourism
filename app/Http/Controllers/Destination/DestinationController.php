@@ -16,32 +16,47 @@ class DestinationController extends Controller
         return view('destination.add_destination');
     }
     public function AddDestination(Request $request){
-        return $request;
+        // return $request;
         try {
             if ($request->ajax()) {
-                $validator = Validator::make($request->all(), [
-                    'official_type' => 'required',
-                    'name.*' => 'required|string|max:255',
-                    'address.*' => 'required',
-                    'contact_no.*' => 'required|digits:10',
-                    'email.*' => 'email|max:255|nullable',
-                    'alt_email.*' => 'email|max:255|nullable',
-                    'alt_contact_no.*' => 'digits:10|nullable',
-                ],
-                [
-                    'name.*.required' => 'You must provide a hotel name',
-                    'address.*.required' => 'You must provide a address',
-                    'contact_no.*.required' => 'You must provide a contact no',
-                    'email.*.required' => 'You must provide a wmail',
+                // $validator = Validator::make($request->all(), [
+                //     'official_type' => 'required',
+                //     'name.*' => 'required|string|max:255',
+                //     'address.*' => 'required',
+                //     'contact_no.*' => 'required|digits:10',
+                //     'email.*' => 'email|max:255|nullable',
+                //     'alt_email.*' => 'email|max:255|nullable',
+                //     'alt_contact_no.*' => 'digits:10|nullable',
+                // ],
+                // [
+                //     'name.*.required' => 'You must provide a hotel name',
+                //     'address.*.required' => 'You must provide a address',
+                //     'contact_no.*.required' => 'You must provide a contact no',
+                //     'email.*.required' => 'You must provide a wmail',
 
-                ]);
-                if ($validator->fails()) {
+                // ]);
+                // if ($validator->fails()) {
 
-                    return response()->json([
-                        'message' => 'validationFails',
-                        'error' => $validator->errors()
-                    ]);
-                } else {
+                //     return response()->json([
+                //         'message' => 'validationFails',
+                //         'error' => $validator->errors()
+                //     ]);
+                // } else {
+
+                    // $this->validate($request, [
+                    //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                    // ]);
+            
+                    $image_path = $request->file('image')->store('image', 'public');
+                    return $image_path;
+                    // $data = Image::create([
+                    //     'image' => $image_path,
+                    // ]);  
+
+
+
+
+
                     $details = [];
                     for ($i = 0; $i < count($request->name); $i++) {
                         $details[] = [
@@ -70,7 +85,7 @@ class DestinationController extends Controller
                         'request' => 'Designated Official details successfully Inserted',
                     ]);
                 }
-            }
+            // }
         } catch (Exception $e) {
             return $e;
             return response()->json([

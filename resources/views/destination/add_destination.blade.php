@@ -107,7 +107,7 @@
             '<label for="inputPassword5" class="form-label">Image</label><br>' +
             '<input type="file" id="inputPassword5" class="form-control-file" name="more_image[]">' +
             '</div>' +
-            '<div class="col-md-6">'+
+            '<div class="col-md-6">' +
             ' <label for="inputPassword5" class="form-label">Image By</label>' +
             '<input type="text" id="inputPassword5" class="form-control" name="image_by[]" aria-describedby="passwordHelpBlock">' +
             '</div>' +
@@ -126,15 +126,22 @@
     })
     $(document).on("submit", "#add_destination", function(e) {
         e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        console.log(formData)
         $.ajax({
             type: "POST",
             url: "{{route('AddDestination')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data: $(this).serialize(),
-            dataType: "json",
-            encode: true,
+            data: 
+                formData
+            ,
+            cache: false,
+            processData: false,
+            contentType: false
+            // dataType: "json",
+            // encode: true,
         }).done(function(data) {
             if (data.message == 'success') {
                 Swal.fire({
