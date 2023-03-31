@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDesignatedOfficialDetailsTable extends Migration
+class CreateHomestayDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateDesignatedOfficialDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('designated_official_details', function (Blueprint $table) {
+        Schema::create('homestay_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('contact_no')->unique();
+            $table->string('homestay_name');
+            $table->string('location');
+            $table->bigInteger('contact_no');
+            $table->bigInteger('alt_contact_no')->nullable();
             $table->string('email')->nullable();
+            $table->string('alt_email')->nullable();
             $table->bigInteger('user_id');
             $table->bigInteger('status');
-            $table->bigInteger('official_type')->comment('1 for designated_official and 2 for police official');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateDesignatedOfficialDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designated_official_details');
+        Schema::dropIfExists('homestay_details');
     }
 }

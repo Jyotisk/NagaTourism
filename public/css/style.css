@@ -20,8 +20,96 @@ header {
     background-color: #fff;
 }
 
+img {
+    border-radius: 0.5em;
+}
+
+.main-text {
+    font-size: 15px;
+    color: #94a3b8;
+}
+
+header {
+    background-color: #fff;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    border-radius: 0.5em;
+}
+
+img.hover:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.main-text {
+    font-size: 15px;
+    color: #94a3b8;
+}
+
 .head-title {
     font-family: "Arthur-Hill";
+    font-size: 50px;
+    color: #333;
+}
+
+.navbar {
+    z-index: 11;
+}
+
+.navbar.scrolled {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in both;
+    background-color: #f8f9fa !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-item a {
+    color: #333;
+}
+
+.navbar .navbar-nav .nav-item a {
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-item {
+    position: relative;
+    margin: 0 10px;
+}
+
+.navbar .navbar-nav .nav-item a::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    content: "";
+    height: 4px;
+    width: 0;
+    position: absolute;
+    margin: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+    -webkit-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -khtml-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -ms-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -o-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+.navbar .navbar-nav .nav-item a.active::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    width: 100%;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(odd) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(odd) a:hover::before {
+    background-color: #ec2027;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(even) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(even) a:hover::before {
+    background-color: #fcb041;
 }
 
 .contact p {
@@ -35,6 +123,10 @@ header {
 a {
     text-decoration: none;
     color: #333;
+}
+
+a.more-btn {
+    color: #27aae1;
 }
 
 /* Logo */
@@ -61,6 +153,7 @@ a {
 }
 
 #carouselImageSlider .carousel-caption h3 {
+    color: #fff;
     font-size: 100px;
 }
 
@@ -114,12 +207,13 @@ a {
 /* About Carousel */
 .about-wrapper {
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .slide_navigation {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-direction: column;
 }
 
@@ -138,6 +232,8 @@ a {
 
 .slider .slides {
     overflow-y: auto;
+    /* height: 500px; */
+    /* min-height: 500px; */
     max-height: 500px;
     scrollbar-width: none;
 }
@@ -147,7 +243,9 @@ a {
 }
 
 .slider .slides .slide {
-    min-height: calc(110% - 80px);
+    /* min-height: calc(110% - 80px);
+    min-height: 650px; */
+    height: 100%;
     display: flex;
     padding: 40px;
     color: #333;
@@ -159,17 +257,27 @@ a {
 }
 
 .slide_navigation li a.dot::before {
-    border: 2px solid #f44336;
-    background-color: #f44336;
-    width: 10px;
-    height: 10px;
+    /* border: 2px solid #f44336; */
+    /* background-color: #f44336; */
+    background-color: #cbcbcb;
+    width: 8px;
+    height: 8px;
     transform: translateY(-50%);
+}
+
+.slide_navigation li.active a.dot::before {
+    /* width: 20px; */
+    /* height: 20px; */
+    background-color: #fcb041 !important;
+    /* border: 2px solid #f44336; */
+    /* transform: translateY(-50%) scale(1); */
+    /* right: -15px; */
 }
 
 .slide_navigation li a.dot::before,
 .slide_navigation li a.dot::after {
     display: block;
-    /* position: absolute; */
+    position: absolute;
     content: "";
     border-radius: 50%;
     /* top: 50%; */
@@ -192,4 +300,238 @@ a {
     left: 50%;
     z-index: -1;
     top: 30%;
+}
+
+/* Where to visit section */
+.visit-wrapper {
+    background: url("../img/bg-nagaland.png");
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+}
+
+.visit-wrapper .visit-section {
+    margin-bottom: 6.5rem;
+}
+
+.visit-wrapper .card:hover img {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.mySwiper .card {
+    width: 300px;
+    border: none;
+}
+
+.mySwiper .card h6 {
+    font-size: 15px;
+    width: 70%;
+}
+
+.mySwiper .swiper-wrapper {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+}
+
+.swiper-pagination {
+    position: unset !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #fcb041 !important;
+}
+
+.mySwiper .card img {
+    width: auto;
+    height: 168px;
+    object-fit: cover;
+}
+
+.mySwiper .swiper-slide {
+    width: auto !important;
+}
+
+.things-section .card {
+    width: auto;
+    border: 0;
+}
+
+.things-section .card img {
+    width: 238px;
+    height: 358px;
+    object-fit: cover;
+}
+
+.things-section p {
+    color: #333;
+}
+
+/* Upcomming Events Section */
+.events-wrapper {
+    padding-bottom: 100px;
+}
+.events-wrapper .event-pic {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.event-card-wrapper {
+    border: 0.5px solid #f1f5f9;
+}
+
+.events-wrapper .card {
+    /* border: 0.5px solid #f1f5f9; */
+    border: none;
+    border-bottom: 0.5px solid #f1f5f9;
+    border-radius: 0;
+}
+
+.event-card-wrapper .col-12 {
+    padding: 0;
+}
+
+.events-wrapper .card:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+/* Video and Blog Section */
+.video-blog-wrapper {
+    padding-bottom: 100px;
+}
+.video-blog-wrapper,
+.video-wrapper {
+    position: relative;
+    height: 71vh;
+}
+.video-blog-wrapper .video-wrapper video {
+    position: absolute;
+    width: 100%;
+    height: 653px;
+    object-fit: cover;
+}
+
+.video-blog-wrapper .video-wrapper .video-overlay {
+    background: rgb(15, 23, 42);
+    background: linear-gradient(
+        240deg,
+        rgba(15, 23, 42, 1) 25.1397%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    color: #fff;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10% 17%;
+}
+
+.video-blog-wrapper .video-wrapper .video-overlay .video-text {
+    width: 48%;
+    text-align: end;
+}
+
+.video-blog-wrapper .video-wrapper .video-overlay .video-text .video-head-text {
+    font-size: 50px;
+}
+
+.video-overlay .video-play-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 64%;
+    background: #ec2027;
+    color: #fff;
+    border-color: #ec2027;
+}
+
+.video-blog-wrapper .blog-wrapper {
+    position: relative;
+    top: 0%;
+    margin-top: 100px;
+    background-image: url("../img/bg-nagaland.png");
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+.video-blog-wrapper .blog-wrapper .head-title {
+    text-align: center;
+}
+
+.video-blog-wrapper .blog-wrapper .card {
+    border: 0;
+    width: 40%;
+    background-color: transparent;
+}
+
+.video-blog-wrapper .blog-wrapper .card img {
+    width: 284px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.video-blog-wrapper .bird-wrapper {
+    position: absolute;
+    left: 85%;
+    top: 84%;
+}
+
+/* Footer Section */
+footer {
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
+    margin-top: 50px;
+}
+
+footer .footer_logo {
+    width: 88%;
+}
+
+footer .govt_logo {
+    width: 55%;
+}
+
+footer .quick-links {
+    padding-left: 0 !important;
+    line-height: 3;
+}
+
+footer .quick-links.govt-details {
+    line-height: 1;
+    font-size: 15px;
+}
+
+footer .connect-footer span {
+    padding-left: 10px;
+}
+
+footer .quick-links.govt-details li:nth-child(2),
+footer .quick-links.govt-details li:nth-child(3) {
+    padding-top: 15px;
+}
+
+footer .quick-links .link-head {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+footer .quick-links li a,
+footer .quick-links li {
+    color: #94a3b8;
+}
+
+footer .copyright {
+    background-color: #0f172a;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+footer .copyright p {
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
 }

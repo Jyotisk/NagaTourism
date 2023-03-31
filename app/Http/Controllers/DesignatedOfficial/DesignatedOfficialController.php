@@ -23,8 +23,10 @@ class DesignatedOfficialController extends Controller
                     'official_type' => 'required',
                     'name.*' => 'required|string|max:255',
                     'address.*' => 'required',
-                    'contact_no.*' => 'required|unique:designated_official_details',
-                    'email.*' => 'max:255',
+                    'contact_no.*' => 'required|digits:10',
+                    'email.*' => 'email|max:255|nullable',
+                    'alt_email.*' => 'email|max:255|nullable',
+                    'alt_contact_no.*' => 'digits:10|nullable',
                 ],
                 [
                     'name.*.required' => 'You must provide a hotel name',
@@ -36,7 +38,7 @@ class DesignatedOfficialController extends Controller
                 if ($validator->fails()) {
 
                     return response()->json([
-                        'messege' => 'validationFails',
+                        'message' => 'validationFails',
                         'error' => $validator->errors()
                     ]);
                 } else {
@@ -45,9 +47,11 @@ class DesignatedOfficialController extends Controller
                         $details[] = [
                             'name' => $request->name[$i],
                             'address' => $request->address[$i],
-                            'contact_no' => $request->contact_number[$i],
+                            'contact_no' => $request->contact_no[$i],
                             'email' => $request->email[$i],
                             'official_type'=>$request->official_type,
+                            'alt_contact_no' => $request->alt_contact_no[$i],
+                            'alt_email' => $request->alt_email[$i],
                             'status' => 1,
                             'user_id' => Auth::user()->id,
                             'created_at' => Carbon::now(),
@@ -62,7 +66,7 @@ class DesignatedOfficialController extends Controller
                         DesignatedOfficialDetail::insert($chunk->toArray());
                     }
                     return response()->json([
-                        'messege' => 'success',
+                        'message' => 'success',
                         'request' => 'Designated Official details successfully Inserted',
                     ]);
                 }
@@ -70,7 +74,7 @@ class DesignatedOfficialController extends Controller
         } catch (Exception $e) {
             return $e;
             return response()->json([
-                'messege' => 'error',
+                'message' => 'error',
                 'request' => 'Something Went Wrong',
             ]);
         }
@@ -105,14 +109,54 @@ class DesignatedOfficialController extends Controller
     }
     public function EditOfficialData(Request $request)
     {
-        $data = DesignatedOfficialDetail::where('id', $request->id)->first();
-        $data->name = $request->name;
-        $data->address = $request->address;
-        $data->contact_no = $request->contact_no;
-        $data->email = $request->email;
-        $data->save();
-        return  response()->json([
-            'message' => 'success',
-            'data' => 'updated successfully'
-        ]);
+
+        try {
+            if ($request->ajax()) {
+                $validator = Validator::make(
+                    $request->all(),
+                    [
+                        'name' => 'required|string|max:255',
+                        'address' => 'required',
+                        // 'contact_no' => 'required|digits:10|unique:homestay_details',
+                        'contact_no' => 'required|digits:10',
+                        'email' => 'email|max:255|nullable',
+                        'alt_email' => 'email|max:255|nullable',
+                        'alt_contact_no' => 'digits:10|nullable',
+
+                    ],
+                    [
+                        'name.required' => 'You must provide a name',
+                        'address.required' => 'You must provide a address',
+                        'contact_no.required' => 'You must provide a contact no',
+                        // 'email.*.email' => 'You must provide a email',
+                    ]
+                );
+
+                if ($validator->fails()) {
+                    return response()->json([
+                        'message' => 'validationFails',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
+                    $data = DesignatedOfficialDetail::where('id', $request->id)->first();
+                    $data->name = $request->name;
+                    $data->address = $request->address;
+                    $data->contact_no = $request->contact_no;
+                    $data->alt_contact_no = $request->alt_contact_no;
+                    $data->email = $request->email;
+                    $data->alt_email = $request->alt_email;
+                    $data->save();
+                    return  response()->json([
+                        'message' => 'success',
+                        'data' => 'updated successfully'
+                    ]);
+                }
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'error',
+                'request' => 'Something Went Wrong',
+            ]);
+        }
+
     }}

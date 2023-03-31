@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Accomodation\AccomodationController;
 use App\Http\Controllers\Event\EventController;
 use App\Http\Controllers\DesignatedOfficial\DesignatedOfficialController;
-
+use App\Http\Controllers\Destination\DestinationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,4 +85,14 @@ Route::group(['prefix' => 'designated-official'], function () {
     Route::post('EditOfficialData', [DesignatedOfficialController::class, 'EditOfficialData'])->name('EditOfficialData');
     Route::post('GetEditOfficialData', [DesignatedOfficialController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
     Route::post('DeleteOfficialData', [DesignatedOfficialController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
+});
+
+Route::group(['prefix' => 'destination'], function () {
+    Route::get('add-destination', [DestinationController::class, 'GetAddDestination'])->name('GetAddDestination');
+    Route::post('AddDestination', [DestinationController::class, 'AddDestination'])->name('AddDestination');
+    Route::get('destination-list', [DestinationController::class, 'DestinationList'])->name('DestinationList');
+    Route::get('DatatableDestinationlList', [DestinationController::class, 'DatatableDestinationlList'])->name('DatatableDestinationlList');
+    Route::post('EditOfficialData', [DestinationController::class, 'EditOfficialData'])->name('EditOfficialData');
+    Route::post('GetEditOfficialData', [DestinationController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
+    Route::post('DeleteOfficialData', [DestinationController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
 });

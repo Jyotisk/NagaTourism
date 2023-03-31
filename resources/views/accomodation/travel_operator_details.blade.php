@@ -19,7 +19,9 @@
                                 <th>travel_operator/PG Name</th>
                                 <th>Address</th>
                                 <th>Contact Number</th>
+                                <th>Alt Contact Number</th>
                                 <th>Email</th>
+                                <th>Alt Email</th>
                                 <th>Action</th>
 
                             </thead>
@@ -54,10 +56,22 @@
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Contact Number:</label>
                             <input type="text" class="form-control" id="contact_no" name="contact_no">
+                            <span id="contact_no_error" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Alt Contact Number:</label>
+                            <input type="text" class="form-control" id="alt_contact_no" name="alt_contact_no">
+                            <span id="alt_contact_no_error" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Email:</label>
                             <input type="text" class="form-control" id="email" name="email">
+                            <span id="email_error" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Alt Email:</label>
+                            <input type="text" class="form-control" id="alt_email" name="alt_email">
+                            <span id="alt_email_error" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm rounded-0">Save Change</button>
                     </form>
@@ -130,7 +144,13 @@
                 "data": "contact_no"
             },
             {
+                "data": "alt_contact_no"
+            },
+            {
                 "data": "email"
+            },
+            {
+                "data": "alt_email"
             },
             {
                 "data": "id",
@@ -209,8 +229,10 @@
                 $("#travel_operator_id").val(data.data.id);
                 $("#travel_operator_name").val(data.data.name);
                 $("#address").val(data.data.address);
+                $("#alt_contact_no").val(data.data.alt_contact_no);
                 $("#contact_no").val(data.data.contact_no);
                 $("#email").val(data.data.email);
+                $("#alt_email").val(data.data.alt_email);
 
             }
             if (data.message == 'error') {
@@ -261,6 +283,12 @@
                     buttons: false,
                     dangerMode: true,
                 })
+            }
+            if (data.message == "validationFails") {
+                $.each(data.error, function(index, value) {
+                    $('#' + index + '_error').html(value);
+                    console.log('#' + index + '_error')
+                });
             }
 
         });

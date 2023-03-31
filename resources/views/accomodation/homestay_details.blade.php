@@ -19,9 +19,10 @@
                                 <th>Homestay/PG Name</th>
                                 <th>Location</th>
                                 <th>Contact Number</th>
+                                <th>Alt Contact Number</th>
                                 <th>Email</th>
+                                <th>Alt Email</th>
                                 <th>Action</th>
-
                             </thead>
                             <tbody>
 
@@ -45,19 +46,33 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">homestay Name:</label>
                             <input type="text" class="form-control" id="homestay_name" name="homestay_name">
+                            <span id="homestay_name_error" class="text-danger"></span>
                             <input type="hidden" class="form-control" id="homestay_id" name="homestay_id">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Location:</label>
                             <input type="text" class="form-control" id="location" name="location">
+                            <span id="location_error" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Contact Number:</label>
                             <input type="text" class="form-control" id="contact_no" name="contact_no">
+                            <span id="contact_no_error" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Alt Contact Number:</label>
+                            <input type="text" class="form-control" id="alt_contact_no" name="alt_contact_no">
+                            <span id="alt_contact_no_error" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Email:</label>
                             <input type="text" class="form-control" id="email" name="email">
+                            <span id="email_error" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Alt Email:</label>
+                            <input type="text" class="form-control" id="alt_email" name="alt_email">
+                            <span id="alt_email_error" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm rounded-0">Save Change</button>
                     </form>
@@ -130,7 +145,13 @@
                 "data": "contact_no"
             },
             {
+                "data": "alt_contact_no"
+            },
+            {
                 "data": "email"
+            },
+            {
+                "data": "alt_email"
             },
             {
                 "data": "id",
@@ -209,8 +230,10 @@
                 $("#homestay_id").val(data.data.id);
                 $("#homestay_name").val(data.data.homestay_name);
                 $("#location").val(data.data.location);
+                $("#alt_contact_no").val(data.data.alt_contact_no);
                 $("#contact_no").val(data.data.contact_no);
                 $("#email").val(data.data.email);
+                $("#alt_email").val(data.data.alt_email);
 
             }
             if (data.message == 'error') {
@@ -252,6 +275,12 @@
 
                         }
                     });
+            }
+            if (data.message == "validationFails") {
+                $.each(data.error, function(index, value) {
+                    $('#' + index + '_error').html(value);
+                    console.log('#' + index + '_error')
+                });
             }
             if (data.message == 'error') {
                 Swal.fire({

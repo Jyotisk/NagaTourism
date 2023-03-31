@@ -11,13 +11,22 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Hotel Lists</h3>
+                        <h3>Designated Official Lists</h3>
+                    </div>
+                    <div class="row mt-2 justify-content-end">
+                        <div class="col-md-4 mx-3">
+                            <select name="official_type" id="official_type" class="form-control">
+                                <option selected disabled>Select Official</option>
+                                <option value="1">Designated Official</option>
+                                <option value="2">Police Official</option>
+                            </select>
+                        </div>
                     </div>
                     <div class='card-body'>
-                        <table class="table hotel-list w-100">
+                        <table class="table registered_guide-list w-100">
                             <thead>
-                                <th>Hotel Name</th>
-                                <th>Location</th>
+                                <th>Designated Official Name</th>
+                                <th>Address</th>
                                 <th>Contact Number</th>
                                 <th>Alt Contact Number</th>
                                 <th>Email</th>
@@ -45,13 +54,13 @@
                 <div class="modal-body">
                     <form id="edit_form">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Hotel Name:</label>
-                            <input type="text" class="form-control" id="hotel_name" name="hotel_name">
-                            <input type="hidden" class="form-control" id="hotel_id" name="hotel_id">
+                            <label for="recipient-name" class="col-form-label">Registered Guide Name:</label>
+                            <input type="text" class="form-control" id="registered_guide_name" name="name">
+                            <input type="hidden" class="form-control" id="registered_guide_id" name="id">
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Location:</label>
-                            <input type="text" class="form-control" id="location" name="location">
+                            <label for="message-text" class="col-form-label">Address:</label>
+                            <input type="text" class="form-control" id="address" name="address">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Contact Number:</label>
@@ -96,7 +105,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script> -->
 <script>
-    $('.hotel-list').DataTable({
+        $('.registered_guide-list').DataTable({
         "processing": true,
         "serverSide": true,
         "responsive": true,
@@ -117,15 +126,15 @@
         },
 
         "ajax": {
-            "url": "{{ route('DatatableHotelList')}}",
+            "url": "{{ route('DatatableOfficialList')}}",
             // "data": function(d) {
-            //     d.dis_id = $('#district').val();
-            //     d.block_id = $('#block').val();
-            //     d.panchayat_id = $('#panchyat').val();
-            //     d.program_id = $('#program').val();
-            //     d.level_id = $('#level').val();
-            //     d.des_id = $('#designation').val();
-            //     d.ser_status = $('#service_status').val();
+                // d.official_type = $('#official_type').val();
+                // d.block_id = $('#block').val();
+                // d.panchayat_id = $('#panchyat').val();
+                // d.program_id = $('#program').val();
+                // d.level_id = $('#level').val();
+                // d.des_id = $('#designation').val();
+                // d.ser_status = $('#service_status').val();
             // }
         },
         "columns": [
@@ -135,10 +144,10 @@
             // },
 
             {
-                "data": "hotel_name"
+                "data": "name"
             },
             {
-                "data": "location"
+                "data": "address"
             },
             {
                 "data": "contact_no"
@@ -162,15 +171,14 @@
                 }
             },
 
-
-
         ],
 
-    });
+    });  
+
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
         Swal.fire({
-            title: 'Do you want to delete the hotel?',
+            title: 'Do you want to delete the Registered Guide?',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'No',
@@ -182,7 +190,7 @@
             } else if (result.isDenied) {
                 $.ajax({
                     type: "POST",
-                    url: "{{route('DeleteHotelData')}}",
+                    url: "{{route('DeleteOfficialData')}}",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -193,7 +201,7 @@
                     encode: true,
                 }).done(function(data) {
                     if (data.message == 'success') {
-                        $('.hotel-list').DataTable().ajax.reload();
+                        $('.registered_guide-list').DataTable().ajax.reload();
                         Swal.fire('Deleted!', '', 'danger')
                     }
                     if (data.message == 'error') {
@@ -214,7 +222,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('GetEditHotelData')}}",
+            url: "{{route('GetEditOfficialData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -226,9 +234,9 @@
         }).done(function(data) {
             if (data.message == 'success') {
                 $("#edit_modal").modal("show");
-                $("#hotel_id").val(data.data.id);
-                $("#hotel_name").val(data.data.hotel_name);
-                $("#location").val(data.data.location);
+                $("#registered_guide_id").val(data.data.id);
+                $("#registered_guide_name").val(data.data.name);
+                $("#address").val(data.data.address);
                 $("#alt_contact_no").val(data.data.alt_contact_no);
                 $("#contact_no").val(data.data.contact_no);
                 $("#email").val(data.data.email);
@@ -251,7 +259,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('EditHotelData')}}",
+            url: "{{route('EditOfficialData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -262,14 +270,14 @@
             if (data.message == 'success') {
                 Swal.fire({
                         title: "Success",
-                        text: "Hotel data has been updated successfully",
+                        text: "registered_guide data has been updated successfully",
                         icon: "success",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willStore) => {
                         if (willStore) {
-                            $('.hotel-list').DataTable().ajax.reload();
+                            $('.registered_guide-list').DataTable().ajax.reload();
                             $("#edit_modal").modal("hide");
 
                         }
