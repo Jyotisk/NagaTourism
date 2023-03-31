@@ -38,7 +38,7 @@
                                     <textarea name="description" id="" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Image</label>
+                                    <label for="inputPassword5" class="form-label">Image</label><br>
                                     <input type="file" id="inputPassword5" class="form-control-file" name="image">
                                 </div>
                                 <div class="col-md-8">
