@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Date</label>
-                                    <input type="text" id="inputPassword5" class="form-control" name="blog_date" aria-describedby="passwordHelpBlock">
+                                    <input type="date" id="inputPassword5" class="form-control" name="blog_date" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Added By</label>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputPassword5" class="form-label">Image By</label>
-                                    <input type="text" id="inputPassword5" class="form-control" name="image_by[]" aria-describedby="passwordHelpBlock">
+                                    <input type="text" id="inputPassword5" class="form-control" name="more_image_by[]" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="inputPassword5" class="form-label">Description</label>
@@ -109,7 +109,7 @@
             '</div>' +
             '<div class="col-md-6">' +
             ' <label for="inputPassword5" class="form-label">Image By</label>' +
-            '<input type="text" id="inputPassword5" class="form-control" name="image_by[]" aria-describedby="passwordHelpBlock">' +
+            '<input type="text" id="inputPassword5" class="form-control" name="more_image_by[]" aria-describedby="passwordHelpBlock">' +
             '</div>' +
             '<div class="col-md-12">' +
             '<label for="inputPassword5" class="form-label">Description</label>' +

@@ -56,6 +56,62 @@ img.hover:hover {
     color: #333;
 }
 
+.navbar {
+    z-index: 11;
+}
+
+.navbar.scrolled {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in both;
+    background-color: #f8f9fa !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-item a {
+    color: #333;
+}
+
+.navbar .navbar-nav .nav-item a {
+    color: #fff;
+}
+
+.navbar .navbar-nav .nav-item {
+    position: relative;
+    margin: 0 10px;
+}
+
+.navbar .navbar-nav .nav-item a::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    content: "";
+    height: 4px;
+    width: 0;
+    position: absolute;
+    margin: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+    -webkit-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -khtml-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -ms-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -o-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+.navbar .navbar-nav .nav-item a.active::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    width: 100%;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(odd) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(odd) a:hover::before {
+    background-color: #ec2027;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(even) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(even) a:hover::before {
+    background-color: #fcb041;
+}
+
 .contact p {
     font-size: 12px;
 }
@@ -425,8 +481,8 @@ a.more-btn {
 
 /* Footer Section */
 footer {
-    border: 1px solid #CBD5E1;
-    background-color: #F8FAFC;
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
     margin-top: 50px;
 }
 
@@ -452,22 +508,24 @@ footer .connect-footer span {
     padding-left: 10px;
 }
 
-footer .quick-links.govt-details li:nth-child(2), footer .quick-links.govt-details li:nth-child(3) {
+footer .quick-links.govt-details li:nth-child(2),
+footer .quick-links.govt-details li:nth-child(3) {
     padding-top: 15px;
 }
 
 footer .quick-links .link-head {
     font-size: 18px;
-    color: #64748B;
+    color: #64748b;
     font-weight: 600;
 }
 
-footer .quick-links li a, footer .quick-links li {
+footer .quick-links li a,
+footer .quick-links li {
     color: #94a3b8;
 }
 
 footer .copyright {
-    background-color: #0F172A;
+    background-color: #0f172a;
     padding-top: 5px;
     padding-bottom: 5px;
 }

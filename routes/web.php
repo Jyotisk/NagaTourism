@@ -76,8 +76,8 @@ Route::group(['prefix' => 'designated-official'], function () {
 Route::group(['prefix' => 'destination'], function () {
     Route::get('add-destination', [DestinationController::class, 'GetAddDestination'])->name('GetAddDestination');
     Route::post('AddDestination', [DestinationController::class, 'AddDestination'])->name('AddDestination');
-    Route::get('official-list', [DestinationController::class, 'OfficialList'])->name('OfficialList');
-    Route::get('DatatableOfficialList', [DestinationController::class, 'DatatableOfficialList'])->name('DatatableOfficialList');
+    Route::get('destination-list', [DestinationController::class, 'DestinationList'])->name('DestinationList');
+    Route::get('DatatableDestinationlList', [DestinationController::class, 'DatatableDestinationlList'])->name('DatatableDestinationlList');
     Route::post('EditOfficialData', [DestinationController::class, 'EditOfficialData'])->name('EditOfficialData');
     Route::post('GetEditOfficialData', [DestinationController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
     Route::post('DeleteOfficialData', [DestinationController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');

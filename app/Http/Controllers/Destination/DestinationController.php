@@ -8,84 +8,89 @@ use Exception;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Destination\DestinationDetail;;;
+use App\Models\Destination\DestinationDetail;
+use App\Models\Destination\MoreDestinationDetail;
+
+;;
 
 class DestinationController extends Controller
 {
-    public function GetAddDestination(){
+    public function GetAddDestination()
+    {
         return view('destination.add_destination');
     }
-    public function AddDestination(Request $request){
+    public function AddDestination(Request $request)
+    {
         // return $request;
         try {
             if ($request->ajax()) {
-                // $validator = Validator::make($request->all(), [
-                //     'official_type' => 'required',
-                //     'name.*' => 'required|string|max:255',
-                //     'address.*' => 'required',
-                //     'contact_no.*' => 'required|digits:10',
-                //     'email.*' => 'email|max:255|nullable',
-                //     'alt_email.*' => 'email|max:255|nullable',
-                //     'alt_contact_no.*' => 'digits:10|nullable',
-                // ],
-                // [
-                //     'name.*.required' => 'You must provide a hotel name',
-                //     'address.*.required' => 'You must provide a address',
-                //     'contact_no.*.required' => 'You must provide a contact no',
-                //     'email.*.required' => 'You must provide a wmail',
+                $validator = Validator::make(
+                    $request->all(),
+                    [
+                        'header' => 'required',
+                        // 'blog_date' => 'required|string|max:255',
+                        'blog_by' => 'required',
+                        'source_link' => 'nullable',
+                        'description' => 'nullable',
+                        'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                        'more_image.*' => 'required_if:add_more_status,==,1|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                        'more_image_by.*' => 'required_if:add_more_status,==,1',
+                        'more_description.*' => 'required_if:add_more_status,==,1',
 
-                // ]);
-                // if ($validator->fails()) {
+                    ],
+                    [
+                        'header.required' => 'You must provide a header',
+                        'blog_by.required' => 'You must provide blog written by',
+                        'image.required' => 'You must provide a image',
+                    ]
+                );
+                if ($validator->fails()) {
 
-                //     return response()->json([
-                //         'message' => 'validationFails',
-                //         'error' => $validator->errors()
-                //     ]);
-                // } else {
+                    return response()->json([
+                        'message' => 'validationFails',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
 
-                    // $this->validate($request, [
-                    //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                    // ]);
-            
-                    $image_path = $request->file('image')->store('image', 'public');
-                    return $image_path;
-                    // $data = Image::create([
-                    //     'image' => $image_path,
-                    // ]);  
+                    $image_path = $request->file('image')->store('destination', 'public');
+                    $DestinationDetail =new DestinationDetail();
+                    $DestinationDetail->header=$request->header;
+                    $DestinationDetail->blog_date=Carbon::parse($request->date)->format("Y-m-d");
+                    $DestinationDetail->blog_by=$request->blog_by;
+                    $DestinationDetail->source_link=$request->source_link;
+                    $DestinationDetail->description=$request->description;
+                    $DestinationDetail->image=$image_path;
+                    $DestinationDetail->status=1;
+                    $DestinationDetail->add_more_status=$request->add_more_status==1?1:0;
+                    $DestinationDetail->save();
 
-
-
-
-
-                    $details = [];
-                    for ($i = 0; $i < count($request->name); $i++) {
-                        $details[] = [
-                            'name' => $request->name[$i],
-                            'address' => $request->address[$i],
-                            'contact_no' => $request->contact_no[$i],
-                            'email' => $request->email[$i],
-                            'official_type'=>$request->official_type,
-                            'alt_contact_no' => $request->alt_contact_no[$i],
-                            'alt_email' => $request->alt_email[$i],
-                            'status' => 1,
-                            'user_id' => Auth::user()->id,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
-
-                        ];
-                    }
-                    $details = collect($details);
-                    $chunks = $details->chunk(500);
-
-                    foreach ($chunks as $chunk) {
-                        DestinationDetail::insert($chunk->toArray());
+                    if($request->add_more_status==1){
+                        $details = [];
+                        for ($i = 0; $i < count($request->more_image); $i++)
+                         {
+                            $more_image_path = $request->file('more_image')[$i]->store('destination', 'public');
+                            $details[] = [
+                                'image' => $more_image_path,
+                                'image_by' => $request->more_image_by[$i],
+                                'description' => $request->more_description[$i],
+                                'destination_detail_id' => $DestinationDetail->id,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ];
+                        }
+                        $details = collect($details);
+                        $chunks = $details->chunk(500);
+    
+                        foreach ($chunks as $chunk) {
+                            MoreDestinationDetail::insert($chunk->toArray());
+                        }
                     }
                     return response()->json([
                         'message' => 'success',
                         'request' => 'Designated Official details successfully Inserted',
                     ]);
                 }
-            // }
+            }
         } catch (Exception $e) {
             return $e;
             return response()->json([
@@ -94,13 +99,13 @@ class DestinationController extends Controller
             ]);
         }
     }
-    public function OfficialList()
+    public function DestinationList()
     {
-        return view('designated_official.designated_official_details');
+        return view('destination.destination_lists');
     }
     public function DatatableOfficialList(Request $request)
     {
-        $to_list = DestinationDetail::where(['status'=> 1,'official_type'=>$request->official_type])->get();
+        $to_list = DestinationDetail::where(['status' => 1, 'official_type' => $request->official_type])->get();
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);
@@ -173,5 +178,5 @@ class DestinationController extends Controller
                 'request' => 'Something Went Wrong',
             ]);
         }
-
-    }}
+    }
+}
