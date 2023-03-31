@@ -520,3 +520,49 @@ footer .copyright p {
     font-size: 13px;
     text-align: center;
 }
+
+@media only screen and (max-width: 576px) {
+    .navbar-brand {
+        width: 30%;
+    }
+    .navbar .navbar-nav .nav-item a {
+        color: #333;
+    }
+    #carouselImageSlider.carousel {
+        margin-top: 0;
+    }
+    #carouselImageSlider .carousel-indicators {
+        top: unset;
+    }
+    #carouselImageSlider .carousel-item {
+        height: 186px;
+    }
+    #carouselImageSlider .carousel-caption {
+        display: block !important;
+        top: 0%;
+        left: 2%;
+        right: 0%;
+    }
+    #carouselImageSlider .carousel-caption h3 {
+        font-size: 30px;
+    }
+    #carouselImageSlider .carousel-caption p {
+        font-size: 10px;
+    }
+    .img-overlay img {
+        border: 0;
+    }
+    .news-section {
+        position: unset;
+        width: 100%;
+    }
+    #carouselNewsSlider p {
+        font-size: 12px;
+    }
+    .image-wrapper .image img {
+        width: 232px;
+    }
+    .slide_navigation {
+        flex-direction: row;
+    }
+}

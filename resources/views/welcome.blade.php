@@ -201,14 +201,14 @@
     <div class="about-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-1 d-flex align-items-center">
+                <div class="col-12 col-lg-1 d-flex align-items-center order-sm-last order-lg-first">
                     <ul class="slide_navigation position-relative" id="slider-menu">
                         <li class="link active" data-scroll="slide_1"><a data-scroll="slide_1" href="#slide_1" class="dot"></a></li>
                         <li class="link" data-scroll="slide_2"><a data-scroll="slide_2" href="#slide_2" class="dot"></a></li>
                         <li class="link" data-scroll="slide_3"><a data-scroll="slide_3" href="#slide_3" class="dot"></a></li>
                     </ul>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-lg-5 order-sm-first order-lg-first">
                     <div class="d-flex">
                         <div class="image-wrapper d-flex">
                             <div class="image">
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6 order-sm-first order-lg-first">
                     <div class="scroll-warpper">
                         <section class="slider">
                             <div class="slides">
