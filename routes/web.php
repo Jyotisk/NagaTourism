@@ -77,8 +77,9 @@ Route::group(['prefix' => 'destination'], function () {
     Route::get('add-destination', [DestinationController::class, 'GetAddDestination'])->name('GetAddDestination');
     Route::post('AddDestination', [DestinationController::class, 'AddDestination'])->name('AddDestination');
     Route::get('destination-list', [DestinationController::class, 'DestinationList'])->name('DestinationList');
-    Route::get('DatatableDestinationlList', [DestinationController::class, 'DatatableDestinationlList'])->name('DatatableDestinationlList');
-    Route::post('EditOfficialData', [DestinationController::class, 'EditOfficialData'])->name('EditOfficialData');
-    Route::post('GetEditOfficialData', [DestinationController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
-    Route::post('DeleteOfficialData', [DestinationController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
+    Route::get('DatatableDestinatioList', [DestinationController::class, 'DatatableDestinatioList'])->name('DatatableDestinatioList');
+    Route::post('ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
+    Route::post('EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
+    Route::post('GetEditDestinationData', [DestinationController::class, 'GetEditDestinationData'])->name('GetEditDestinationData');
+    Route::post('DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
 });

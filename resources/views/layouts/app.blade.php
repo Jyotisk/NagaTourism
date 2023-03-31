@@ -502,8 +502,10 @@
 
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Payments </a>
-                    <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
+                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Destination </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="{{Route('GetAddDestination')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddDestination') ? 'active' : '' }}">Add Destination</a>
+                        <a href="{{Route('DestinationList')}}" class="dashboard-nav-dropdown-item {{ Route::is('DestinationList') ? 'active' : '' }}">Destination Lists</a>
                     </div>
                 </div>
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
