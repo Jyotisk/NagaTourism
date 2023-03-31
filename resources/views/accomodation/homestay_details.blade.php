@@ -11,16 +11,17 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Event Lists</h3>
+                        <h3>Homestay Lists</h3>
                     </div>
                     <div class='card-body'>
-                        <table class="table event-list w-100">
+                        <table class="table homestay-list w-100">
                             <thead>
-                                <th class="text-center">Event Title</th>
-                                <th class="text-center">Event Date</th>
-                                <th class="text-center">Event Description</th>
-                                <th class="text-center">Image</th>
-                                <th>Edit | Delete</th>
+                                <th>Homestay/PG Name</th>
+                                <th>Location</th>
+                                <th>Contact Number</th>
+                                <th>Email</th>
+                                <th>Action</th>
+
                             </thead>
                             <tbody>
 
@@ -36,23 +37,29 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Record</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="edit_form">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Event Title:</label>
-                            <input type="text" class="form-control" id="eventTitle" name="event_title">
-                            <input type="hidden" class="form-control" id="id" name="id">
+                            <label for="recipient-name" class="col-form-label">homestay Name:</label>
+                            <input type="text" class="form-control" id="homestay_name" name="homestay_name">
+                            <input type="hidden" class="form-control" id="homestay_id" name="homestay_id">
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Event Date:</label>
-                            <input type="date" class="form-control" id="eventDate" name="event_date">
+                            <label for="message-text" class="col-form-label">Location:</label>
+                            <input type="text" class="form-control" id="location" name="location">
                         </div>
-                        <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-sm rounded-0" style="width:30%">Save Change</button>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Contact Number:</label>
+                            <input type="text" class="form-control" id="contact_no" name="contact_no">
                         </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm rounded-0">Save Change</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -66,9 +73,16 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/af-2.3.7/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/cr-1.5.4/date-1.1.1/sl-1.3.3/datatables.js"></script>
 
+<!-- <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script> -->
 <script>
-    $('.event-list').DataTable({
-
+    $('.homestay-list').DataTable({
         "processing": true,
         "serverSide": true,
         "responsive": true,
@@ -89,29 +103,42 @@
         },
 
         "ajax": {
-            "url": "{{ route('DatatableEventList')}}",
+            "url": "{{ route('DatatableHomestayList')}}",
+            // "data": function(d) {
+            //     d.dis_id = $('#district').val();
+            //     d.block_id = $('#block').val();
+            //     d.panchayat_id = $('#panchyat').val();
+            //     d.program_id = $('#program').val();
+            //     d.level_id = $('#level').val();
+            //     d.des_id = $('#designation').val();
+            //     d.ser_status = $('#service_status').val();
+            // }
         },
         "columns": [
+            // {
+            //     data: 'DT_Row_Index',
+            //     name: 'DT_Row_Index'
+            // },
+
             {
-                "data": "event_title"
+                "data": "homestay_name"
             },
             {
-                "data": "event_date"
+                "data": "location"
             },
             {
-                "data": "event_description"
+                "data": "contact_no"
             },
             {
-                "data": "event_image_main"
+                "data": "email"
             },
             {
                 "data": "id",
                 "render": function(data, type, row, meta) {
                     if (type === 'display') {
-                        data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '"><i class="fa-solid fa-edit"></i></a><a class="btn btn-danger btn-sm delete rounded-0 ms-2" style="text-decoration:none" href="' + row.id + '"><i class="fa-solid fa-trash"></i> </a>';
+                        data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '">Edit</a><a class="btn btn-danger btn-sm delete rounded-0" style="text-decoration:none" href="' + row.id + '">Delete</a>';
                     }
                     return data;
-
                 }
             },
 
@@ -123,7 +150,7 @@
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
         Swal.fire({
-            title: 'Do you want to delete the record?',
+            title: 'Do you want to delete the homestay?',
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'No',
@@ -135,7 +162,7 @@
             } else if (result.isDenied) {
                 $.ajax({
                     type: "POST",
-                    url: "{{route('DeleteEventData')}}",
+                    url: "{{route('DeleteHomestayData')}}",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
@@ -146,7 +173,7 @@
                     encode: true,
                 }).done(function(data) {
                     if (data.message == 'success') {
-                        $('.event-list').DataTable().ajax.reload();
+                        $('.homestay-list').DataTable().ajax.reload();
                         Swal.fire('Deleted!', '', 'danger')
                     }
                     if (data.message == 'error') {
@@ -167,7 +194,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('GetEditEventData')}}",
+            url: "{{route('GetEditHomestayData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -179,11 +206,11 @@
         }).done(function(data) {
             if (data.message == 'success') {
                 $("#edit_modal").modal("show");
-                $("#hotel_id").val();
-                $("#hotel_name").val();
-                $("#location").val();
-                $("#contact_no").val();
-                $("#email").val();
+                $("#homestay_id").val(data.data.id);
+                $("#homestay_name").val(data.data.homestay_name);
+                $("#location").val(data.data.location);
+                $("#contact_no").val(data.data.contact_no);
+                $("#email").val(data.data.email);
 
             }
             if (data.message == 'error') {
@@ -202,7 +229,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('EditHotelData')}}",
+            url: "{{route('EditHomestayData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -213,14 +240,14 @@
             if (data.message == 'success') {
                 Swal.fire({
                         title: "Success",
-                        text: "Hotel data has been updated successfully",
+                        text: "homestay data has been updated successfully",
                         icon: "success",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willStore) => {
                         if (willStore) {
-                            $('.event-list').DataTable().ajax.reload();
+                            $('.homestay-list').DataTable().ajax.reload();
                             $("#edit_modal").modal("hide");
 
                         }

@@ -11,15 +11,15 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Add Hotel Details</h3>
+                        <h3>Add Homestay/PG</h3>
                     </div>
                     <div class='card-body'>
-                        <form id="add_hotel">
+                        <form id="add_homestay">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Hotel Name</label>
-                                    <input type="text" id="inputPassword5" name="hotel_name[]" class="form-control" aria-describedby="passwordHelpBlock">
+                                    <label for="inputPassword5" class="form-label">Homestay/PG Name</label>
+                                    <input type="text" id="inputPassword5" name="homestay_name[]" class="form-control" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Location</label>
@@ -55,8 +55,8 @@
     $("#rowAdder").click(function() {
         newRowAdd =
             '<div class="row" id="row">' +
-            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Hotel Name</label>' +
-            '<input type="text" id="inputPassword5" name="hotel_name[]" class="form-control" aria-describedby="passwordHelpBlock">' +
+            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Homestay/PG Name</label>' +
+            '<input type="text" id="inputPassword5" name="homestay_name[]" class="form-control" aria-describedby="passwordHelpBlock">' +
             '</div>' +
             '<div class="col-md-4">' +
             '<label for="inputPassword5" class="form-label">Location</label>' +
@@ -76,11 +76,11 @@
     $("body").on("click", "#DeleteRow", function() {
         $(this).parents("#row").remove();
     })
-    $(document).on("submit", "#add_hotel", function(e) {
+    $(document).on("submit", "#add_homestay", function(e) {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('AddHotel')}}",
+            url: "{{route('AddHomestay')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -91,7 +91,7 @@
             if (data.messege == 'success') {
                 Swal.fire({
                         title: "Success",
-                        text: "Hotel has been saved successfully",
+                        text: "Homestay data has been saved successfully",
                         icon: "success",
                         buttons: true,
                         dangerMode: true,

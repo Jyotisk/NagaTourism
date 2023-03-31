@@ -11,6 +11,9 @@
     <!-- Style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Styles -->
+    {{-- FontAwesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         :root {
             --font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont,
@@ -485,14 +488,22 @@
                 </a><a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
                 <div class='dashboard-nav-dropdown accomodation'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accomodation </a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="{{url('accomodation/add-hotel')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddHotel') ? 'active' : '' }}">Add Hotels</a>
-                        <a href="{{url('accomodation/hotel-list')}}" class="dashboard-nav-dropdown-item {{ Route::is('HotelList') ? 'active' : '' }}" class="dashboard-nav-dropdown-item">Hotel Lists</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Images</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Video</a>
+                        <a href="{{Route('GetAddHotel')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddHotel') ? 'active' : '' }}">Add Hotels</a>
+                        <a href="{{Route('HotelList')}}" class="dashboard-nav-dropdown-item {{ Route::is('HotelList') ? 'active' : '' }}" class="dashboard-nav-dropdown-item">Hotel Lists</a>
+                        <a href="{{Route('GetAddhomestay')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddhomestay') ? 'active' : '' }}">Add Homestay/PG</a>
+                        <a href="{{Route('HomestayList')}}" class="dashboard-nav-dropdown-item {{ Route::is('HomestayList') ? 'active' : '' }}">Homestay/PG Lists</a>
+                        <a href="{{Route('GetAddTravelOperator')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddTravelOperator') ? 'active' : '' }}">Add Travel Operator</a>
+                        <a href="{{Route('TravelOperatorList')}}" class="dashboard-nav-dropdown-item {{ Route::is('TravelOperatorList') ? 'active' : '' }}">Travel Operator Lists</a>
+                        <a href="{{Route('GetAddRegisteredGuide')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddRegisteredGuide') ? 'active' : '' }}">Add Registered Guide</a>
+                        <a href="{{Route('RegisteredGuideList')}}" class="dashboard-nav-dropdown-item {{ Route::is('RegisteredGuideList') ? 'active' : '' }}">Registered Guide Lists</a>
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
-                    <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Subscribed</a><a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a><a href="#" class="dashboard-nav-dropdown-item">Banned</a><a href="#" class="dashboard-nav-dropdown-item">New</a></div>
+                <div class='dashboard-nav-dropdown official'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                    <a href="{{Route('GetAddOfficial')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddOfficial') ? 'active' : '' }}">Add Official</a>
+                        <a href="{{Route('OfficialList')}}" class="dashboard-nav-dropdown-item {{ Route::is('OfficialList') ? 'active' : '' }}">Official Lists</a>
+
+                    </div>
                 </div>
                 <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Payments </a>
                     <div class='dashboard-nav-dropdown-menu'><a href="#" class="dashboard-nav-dropdown-item">All</a><a href="#" class="dashboard-nav-dropdown-item">Recent</a><a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
@@ -550,6 +561,38 @@
         }
         if("{{ Route::is('HotelList') ? 'active' : '' }}"=='active'){
             $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('GetAddhomestay') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('HomestayList') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('GetAddTravelOperator') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('TravelOperatorList') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('GetAddRegisteredGuide') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('RegisteredGuideList') ? 'active' : '' }}"=='active'){
+            $(".accomodation").toggleClass("show")
+
+        }
+        if("{{ Route::is('OfficialList') ? 'active' : '' }}"=='active'){
+            $(".official").toggleClass("show")
+
+        }
+        if("{{ Route::is('GetAddOfficial') ? 'active' : '' }}"=='active'){
+            $(".official").toggleClass("show")
 
         }
     });

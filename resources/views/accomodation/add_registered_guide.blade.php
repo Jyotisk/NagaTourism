@@ -11,19 +11,19 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Add Hotel Details</h3>
+                        <h3>Add Registered Guide</h3>
                     </div>
                     <div class='card-body'>
-                        <form id="add_hotel">
+                        <form id="add_RegisteredGuide">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Hotel Name</label>
-                                    <input type="text" id="inputPassword5" name="hotel_name[]" class="form-control" aria-describedby="passwordHelpBlock">
+                                    <label for="inputPassword5" class="form-label">Travel Operator Name</label>
+                                    <input type="text" id="inputPassword5" name="name[]" class="form-control" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Location</label>
-                                    <input type="text" id="inputPassword5" class="form-control" name="location[]" aria-describedby="passwordHelpBlock">
+                                    <label for="inputPassword5" class="form-label">Address</label>
+                                    <input type="text" id="inputPassword5" class="form-control" name="address[]" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Contact Number</label>
@@ -55,12 +55,12 @@
     $("#rowAdder").click(function() {
         newRowAdd =
             '<div class="row" id="row">' +
-            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Hotel Name</label>' +
-            '<input type="text" id="inputPassword5" name="hotel_name[]" class="form-control" aria-describedby="passwordHelpBlock">' +
+            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Travel Operator Name</label>' +
+            '<input type="text" id="inputPassword5" name="name[]" class="form-control" aria-describedby="passwordHelpBlock">' +
             '</div>' +
             '<div class="col-md-4">' +
-            '<label for="inputPassword5" class="form-label">Location</label>' +
-            '<input type="text" id="inputPassword5" name="location[]" class="form-control" aria-describedby="passwordHelpBlock"></div>' +
+            '<label for="inputPassword5" class="form-label">Address</label>' +
+            '<input type="text" id="inputPassword5" name="address[]" class="form-control" aria-describedby="passwordHelpBlock"></div>' +
             '<div class="col-md-4">' +
             '<label for="inputPassword5" class="form-label">Contact Number</label><input type="text" name="contact_number[]" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"></div>' +
             '<div class="col-md-4">' +
@@ -76,11 +76,11 @@
     $("body").on("click", "#DeleteRow", function() {
         $(this).parents("#row").remove();
     })
-    $(document).on("submit", "#add_hotel", function(e) {
+    $(document).on("submit", "#add_RegisteredGuide", function(e) {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('AddHotel')}}",
+            url: "{{route('AddRegisteredGuide')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -91,7 +91,7 @@
             if (data.messege == 'success') {
                 Swal.fire({
                         title: "Success",
-                        text: "Hotel has been saved successfully",
+                        text: "RegisteredGuide data has been saved successfully",
                         icon: "success",
                         buttons: true,
                         dangerMode: true,

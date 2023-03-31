@@ -33,8 +33,10 @@ class EventController extends Controller
                 $validator=Validator::make($request->all(), [
                     'event_title' => 'required|string|max:255',
                     'event_date' => 'required|date',
-                    'event_image' => 'required',
-                    'event_description' => 'required|string'
+                    'event_description' => 'string',
+                    'event_image_main' => 'required',
+                    'event_image.*' => 'required_if:image_status:1',
+                    'event_activity.*' => 'required_if:activity_status:1',
                 ]);
                 if ($validator->fails()) {
 
@@ -43,13 +45,12 @@ class EventController extends Controller
                         'error' => $validator->errors()
                     ]);
                 }else{
-                           $file = $request->event_image->getClientOriginalName();
-                            $path = Storage::putFile('files/event', $request->file('event_image'));
-
+                        $file = $request->event_image_main->getClientOriginalName();
+                        $path = Storage::putFile('files/event', $request->file('event_image_main'));
                         $details = [
                             'event_title' => $request->event_title,
                             'event_date' => $request->event_date,
-                            'event_image' => $path,
+                            'event_image_main' => $path,
                             'event_description' => $request->event_description,
                             'insert_by' => Auth::user()->id,
                             'wheather_active' => TRUE,
@@ -59,11 +60,15 @@ class EventController extends Controller
                         ];
                     }
                     $save = EventDetail::insert($details);
-                    if($save) {
-                        alert()->success('success', 'Successfully Registered');
-                    } else {
-                        alert()->success('error', 'Something Went Wrong');
-                    }
+                    // if($save) {
+                    //     alert()->success('success', 'Successfully Registered');
+                    // } else {
+                    //     alert()->success('error', 'Something Went Wrong');
+                    // }
+                    $primaryid = $save->id;
+                    print_r($primaryid);
+                    die();
+
 
 
         } catch (Exception $e) {
@@ -78,10 +83,17 @@ class EventController extends Controller
     }
 
     public function DatatableEventList(){
-        $event_list = EventDetail::where('status',1)->get();
+        $event_list = EventDetail::where('wheather_active',TRUE)->get();
            return datatables()->of($event_list)
                ->addIndexColumn()
              ->make(true);
-       }
+    }
+    public function GetEditEventData(Request $request)
+    {
+        return  response()->json([
+            'message' => 'success',
+            'data' => EventDetail::where('id', $request->id)->first()
+        ]);
+    }
 
 }
