@@ -734,7 +734,7 @@ footer .copyright p {
     }
     .video-blog-wrapper,
     .video-wrapper {
-        height: 30vh;
+        height: 400px;
     }
     .video-blog-wrapper .video-wrapper .video-overlay {
         background: rgb(15, 23, 42);
@@ -850,13 +850,13 @@ footer .copyright p {
     .video-blog-wrapper .video-wrapper .video-overlay .video-text {
         width: 62%;
     }
-    .video-blog-wrapper
+    /* .video-blog-wrapper
         .video-wrapper
         .video-overlay
         .video-text
         .video-head-text {
         width: 44%;
-    }
+    } */
 }
 
 @media only screen and (min-width: 1201px) and (max-width: 1400px) {
