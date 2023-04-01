@@ -11,16 +11,7 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Designated Official Lists</h3>
-                    </div>
-                    <div class="row mt-2 justify-content-end">
-                        <div class="col-md-4 mx-3">
-                            <select name="official_type" id="official_type" class="form-control">
-                                <option selected disabled>Select Official</option>
-                                <option value="1">Designated Official</option>
-                                <option value="2">Police Official</option>
-                            </select>
-                        </div>
+                        <h3>Destination Lists</h3>
                     </div>
                     <div class='card-body'>
                         <table class="table registered_guide-list w-100">
@@ -270,7 +261,7 @@
                 $("#description").html(data.destinationdetail.description);
                 $("#source_link").html(data.destinationdetail.source_link);
                 // $("#image").append('<img src="{{asset("storage/app/public")}}/'+data.destinationdetail.image+'" alt="">');
-                $("#image").html('<img src="{{ url("storage/") }}/'+data.destinationdetail.image+'" alt="" title="" style="width:10%"/>')
+                $("#image").html('<img src="{{ url("storage/") }}/'+data.destinationdetail.image+'" alt="" title="" style="width:40%"/>')
 
                 $("#view_modal").modal("show");
 
