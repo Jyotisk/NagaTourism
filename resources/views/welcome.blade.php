@@ -201,14 +201,14 @@
     <div class="about-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-1 d-flex align-items-center order-sm-last order-lg-first">
+                <div class="col-12 col-lg-1 d-flex align-items-center order-last order-lg-first">
                     <ul class="slide_navigation position-relative" id="slider-menu">
                         <li class="link active" data-scroll="slide_1"><a data-scroll="slide_1" href="#slide_1" class="dot"></a></li>
                         <li class="link" data-scroll="slide_2"><a data-scroll="slide_2" href="#slide_2" class="dot"></a></li>
                         <li class="link" data-scroll="slide_3"><a data-scroll="slide_3" href="#slide_3" class="dot"></a></li>
                     </ul>
                 </div>
-                <div class="col-12 col-lg-5 order-sm-first order-lg-first">
+                <div class="col-12 col-lg-5 order-first order-lg-first">
                     <div class="d-flex">
                         <div class="image-wrapper d-flex">
                             <div class="image">
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 order-sm-first order-lg-first">
+                <div class="col-12 col-lg-6">
                     <div class="scroll-warpper">
                         <section class="slider">
                             <div class="slides">
@@ -272,14 +272,14 @@
     <div class="visit-wrapper">
         <div class="container">
             <div class="row g-4 visit-section">
-                <div class="col-4 d-flex align-items-center">
+                <div class="col-12 col-lg-4 d-flex align-items-center">
                     <div class="d-flex flex-column">
                         <h1 class="head-title">Where to visit now</h1>
                         <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
 
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-12 col-lg-8">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
 
@@ -413,7 +413,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="d-flex align-items-center justify-content-evenly">
+                    <div class="d-flex align-items-center justify-content-evenly flex-wrap flex-xxl-nowrap">
                         <div class="card h-100">
                             <img class="hover" src="{{asset('img/things_1.jpg')}}" alt="Things to do">
                             <div class="card-body">
@@ -475,16 +475,16 @@
                 </div>
             </div>
             <div class="row mb-4 event-card-wrapper">
-                <div class="col-12">
+                <div class="col-12 event-inside-column">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="row g-3">
-                                        <div class="col-3">
+                                        <div class="col-12 col-lg-3">
                                             <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
                                         </div>
-                                        <div class="col-9 d-flex">
+                                        <div class="col-12 col-lg-9 d-flex">
                                             <div class="d-flex flex-column justify-content-between">
                                                 <h6>Tuluni Festival</h6>
                                                 <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
@@ -492,22 +492,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 d-flex">
+                                <div class="col-12 col-lg-6 d-flex">
                                     <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>08 July, 2023</h6>
                                             <p class="mb-0 main-text">Start Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>15 July, 2023</h6>
                                             <p class="mb-0 main-text">End Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>Wokha</h6>
                                             <p class="mb-0 main-text">Location</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
-                                            <a href="#">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="#">
                                                 See more
                                                 <i class="fa-solid fa-chevron-right"></i>
                                             </a>
@@ -519,16 +519,16 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 event-inside-column">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="row g-3">
-                                        <div class="col-3">
+                                        <div class="col-12 col-lg-3">
                                             <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
                                         </div>
-                                        <div class="col-9 d-flex">
+                                        <div class="col-12 col-lg-9 d-flex">
                                             <div class="d-flex flex-column justify-content-between">
                                                 <h6>Tuluni Festival</h6>
                                                 <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
@@ -536,22 +536,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 d-flex">
+                                <div class="col-12 col-lg-6 d-flex">
                                     <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>08 July, 2023</h6>
                                             <p class="mb-0 main-text">Start Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>15 July, 2023</h6>
                                             <p class="mb-0 main-text">End Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>Wokha</h6>
                                             <p class="mb-0 main-text">Location</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
-                                            <a href="#">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="#">
                                                 See more
                                                 <i class="fa-solid fa-chevron-right"></i>
                                             </a>
@@ -563,16 +563,16 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 event-inside-column">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="row g-3">
-                                        <div class="col-3">
+                                        <div class="col-12 col-lg-3">
                                             <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
                                         </div>
-                                        <div class="col-9 d-flex">
+                                        <div class="col-12 col-lg-9 d-flex">
                                             <div class="d-flex flex-column justify-content-between">
                                                 <h6>Tuluni Festival</h6>
                                                 <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
@@ -580,22 +580,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 d-flex">
+                                <div class="col-12 col-lg-6 d-flex">
                                     <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>08 July, 2023</h6>
                                             <p class="mb-0 main-text">Start Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>15 July, 2023</h6>
                                             <p class="mb-0 main-text">End Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>Wokha</h6>
                                             <p class="mb-0 main-text">Location</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
-                                            <a href="#">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="#">
                                                 See more
                                                 <i class="fa-solid fa-chevron-right"></i>
                                             </a>
@@ -607,16 +607,16 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 event-inside-column">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="row g-3">
-                                <div class="col-6">
+                                <div class="col-12 col-lg-6">
                                     <div class="row g-3">
-                                        <div class="col-3">
+                                        <div class="col-12 col-lg-3">
                                             <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
                                         </div>
-                                        <div class="col-9 d-flex">
+                                        <div class="col-12 col-lg-9 d-flex">
                                             <div class="d-flex flex-column justify-content-between">
                                                 <h6>Tuluni Festival</h6>
                                                 <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
@@ -624,22 +624,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 d-flex">
+                                <div class="col-12 col-lg-6 d-flex">
                                     <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>08 July, 2023</h6>
                                             <p class="mb-0 main-text">Start Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>15 July, 2023</h6>
                                             <p class="mb-0 main-text">End Date</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
                                             <h6>Wokha</h6>
                                             <p class="mb-0 main-text">Location</p>
                                         </div>
-                                        <div class="col-3 d-flex flex-column align-items-end">
-                                            <a href="#">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="#">
                                                 See more
                                                 <i class="fa-solid fa-chevron-right"></i>
                                             </a>
@@ -673,7 +673,7 @@
                 <!-- <source src="{{asset('video/nagaland.webm')}}" type="video/webm"> -->
             </video>
             <div class="video-overlay d-block">
-                <div class="container d-flex align-items-center justify-content-between">
+                <div class="container d-flex align-items-center justify-content-between flex-column flex-md-row">
                     <button type="button" class="btn video-play-btn" onclick="videoPlay(1)">
                         <i class="fa-solid fa-play" style="font-size: 28px;"></i>
                     </button>
@@ -937,7 +937,7 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
-                            <div class="card h-100 d-flex flex-row">
+                            <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/things_1.jpg')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -964,7 +964,7 @@
                                 </div>
                             </div>
 
-                            <div class="card h-100 d-flex flex-row">
+                            <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/blog-1.png')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -991,7 +991,7 @@
                                 </div>
                             </div>
 
-                            <div class="card h-100 d-flex flex-row">
+                            <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/blog-2.png')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -1018,7 +1018,7 @@
                                 </div>
                             </div>
 
-                            <div class="card h-100 d-flex flex-row">
+                            <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/blog-3.png')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -1064,7 +1064,7 @@
         <footer>
             <div class="container pt-4">
                 <div class="row g-4">
-                    <div class="col-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         <div class="d-flex flex-column justify-content-evenly h-100">
                             <img class="footer_logo" src="{{asset('img/footer_logo.png')}}" alt="Footer Logo">
                             <p class="mb-0 connect-footer">
@@ -1084,7 +1084,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         <ul class="quick-links">
                             <li class="link-head">
                                 Quick Links
@@ -1098,7 +1098,7 @@
                             <li><a href="#">Site Policy</a></li>
                         </ul>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-md-4 col-lg-3">
                         <ul class="quick-links">
                             <li class="link-head">
                                 Naviagtion
@@ -1113,7 +1113,7 @@
                             <li><a href="#">More About Us</a></li>
                         </ul>
                     </div>
-                    <div class="col-3">
+                    <div class="col-12 col-lg-3">
                         <ul class="quick-links govt-details">
                             <li class="link-head">
                                 Nagaland Government
