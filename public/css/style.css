@@ -165,7 +165,8 @@ a.more-btn {
     position: absolute;
     width: 56%;
     left: 44%;
-    top: 89.4%;
+    /* top: 89.4%; */
+    top: 93.4%;
 }
 
 .news-section .card {
