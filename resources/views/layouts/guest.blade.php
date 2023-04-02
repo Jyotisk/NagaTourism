@@ -30,7 +30,7 @@
                                 <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 22px;"></i>
                             </div>
                             <div class="d-flex align-items-center gap-3">
-                                <a href="#">
+                                <a href="{{url('login')}}">
                                     <i class="fa-regular fa-lock-keyhole"></i>
                                     <span>Login</span>
                                 </a>
