@@ -7,6 +7,10 @@
     #showMore:hover {
        cursor: pointer;
     }
+    .modal-header {
+        background-image: linear-gradient(#2478D7, #45BDF1);
+        color: white;
+    }
 </style>
 <x-app-layout>
     <x-slot name="header">
@@ -29,7 +33,7 @@
                                 <th class="text-center" style="width:15%">Event Title</th>
                                 <th class="text-center"  style="width:15%">Event Date</th>
                                 <th class="text-center" style="width:40%">Event Description</th>
-                                <th class="text-center" style="width:15%">Image</th>
+                                <th class="text-center" style="width:15%">View Details</th>
                                 <th class="text-center" style="width:15%">Edit | Delete</th>
                             </thead>
                             <tbody>
@@ -41,7 +45,7 @@
                                             <a id="showMore" data-bs-toggle="modal" data-bs-target="#myModal{{$key->id;}}" class="eventDescription text-danger"> ShowMore &#8250;&#8250;
                                             </a>
                                         </td>
-                                            <!-- The Modal -->
+                                            <!-- The Description Modal -->
                                             <div class="modal" id="myModal{{$key->id}}">
                                                 <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -62,11 +66,44 @@
                                                 </div>
                                             </div>
                                             <!-- End Modal -->
-                                        <td class="text-center"><a class="btn btn-primary btn-sm viewImage" style="text-decoration:none;width:60%"><i class="fa-solid fa-eye"></i> View</a></td>
+                                        <td class="text-center"><a data-bs-toggle="modal" data-bs-target="#viewModal{{$key->id;}}" class="btn btn-primary btn-sm viewAll" style="text-decoration:none;width:60%"><i class="fa-solid fa-eye"></i> View</a></td>
                                         <td class="text-center"><a class="btn btn-warning btn-sm edit rounded-0" href={{$key->id}}><i class="fa-solid fa-edit"></i></a>
                                             <a class="btn btn-danger btn-sm delete rounded-0 ms-2"><i class="fa-solid fa-trash-can"></i></a>
                                         </td>
                                     </tr>
+                                            <!-- The View all Modal -->
+                                            <div class="modal" id="viewModal{{$key->id}}">
+                                                <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h5><i class="fas fa-clipboard-list text-white"></i> <strong>Event Details</strong></h5>
+                                                        <a type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-3"><strong>Event Title :</strong></div>
+                                                            <div class="col-md-9">{{$key->event_title;}}</div>
+                                                            <div class="col-md-3"><strong>Event Date :</strong></div>
+                                                            <div class="col-md-9">{{$key->event_date;}}</div>
+                                                            <div class="col-md-3"><strong>Event Description :</strong></div>
+                                                            <div class="col-md-9">{{$key->event_description;}}</div>
+                                                            <div class="col-md-3"><strong>Event Photo :</strong></div>
+                                                            <div class="col-md-9">{{$key->event_image_main}}</div>
+                                                            <div class="col-md-12">
+                                                                <img src="{{ url("storage/").'/'.$key->event_image_main }}" alt="" title="" style="width:40%; height:100px"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Modal Footer -->
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-sm btn-secondary close" style="text-decoration:none" data-bs-dismiss="modal">Close</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
                                 @endforeach
 
                             </tbody>
@@ -89,11 +126,15 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Event Title:</label>
                             <input type="text" class="form-control" id="eventTitle" name="event_title">
-                            <input type="hidden" class="form-control" id="id" name="id">
+                            <input type="hidden" class="form-control" id="event_id" name="event_id">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Event Date:</label>
                             <input type="date" class="form-control" id="eventDate" name="event_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Event Description:</label>
+                            <textarea class="form-control" id="eventDescription" name="event_description" rows="10"></textarea>
                         </div>
                         <div class="row justify-content-center">
                             <button type="submit" class="btn btn-primary btn-sm rounded-0" style="width:30%">Save Change</button>
@@ -172,11 +213,10 @@
         }).done(function(data) {
             if (data.message == 'success') {
                 $("#edit_modal").modal("show");
-                $("#hotel_id").val();
-                $("#hotel_name").val();
-                $("#location").val();
-                $("#contact_no").val();
-                $("#email").val();
+                $("#event_id").val(data.data.id);
+                $("#eventTitle").val(data.data.event_title);
+                $("#eventDate").val(data.data.event_date);
+                $("#eventDescription").val(data.data.event_description);
 
             }
             if (data.message == 'error') {
@@ -195,7 +235,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('EditHotelData')}}",
+            url: "{{route('EditEventData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -206,7 +246,7 @@
             if (data.message == 'success') {
                 Swal.fire({
                         title: "Success",
-                        text: "Hotel data has been updated successfully",
+                        text: "Event data has been updated successfully",
                         icon: "success",
                         buttons: true,
                         dangerMode: true,

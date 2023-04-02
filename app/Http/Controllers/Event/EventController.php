@@ -139,5 +139,51 @@ class EventController extends Controller
             'data' => EventDetail::where('id', $request->id)->first()
         ]);
     }
+    public function EditEventData(Request $request)
+    {
+        try {
+            if ($request->ajax()) {
+                $validator = Validator::make(
+                    $request->all(),
+                    [
+                        'event_title' => 'required|string|max:255',
+                        'event_date' => 'required|date',
+                        'event_description' => 'nullable',
+                        'event_image_main' => 'required',
+                    ],
+                    [
+                        'event_title.required' => 'You must provide a Event Title',
+                        'event_date.required' => 'You must provide a Event Date',
+                        'event_image_main.required' => 'You must provide a Event Photo',
+                    ]
+                );
+
+                if ($validator->fails()) {
+                    return response()->json([
+                        'message' => 'validationFails',
+                        'error' => $validator->errors()
+                    ]);
+                } else {
+                    $data = EventDetail::where('id', $request->id)->first();
+                    // $data->hotel_name = $request->hotel_name;
+                    // $data->location = $request->location;
+                    // $data->contact_no = $request->contact_no;
+                    // $data->alt_contact_no = $request->alt_contact_no;
+                    // $data->email = $request->email;
+                    // $data->alt_email = $request->alt_email;
+                    $data->save();
+                    return  response()->json([
+                        'message' => 'success',
+                        'data' => 'updated successfully'
+                    ]);
+                }
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'error',
+                'request' => 'Something Went Wrong',
+            ]);
+        }
+    }
 
 }

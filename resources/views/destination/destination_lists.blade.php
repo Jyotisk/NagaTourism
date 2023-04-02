@@ -11,26 +11,14 @@
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h3>Designated Official Lists</h3>
-                    </div>
-                    <div class="row mt-2 justify-content-end">
-                        <div class="col-md-4 mx-3">
-                            <select name="official_type" id="official_type" class="form-control">
-                                <option selected disabled>Select Official</option>
-                                <option value="1">Designated Official</option>
-                                <option value="2">Police Official</option>
-                            </select>
-                        </div>
+                        <h3>Destination Lists</h3>
                     </div>
                     <div class='card-body'>
                         <table class="table registered_guide-list w-100">
                             <thead>
-                                <th>Designated Official Name</th>
-                                <th>Address</th>
-                                <th>Contact Number</th>
-                                <th>Alt Contact Number</th>
-                                <th>Email</th>
-                                <th>Alt Email</th>
+                                <th>Heeader</th>
+                                <th>Blog Date</th>
+                                <th>Blog By</th>
                                 <th>Action</th>
 
                             </thead>
@@ -91,6 +79,49 @@
             </div>
         </div>
     </div>
+    <!-- edit modal -->
+
+    <!-- view modal -->
+    <div class="modal fade" id="view_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Destination Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+                            <label for="recipient-name" class="col-form-label">Header:</label>
+                            <p id="header"></p>
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="message-text" class="col-form-label">Blog Writte By:</label>
+                            <p id="blog_by"></p>
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="message-text" class="col-form-label">Blog Date:</label>
+                            <p id="blog_date"></p>
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="message-text" class="col-form-label">Source Link:</label>
+                            <p id="source_link"></p>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                            <label for="message-text" class="col-form-label">Desription:</label>
+                            <p id="description"></p>
+                        </div>
+                        <div class="mb-3" id="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- view modal  -->
 </x-app-layout>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/af-2.3.7/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/cr-1.5.4/date-1.1.1/sl-1.3.3/datatables.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -105,7 +136,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js"></script> -->
 <script>
-        $('.registered_guide-list').DataTable({
+    $('.registered_guide-list').DataTable({
         "processing": true,
         "serverSide": true,
         "responsive": true,
@@ -126,15 +157,15 @@
         },
 
         "ajax": {
-            "url": "{{ route('DatatableOfficialList')}}",
+            "url": "{{ route('DatatableDestinatioList')}}",
             // "data": function(d) {
-                // d.official_type = $('#official_type').val();
-                // d.block_id = $('#block').val();
-                // d.panchayat_id = $('#panchyat').val();
-                // d.program_id = $('#program').val();
-                // d.level_id = $('#level').val();
-                // d.des_id = $('#designation').val();
-                // d.ser_status = $('#service_status').val();
+            // d.official_type = $('#official_type').val();
+            // d.block_id = $('#block').val();
+            // d.panchayat_id = $('#panchyat').val();
+            // d.program_id = $('#program').val();
+            // d.level_id = $('#level').val();
+            // d.des_id = $('#designation').val();
+            // d.ser_status = $('#service_status').val();
             // }
         },
         "columns": [
@@ -144,28 +175,19 @@
             // },
 
             {
-                "data": "name"
+                "data": "header"
             },
             {
-                "data": "address"
+                "data": "blog_date"
             },
             {
-                "data": "contact_no"
-            },
-            {
-                "data": "alt_contact_no"
-            },
-            {
-                "data": "email"
-            },
-            {
-                "data": "alt_email"
+                "data": "blog_by"
             },
             {
                 "data": "id",
                 "render": function(data, type, row, meta) {
                     if (type === 'display') {
-                        data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '">Edit</a><a class="btn btn-danger btn-sm delete rounded-0" style="text-decoration:none" href="' + row.id + '">Delete</a>';
+                        data = '<a class="btn btn-success btn-sm view rounded-0" style="text-decoration:none" href="' + row.id + '">View</a><a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '">Edit</a><a class="btn btn-danger btn-sm delete rounded-0" style="text-decoration:none" href="' + row.id + '">Delete</a>';
                     }
                     return data;
                 }
@@ -173,7 +195,7 @@
 
         ],
 
-    });  
+    });
 
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
@@ -218,6 +240,44 @@
             }
         })
     })
+    $(document).on("click", ".view", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{{route('ViewDestinationData')}}",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                'id': $(this).attr('href')
+            },
+            dataType: "json",
+            encode: true,
+        }).done(function(data) {
+            if (data.message == 'success') {
+                $("#header").html(data.destinationdetail.header);
+                $("#blog_by").html(data.destinationdetail.blog_by);
+                $("#blog_date").html(data.destinationdetail.blog_date);
+                $("#description").html(data.destinationdetail.description);
+                $("#source_link").html(data.destinationdetail.source_link);
+                // $("#image").append('<img src="{{asset("storage/app/public")}}/'+data.destinationdetail.image+'" alt="">');
+                $("#image").html('<img src="{{ url("storage/") }}/'+data.destinationdetail.image+'" alt="" title="" style="width:40%"/>')
+
+                $("#view_modal").modal("show");
+
+            }
+            if (data.message == 'error') {
+                Swal.fire({
+                    title: "Failed",
+                    text: "Something Went Wrong",
+                    icon: "error",
+                    buttons: false,
+                    dangerMode: true,
+                })
+            }
+
+        });
+    });
     $(document).on("click", ".edit", function(e) {
         e.preventDefault();
         $.ajax({
