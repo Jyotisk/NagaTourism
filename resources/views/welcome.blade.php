@@ -40,7 +40,7 @@
 
                                 <div id="slide_2" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1 class="head-title">About Nagaland</h1>
+                                        <h1 class="head-title">Entry Permits</h1>
                                         <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
 
                                         <a class="more-btn" href="#">
@@ -52,7 +52,7 @@
 
                                 <div id="slide_3" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1 class="head-title">About Nagaland</h1>
+                                        <h1 class="head-title">How to get there</h1>
                                         <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
 
                                         <a class="more-btn" href="#">
