@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class SuperAdminMiddleware
 {
     /**
@@ -16,9 +17,14 @@ class SuperAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::User()->user_type_id == 1) {
-            return $next($request);
+        if (Auth::User()) {
+            if (Auth::User()->user_type_id == 1) {
+                return $next($request);
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/');
-        }    }
+        }
+    }
 }

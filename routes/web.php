@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Accomodation\AccomodationController;
 use App\Http\Controllers\DesignatedOfficial\DesignatedOfficialController;
 use App\Http\Controllers\Destination\DestinationController;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +17,13 @@ use App\Http\Controllers\Destination\DestinationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+
+
 
 require __DIR__ . '/auth.php';
 Route::get('/dashboard', function () {

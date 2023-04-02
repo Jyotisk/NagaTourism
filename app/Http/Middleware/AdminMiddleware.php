@@ -17,8 +17,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::User()->user_type_id == 2) {
-            return $next($request);
+        if (Auth::User()) {
+            if (Auth::User()->user_type_id == 2) {
+                return $next($request);
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/');
         }

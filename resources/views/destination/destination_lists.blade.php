@@ -83,7 +83,7 @@
 
     <!-- view modal -->
     <div class="modal fade" id="view_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Destination Details</h5>
@@ -103,7 +103,7 @@
                             <label for="message-text" class="col-form-label">Blog Date:</label>
                             <p id="blog_date"></p>
                         </div>
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-12">
                             <label for="message-text" class="col-form-label">Source Link:</label>
                             <p id="source_link"></p>
                         </div>

@@ -495,17 +495,20 @@
                         <a href="{{Route('RegisteredGuideList')}}" class="dashboard-nav-dropdown-item {{ Route::is('RegisteredGuideList') ? 'active' : '' }}">Registered Guide Lists</a>
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown official'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
+                <div class='dashboard-nav-dropdown official'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
                     <div class='dashboard-nav-dropdown-menu'>
                     <a href="{{Route('GetAddOfficial')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddOfficial') ? 'active' : '' }}">Add Official</a>
                         <a href="{{Route('OfficialList')}}" class="dashboard-nav-dropdown-item {{ Route::is('OfficialList') ? 'active' : '' }}">Official Lists</a>
 
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Destination </a>
+                <div class='dashboard-nav-dropdown destination'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Destination </a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="{{Route('GetAddDestination')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddDestination') ? 'active' : '' }}">Add Destination</a>
+                    <a href="{{Route('GetAddDestination')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddDestination') ? 'active' : '' }}">Add Destination</a>
                         <a href="{{Route('DestinationList')}}" class="dashboard-nav-dropdown-item {{ Route::is('DestinationList') ? 'active' : '' }}">Destination Lists</a>
+
                     </div>
                 </div>
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
@@ -588,6 +591,11 @@
             $(".official").toggleClass("show")
                
         }
+        if("{{ Route::is('GetAddDestination') ? 'active' : '' }}"=='active' || "{{ Route::is('DestinationList') ? 'active' : '' }}"=='active'){
+            $(".destination").toggleClass("show")
+               
+        }
+        
     });
 </script>
 
