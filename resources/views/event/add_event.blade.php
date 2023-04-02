@@ -14,7 +14,7 @@
                         <h3>Add New Event Details</h3>
                     </div>
                     <div class='card-body'>
-                        <form id="add_event" method="POST" action="{{route('AddEvent')}}"  enctype="multipart/form-data">
+                        <form id="add_event"  enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -26,7 +26,7 @@
                                     <input type="date" id="eventDate" class="form-control" name="event_date" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="image" class="form-label">Event Image <span class="text-danger">&#9733;</span></label>
+                                    <label for="image" class="form-label">Event Image (Only jpg/jpeg/png allowed) <span class="text-danger">&#9733;</span></label>
                                     <input type="file" id="eventImageMain" class="form-control" name="event_image_main" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-6">
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <input type="checkbox" class="ms-2" id="imageStatus" name="image_status" value="1" style="width: 20px; height:20px">
+                                <input type="checkbox" class="ms-2" id="imageStatus" name="add_image_status" value="1" style="width: 20px; height:20px">
                                 <span>Want to Add Image </span>
                             </div>
                             <div class="col-md-4 mt-3" id="addPhotoBtn" style="display:none">
@@ -45,7 +45,7 @@
                             <div id="photoinput"></div>
 
                             <div class="col-md-4 mt-3">
-                                <input type="checkbox" class="ms-2" id="activityStatus" name="activity_status" value="1" style="width: 20px; height:20px">
+                                <input type="checkbox" class="ms-2" id="activityStatus" name="add_activity_status" value="1" style="width: 20px; height:20px">
                                 <span>Want to Add Activities </span>
                             </div>
                             <div class="col-md-4 mt-3" id="addActivityBtn" style="display:none">
@@ -104,7 +104,7 @@
             '<div class="row newActivityRow mt-2" id="newActivityRow">'+
             '<div class="col-md-1"><label for="des" class="form-label"><strong>Activity:</strong></label></div>' +
             '<div class="col-md-10">' +
-            '<input type="text" id="eventActivity" class="form-control" name="event_activity" aria-describedby="passwordHelpBlock">' +
+            '<input type="text" id="eventActivity" class="form-control" name="event_activity[]" aria-describedby="passwordHelpBlock">' +
             '</div>' +
             '<div class="col-md-1"><button class="btn btn-danger btn-sm rounded-0" id="DeletePRow" type="button"><i class="fa-solid fa-trash"></i> Delete</button>' +
             '</div>';
@@ -118,5 +118,63 @@
     $('#reset').click(function(){
     $('#add_event')[0].reset();
 });
+
+$(document).on("submit", "#add_event", function(e) {
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        console.log(formData);
+        $.ajax({
+            type: "POST",
+            url: "{{route('AddEvent')}}",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data:
+                formData
+            ,
+            cache: false,
+            processData: false,
+            contentType: false
+        }).done(function(data) {
+            if (data.message == 'success') {
+                Swal.fire({
+                        title: "Success",
+                        text: "Data Saved Successfully",
+                        icon: "success",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willStore) => {
+                        if (willStore) {
+                            location.reload();
+                        }
+                    });
+            }
+            if (data.message == "validationFails") {
+                var message = []
+                $.each(data.error, function(index, value) {
+                    const textValue = index.split(".");
+                    const line_number = parseInt(textValue[1]) + 1;
+                    if (index == 'official_type') {
+                        message.push('<li><b class="text-danger">Validation error</b>: ' + value + '</li>');
+                    } else {
+                        message.push('<li><b class="text-danger">Validation error on row number ' + line_number + ' </b>: ' + value + '</li>');
+                    }
+                });
+                $("#validation_message").html(message)
+                $('#error_modal').modal('show');
+            }
+            if (data.message == 'error') {
+                Swal.fire({
+                    title: "Failed",
+                    text: "Something Went Wrong",
+                    icon: "error",
+                    buttons: false,
+                    dangerMode: true,
+                })
+            }
+
+        });
+    });
 </script>
 

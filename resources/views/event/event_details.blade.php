@@ -1,3 +1,13 @@
+<style>
+    #showMore {
+        color: red;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+    #showMore:hover {
+       cursor: pointer;
+    }
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -16,13 +26,48 @@
                     <div class='card-body'>
                         <table class="table event-list w-100">
                             <thead>
-                                <th class="text-center">Event Title</th>
-                                <th class="text-center">Event Date</th>
-                                <th class="text-center">Event Description</th>
-                                <th class="text-center">Image</th>
-                                <th>Edit | Delete</th>
+                                <th class="text-center" style="width:15%">Event Title</th>
+                                <th class="text-center"  style="width:15%">Event Date</th>
+                                <th class="text-center" style="width:40%">Event Description</th>
+                                <th class="text-center" style="width:15%">Image</th>
+                                <th class="text-center" style="width:15%">Edit | Delete</th>
                             </thead>
                             <tbody>
+                                @foreach($eventdetails as $key)
+                                    <tr>
+                                        <td>{{$key->event_title;}}</td>
+                                        <td class="text-center">{{$key->event_date;}}</td>
+                                        <td>{{  Str::limit($key->event_description), 20, $end='..........' }}
+                                            <a id="showMore" data-bs-toggle="modal" data-bs-target="#myModal{{$key->id;}}" class="eventDescription text-danger"> ShowMore &#8250;&#8250;
+                                            </a>
+                                        </td>
+                                            <!-- The Modal -->
+                                            <div class="modal" id="myModal{{$key->id}}">
+                                                <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h5><i class="fas fa-clipboard-list text-white"></i> <strong>Event Description</strong></h5>
+                                                        <a type="button" data-bs-dismiss="modal"><i class="fas fa-times"></i></a>
+                                                    </div>
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        {{ $key->event_description }}
+                                                    </div>
+                                                    <!-- Modal Footer -->
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="close" data-bs-dismiss="modal">Close</a>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Modal -->
+                                        <td class="text-center"><a class="btn btn-primary btn-sm viewImage" style="text-decoration:none;width:60%"><i class="fa-solid fa-eye"></i> View</a></td>
+                                        <td class="text-center"><a class="btn btn-warning btn-sm edit rounded-0" href={{$key->id}}><i class="fa-solid fa-edit"></i></a>
+                                            <a class="btn btn-danger btn-sm delete rounded-0 ms-2"><i class="fa-solid fa-trash-can"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
@@ -67,59 +112,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.11.0/af-2.3.7/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/cr-1.5.4/date-1.1.1/sl-1.3.3/datatables.js"></script>
 
 <script>
-    $('.event-list').DataTable({
-
-        "processing": true,
-        "serverSide": true,
-        "responsive": true,
-        "scrollX": true,
-        buttons: [
-            // 'copyHtml5',
-            // 'excelHtml5',
-            // 'csvHtml5',
-            // 'pdfHtml5'
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        dom: 'Blfrtip',
-        "language": {
-            "processing": 'Loading data...'
-        },
-
-        "ajax": {
-            "url": "{{ route('DatatableEventList')}}",
-        },
-        "columns": [
-            {
-                "data": "event_title"
-            },
-            {
-                "data": "event_date"
-            },
-            {
-                "data": "event_description"
-            },
-            {
-                "data": "event_image_main"
-            },
-            {
-                "data": "id",
-                "render": function(data, type, row, meta) {
-                    if (type === 'display') {
-                        data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '"><i class="fa-solid fa-edit"></i></a><a class="btn btn-danger btn-sm delete rounded-0 ms-2" style="text-decoration:none" href="' + row.id + '"><i class="fa-solid fa-trash"></i> </a>';
-                    }
-                    return data;
-
-                }
-            },
-
-
-
-        ],
-
-    });
+    $('.event-list').DataTable();
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
         Swal.fire({

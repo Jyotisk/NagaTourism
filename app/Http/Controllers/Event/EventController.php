@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Event\EventDetail;
+use App\Models\Event\EventImage;
+use App\Models\Event\EventActivity;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -28,15 +30,15 @@ class EventController extends Controller
     public function AddEvent(Request $request)
     {
         try {
-           // if ($request->ajax()) {
+            if ($request->ajax()) {
 
                 $validator=Validator::make($request->all(), [
                     'event_title' => 'required|string|max:255',
                     'event_date' => 'required|date',
-                    'event_description' => 'string',
+                    'event_description' => 'nullable',
                     'event_image_main' => 'required',
-                    'event_image.*' => 'required_if:image_status:1',
-                    'event_activity.*' => 'required_if:activity_status:1',
+                    'event_image.*' => 'required_if:image_status,==,1|image|mimes:jpg,png,jpeg|max:10240',
+                    'event_activity.*' => 'required_if:activity_status,==,1',
                 ]);
                 if ($validator->fails()) {
 
@@ -45,31 +47,71 @@ class EventController extends Controller
                         'error' => $validator->errors()
                     ]);
                 }else{
-                        $file = $request->event_image_main->getClientOriginalName();
-                        $path = Storage::putFile('files/event', $request->file('event_image_main'));
-                        $details = [
-                            'event_title' => $request->event_title,
-                            'event_date' => $request->event_date,
-                            'event_image_main' => $path,
-                            'event_description' => $request->event_description,
-                            'insert_by' => Auth::user()->id,
-                            'wheather_active' => TRUE,
-                            'created_at' => Carbon::now(),
-                            'updated_at' => Carbon::now(),
 
-                        ];
+                    $image_path = $request->file('event_image_main')->store('event', 'public');
+                    $EventDetail =new EventDetail();
+                    $EventDetail->event_title = $request->event_title;
+                    $EventDetail->event_date = Carbon::parse($request->event_date)->format("Y-m-d");
+                    $EventDetail->event_image_main = $image_path;
+                    $EventDetail->event_description = $request->event_description;
+                    $EventDetail->insert_by = Auth::user()->id;
+                    $EventDetail->created_at = Carbon::now();
+                    $EventDetail->updated_at = Carbon::now();
+                    $EventDetail->status=1;
+                    $EventDetail->add_image_status=$request->add_image_status == 1 ? 1 : 0;
+                    $EventDetail->add_activity_status=$request->add_activity_status == 1 ? 1 : 0;
+                    $EventDetail->save();
+
+                    if($request->add_image_status == 1) {
+                        $details = [];
+                        for ($i = 0; $i < count($request->event_image); $i++)
+                         {
+                            $event_image_path = $request->file('event_image')[$i]->store('event', 'public');
+                            $img[] = $event_image_path;
+                            $details[] = [
+                                'event_id' => $EventDetail->id,
+                                'event_image' => $img[$i],
+                                'status' => TRUE,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ];
+                        }
+                        $details = collect($details);
+                        $chunks = $details->chunk(500);
+
+                        foreach ($chunks as $chunk) {
+                            EventImage::insert($chunk->toArray());
+                        }
                     }
-                    $save = EventDetail::insert($details);
-                    // if($save) {
-                    //     alert()->success('success', 'Successfully Registered');
-                    // } else {
-                    //     alert()->success('error', 'Something Went Wrong');
-                    // }
-                    $primaryid = $save->id;
-                    print_r($primaryid);
-                    die();
+
+                    if($request->add_activity_status == 1) {
+                        $details = [];
+                        for ($i = 0; $i < count($request->event_activity); $i++)
+                         {
+                            $detailss[] = [
+                                'event_id' => $EventDetail->id,
+                                'event_activity' => $request->event_activity[$i],
+                                'status' => TRUE,
+                                'created_at' => Carbon::now(),
+                                'updated_at' => Carbon::now(),
+                            ];
+                        }
+                        $detailss = collect($detailss);
+                        $chunkss = $detailss->chunk(500);
+
+                        foreach ($chunkss as $chunk) {
+                            EventActivity::insert($chunk->toArray());
+                        }
+                    }
+
+                    return response()->json([
+                        'message' => 'success',
+                        'request' => 'Event details successfully Inserted',
+                    ]);
+                }
 
 
+                }
 
         } catch (Exception $e) {
             return response()->json([
@@ -79,7 +121,9 @@ class EventController extends Controller
     }
 
     public function eventList(){
-        return view('event.event_details');
+            $data = EventDetail::all();
+            return view('event.event_details',['eventdetails'=>$data]);
+            //return view('event.event_details');
     }
 
     public function DatatableEventList(){
