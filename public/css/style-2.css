@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+@font-face {
+    font-family: "Arthur-Hill";
+    src: url("../fonts/Arthur-Hill.ttf.woff") format("woff"),
+        url("../fonts/Arthur-Hill.ttf.svg#Arthur-Hill") format("svg"),
+        url("../fonts/Arthur-Hill.ttf.eot"),
+        url("../fonts/Arthur-Hill.ttf.eot?#iefix") format("embedded-opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
+header {
+    background-color: #fff;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    border-radius: 0.5em;
+}
+
+img.hover:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.main-text {
+    font-size: 15px;
+    color: #94a3b8;
+}
+
+.head-title {
+    font-family: "Arthur-Hill";
+    font-size: 50px;
+    color: #333;
+}
+
+.navbar {
+    z-index: 11;
+}
+
+.navbar.scrolled {
+    /* opacity: 0; */
+    animation: fadeIn 0.5s ease-in both;
+    background-color: #f8f9fa !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-item a {
+    color: #333;
+}
+
+.navbar .navbar-nav .nav-item .dropdown-menu a {
+    color: #333;
+}
+
+.navbar .navbar-nav .nav-item {
+    position: relative;
+    margin: 0 10px;
+}
+
+.navbar .navbar-nav .nav-item a::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    content: "";
+    height: 4px;
+    width: 0;
+    position: absolute;
+    margin: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+    -webkit-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -khtml-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -ms-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -o-transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 0.25s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+.navbar .navbar-nav .nav-item a.active::before,
+.navbar .navbar-nav .nav-item a:hover:before {
+    width: 100%;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(odd) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(odd) a:hover::before {
+    background-color: #ec2027;
+}
+
+.navbar .navbar-nav .nav-item:nth-child(even) a.active::before,
+.navbar .navbar-nav .nav-item:nth-child(even) a:hover::before {
+    background-color: #fcb041;
+}
+
+.contact p {
+    font-size: 12px;
+}
+
+.contact a span {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a.more-btn {
+    color: #27aae1;
+}
+
+/* Logo */
+.navbar-brand {
+    width: 10%;
+}
+
+.bg-mask {
+    position: absolute;
+    z-index: -1;
+    /* left: 20%; */
+    top: 13%;
+    -webkit-mask-image: url("../img/bg-nagaland-2.png");
+    mask-image: url("../img/bg-nagaland-2.png");
+    -webkit-mask-size: 33%;
+    mask-size: 33%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.login-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.login-wrapper {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+.login-wrapper .card {
+    background-color: transparent !important;
+    border: 0;
+}
+
+.btn-success {
+    background-color: #8bc43f;
+    border-color: #8bc43f;
+}
+
+/* Footer Section */
+footer {
+    border: 1px solid #cbd5e1;
+    background-color: #f8fafc;
+    margin-top: 50px;
+}
+
+footer .footer_logo {
+    width: 88%;
+}
+
+footer .govt_logo {
+    width: 55%;
+}
+
+footer .quick-links {
+    padding-left: 0 !important;
+    line-height: 3;
+}
+
+footer .quick-links.govt-details {
+    line-height: 1;
+    font-size: 15px;
+}
+
+footer .connect-footer span {
+    padding-left: 10px;
+}
+
+footer .quick-links.govt-details li:nth-child(2),
+footer .quick-links.govt-details li:nth-child(3) {
+    padding-top: 15px;
+}
+
+footer .quick-links .link-head {
+    font-size: 18px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+footer .quick-links li a,
+footer .quick-links li {
+    color: #94a3b8;
+}
+
+footer .copyright {
+    background-color: #0f172a;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+footer .copyright p {
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 576px) {
+    footer .footer_logo {
+        width: 50%;
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+    footer .footer_logo {
+        width: 70%;
+    }
+    footer .govt_logo {
+        width: 20%;
+    }
+}
