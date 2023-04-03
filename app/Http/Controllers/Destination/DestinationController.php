@@ -118,7 +118,7 @@ class DestinationController extends Controller
             ->addIndexColumn()
             ->make(true);
     }
-    public function DeleteDestinatioData(Request $request)
+    public function DeleteDestinationData(Request $request)
     {
         $data = DestinationDetail::where('id', $request->id)->first();
         $data->status = 0;
@@ -155,7 +155,7 @@ class DestinationController extends Controller
             ]);
         }
     }
-    public function EditDestinatioData(Request $request)
+    public function EditDestinationData(Request $request)
     {
 
         try {
@@ -163,20 +163,16 @@ class DestinationController extends Controller
                 $validator = Validator::make(
                     $request->all(),
                     [
-                        'name' => 'required|string|max:255',
-                        'address' => 'required',
-                        // 'contact_no' => 'required|digits:10|unique:homestay_details',
-                        'contact_no' => 'required|digits:10',
-                        'email' => 'email|max:255|nullable',
-                        'alt_email' => 'email|max:255|nullable',
-                        'alt_contact_no' => 'digits:10|nullable',
+                        'header' => 'required',
+                        'source_link' => 'nullable',
+                        'description' => 'nullable',
+                        // 'image' => 'required|image|mimes:jpg,png,jpeg|max:5120',
 
                     ],
                     [
-                        'name.required' => 'You must provide a name',
-                        'address.required' => 'You must provide a address',
-                        'contact_no.required' => 'You must provide a contact no',
-                        // 'email.*.email' => 'You must provide a email',
+                        'header.required' => 'You must provide a header',
+                        'blog_by.required' => 'You must provide blog written by',
+
                     ]
                 );
 
@@ -187,12 +183,10 @@ class DestinationController extends Controller
                     ]);
                 } else {
                     $data = DestinationDetail::where('id', $request->id)->first();
-                    $data->name = $request->name;
-                    $data->address = $request->address;
-                    $data->contact_no = $request->contact_no;
-                    $data->alt_contact_no = $request->alt_contact_no;
-                    $data->email = $request->email;
-                    $data->alt_email = $request->alt_email;
+                    $data->header = $request->header;
+                    $data->blog_by = $request->blog_by;
+                    $data->source_link = $request->source_link;
+                    // $data->description = $request->description;
                     $data->save();
                     return  response()->json([
                         'message' => 'success',
@@ -201,6 +195,7 @@ class DestinationController extends Controller
                 }
             }
         } catch (Exception $e) {
+            return $e;
             return response()->json([
                 'message' => 'error',
                 'request' => 'Something Went Wrong',

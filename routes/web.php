@@ -25,7 +25,11 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/hotels', [PublicAccomocationController::class, 'Hotels'])->name('Hotels');
-
+Route::get('/Hotellists', [PublicAccomocationController::class, 'Hotellists'])->name('Hotellists');
+Route::get('/homestay', [PublicAccomocationController::class, 'Homestay'])->name('Homestay');
+Route::get('/HomestayLists', [PublicAccomocationController::class, 'HomestayLists'])->name('HomestayLists');
+Route::get('/travel-operators', [PublicAccomocationController::class, 'TravelOperators'])->name('TravelOperators');
+Route::get('/TravelOperatorLists', [PublicAccomocationController::class, 'TravelOperatorLists'])->name('TravelOperatorLists');
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
     //accomodation
