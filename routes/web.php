@@ -6,7 +6,7 @@ use App\Http\Controllers\DesignatedOfficial\DesignatedOfficialController;
 use App\Http\Controllers\Destination\DestinationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
-
+use App\Http\Controllers\Accomodation\PublicAccomocationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('/hotels', [PublicAccomocationController::class, 'Hotels'])->name('Hotels');
 
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
