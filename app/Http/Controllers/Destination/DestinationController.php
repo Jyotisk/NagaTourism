@@ -26,20 +26,31 @@ class DestinationController extends Controller
                     $request->all(),
                     [
                         'header' => 'required',
-                        // 'blog_date' => 'required|string|max:255',
-                        'blog_by' => 'required',
+                        'blog_date' => 'required',
+                        // 'add_more_status' => 'required',
+                        // 'add_more_status' => 'sometimes',
                         'source_link' => 'nullable',
                         'description' => 'nullable',
-                        'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                        'more_image.*' => 'required_if:add_more_status,==,1|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                        'more_image_by.*' => 'required_if:add_more_status,==,1',
-                        'more_description.*' => 'required_if:add_more_status,==,1',
+                        'image' => 'required|image|mimes:jpg,png,jpeg|max:5120',
+                        // 'more_image.*' => 'required_if:add_more_status,1',
+                        // 'more_image.*' => 'image|mimes:jpg,png,jpeg|max:5120',
+                        // 'more_image' => 'required_if:add_more_image.*,1',
+
+                        'more_image.*'  => 'required_if:add_more_status,==,1|image|mimes:jpg,png,jpeg|max:5120',
+                        // 'more_image_by.*' => 'required_if:add_more_status,==,1',
+                        // 'more_description.*' => 'required_if:add_more_status,==,1',
 
                     ],
                     [
                         'header.required' => 'You must provide a header',
                         'blog_by.required' => 'You must provide blog written by',
                         'image.required' => 'You must provide a image',
+                        'image.mimes' => 'Image must be of jpg or jpeg or png format',
+                        'image.max' => 'Image should be less then 5mb',
+                        'more_image.*.mimes' => 'Image must be of jpg or jpeg or png format',
+                        'more_image.*.required_if' => 'You must provide a image',
+                        'more_image.*.max' => 'Image should be less then 5mb',
+
                     ]
                 );
                 if ($validator->fails()) {
@@ -106,13 +117,6 @@ class DestinationController extends Controller
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);
-    }
-    public function GetEditDestinatioData(Request $request)
-    {
-        return  response()->json([
-            'message' => 'success',
-            'data' => DestinationDetail::where('id', $request->id)->first()
-        ]);
     }
     public function DeleteDestinatioData(Request $request)
     {

@@ -33,45 +33,40 @@
     </div>
     <!-- edit modal -->
     <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Destination Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="edit_form">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Registered Guide Name:</label>
-                            <input type="text" class="form-control" id="registered_guide_name" name="name">
-                            <input type="hidden" class="form-control" id="registered_guide_id" name="id">
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+                            <label for="recipient-name" class="col-form-label">Header:</label>
+                            <input type="text" class="form-control" name="header" id="header_edit">
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Address:</label>
-                            <input type="text" class="form-control" id="address" name="address">
+                        <div class="mb-3 col-md-4">
+                            <label for="message-text" class="col-form-label">Blog Writte By:</label>
+                            <input type="text" class="form-control" name="blog_by" id="blog_by_edit">
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Contact Number:</label>
-                            <input type="text" class="form-control" id="contact_no" name="contact_no">
-                            <span id="contact_no_error" class="text-danger"></span>
+                        <div class="mb-3 col-md-4">
+                            <label for="message-text" class="col-form-label">Blog Date:</label>
+                            <input type="text" class="form-control" name="blog_date" id="blog_date_edit">
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Alt Contact Number:</label>
-                            <input type="text" class="form-control" id="alt_contact_no" name="alt_contact_no">
-                            <span id="alt_contact_no_error" class="text-danger"></span>
+                        <div class="mb-3 col-md-12">
+                            <label for="message-text" class="col-form-label">Source Link:</label>
+                            <input type="text" class="form-control" name="source_link" id="source_link_edit">
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Email:</label>
-                            <input type="text" class="form-control" id="email" name="email">
-                            <span id="email_error" class="text-danger"></span>
+                        <div class="mb-3 col-md-12">
+                            <label for="message-text" class="col-form-label">Desription:</label>
+                            <textarea name="description" class="form-control" id="" cols="30" rows="3" id="description_edit"></textarea>
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Alt Email:</label>
-                            <input type="text" class="form-control" id="alt_email" name="alt_email">
-                            <span id="alt_email_error" class="text-danger"></span>
+                        <div class="mb-3" id="image_edit">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm rounded-0">Save Change</button>
-                    </form>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary btn-sm rounded-0">Save Change</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
@@ -83,7 +78,7 @@
 
     <!-- view modal -->
     <div class="modal fade" id="view_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Destination Details</h5>
@@ -103,7 +98,7 @@
                             <label for="message-text" class="col-form-label">Blog Date:</label>
                             <p id="blog_date"></p>
                         </div>
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-3 col-md-12">
                             <label for="message-text" class="col-form-label">Source Link:</label>
                             <p id="source_link"></p>
                         </div>
@@ -282,7 +277,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('GetEditOfficialData')}}",
+            url: "{{route('ViewDestinationData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -293,14 +288,14 @@
             encode: true,
         }).done(function(data) {
             if (data.message == 'success') {
+                $("#header_edit").val(data.destinationdetail.header);
+                $("#blog_by_edit").val(data.destinationdetail.blog_by);
+                $("#blog_date_edit").val(data.destinationdetail.blog_date);
+                $("#description_edit").val(data.destinationdetail.description);
+                $("#source_link_edit").val(data.destinationdetail.source_link);
+                // $("#image").append('<img src="{{asset("storage/app/public")}}/'+data.destinationdetail.image+'" alt="">');
+                $("#image_edit").html('<img src="{{ url("storage/") }}/'+data.destinationdetail.image+'" alt="" title="" style="width:40%"/>')
                 $("#edit_modal").modal("show");
-                $("#registered_guide_id").val(data.data.id);
-                $("#registered_guide_name").val(data.data.name);
-                $("#address").val(data.data.address);
-                $("#alt_contact_no").val(data.data.alt_contact_no);
-                $("#contact_no").val(data.data.contact_no);
-                $("#email").val(data.data.email);
-                $("#alt_email").val(data.data.alt_email);
 
             }
             if (data.message == 'error') {
@@ -319,7 +314,7 @@
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "{{route('EditOfficialData')}}",
+            url: "{{route('EditDestinationData')}}",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

@@ -10,6 +10,7 @@
 
     <!-- Style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Styles -->
     {{-- FontAwesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -171,7 +172,7 @@
         }
 
         .dashboard-nav {
-            min-width: 238px;
+            min-width: 269px;
             position: fixed;
             left: 0;
             top: 0;
@@ -469,7 +470,7 @@
 
         @media (min-width: 992px) {
             .dashboard-toolbar {
-                left: 238px;
+                left: 252px;
             }
 
             .dashboard-compact .dashboard-toolbar {
@@ -482,9 +483,9 @@
 <body>
     <div class='dashboard'>
         <div class="dashboard-nav">
-            <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i class="fas fa-anchor"></i> <img src="https://tourism.nagaland.gov.in/wp-content/uploads/2022/06/Untitled-1.png" alt=""></a></header>
+            <header><a href="{{Route('dashboard')}}" class="brand-logo"> <img src="https://tourism.nagaland.gov.in/wp-content/uploads/2022/06/Untitled-1.png" alt=""></a></header>
             <nav class="dashboard-nav-list"><a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>
-                    Home </a><a href="#" class="dashboard-nav-item {{ Route::is('dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard
+                    Home </a><a href="{{Route('dashboard')}}" class="dashboard-nav-item {{ Route::is('dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard
                 </a><a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
                 <div class='dashboard-nav-dropdown accomodation'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accomodation </a>
                     <div class='dashboard-nav-dropdown-menu'>
@@ -498,17 +499,20 @@
                         <a href="{{Route('RegisteredGuideList')}}" class="dashboard-nav-dropdown-item {{ Route::is('RegisteredGuideList') ? 'active' : '' }}">Registered Guide Lists</a>
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown official'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
+                <div class='dashboard-nav-dropdown official'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Designated Official </a>
                     <div class='dashboard-nav-dropdown-menu'>
                     <a href="{{Route('GetAddOfficial')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddOfficial') ? 'active' : '' }}">Add Official</a>
                         <a href="{{Route('OfficialList')}}" class="dashboard-nav-dropdown-item {{ Route::is('OfficialList') ? 'active' : '' }}">Official Lists</a>
 
                     </div>
                 </div>
-                <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Destination </a>
+                <div class='dashboard-nav-dropdown destination'>
+                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Destination </a>
                     <div class='dashboard-nav-dropdown-menu'>
-                        <a href="{{Route('GetAddDestination')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddDestination') ? 'active' : '' }}">Add Destination</a>
+                    <a href="{{Route('GetAddDestination')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddDestination') ? 'active' : '' }}">Add Destination</a>
                         <a href="{{Route('DestinationList')}}" class="dashboard-nav-dropdown-item {{ Route::is('DestinationList') ? 'active' : '' }}">Destination Lists</a>
+
                     </div>
                 </div>
                 <div class='dashboard-nav-dropdown event'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Event </a>
@@ -519,13 +523,13 @@
                 </div>
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
                 <div class="nav-item-divider"></div>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>
+                <a href="#" class="dashboard-nav-item">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
                         <x-dropdown-link class="text-center" :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                           <i class="fas fa-sign-out-alt"></i>
                         </x-dropdown-link>
                     </form>
                 </a>
@@ -597,6 +601,11 @@
             $(".official").toggleClass("show")
 
         }
+        if("{{ Route::is('GetAddDestination') ? 'active' : '' }}"=='active' || "{{ Route::is('DestinationList') ? 'active' : '' }}"=='active'){
+            $(".destination").toggleClass("show")
+               
+        }
+        
     });
 </script>
 

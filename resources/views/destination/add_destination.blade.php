@@ -18,11 +18,11 @@
                             @csrf
                             <div class="row shadow-lg p-3 mb-5 bg-body rounded mt-2">
                                 <div class="col-md-12">
-                                    <label for="inputPassword5" class="form-label">Header</label>
+                                    <label for="inputPassword5" class="form-label">Header<span class="text-danger">*</span></label>
                                     <input type="text" id="inputPassword5" name="header" class="form-control" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Date</label>
+                                    <label for="inputPassword5" class="form-label">Date<span class="text-danger">*</span></label>
                                     <input type="date" id="inputPassword5" class="form-control" name="blog_date" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
@@ -30,7 +30,7 @@
                                     <input type="text" id="inputPassword5" class="form-control" name="blog_by">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Source Link(if any)</label>
+                                    <label for="inputPassword5" class="form-label">Source Link</label>
                                     <input type="text" id="inputPassword5" class="form-control" name="source_link">
                                 </div>
                                 <div class="col-md-12">
@@ -38,7 +38,7 @@
                                     <textarea name="description" id="" cols="30" rows="6" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Image</label><br>
+                                    <label for="inputPassword5" class="form-label">Image<span class="text-danger">*</span></label><br>
                                     <input type="file" id="inputPassword5" class="form-control-file" name="image">
                                 </div>
                                 <div class="col-md-8">
@@ -52,8 +52,9 @@
 
                             <div class="row shadow-lg p-3 bg-body rounded mt-2" id="more_details" style="display:none">
                                 <div class="col-md-6">
-                                    <label for="inputPassword5" class="form-label">Image</label><br>
+                                    <label for="inputPassword5" class="form-label">Image<span class="text-danger">*</span></label><br>
                                     <input type="file" id="inputPassword5" class="form-control-file" name="more_image[]">
+                                    <input type="hidden" id="inputPassword5" class="form-control-file" name="add_more_image[]" value="1">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputPassword5" class="form-label">Image By</label>
@@ -103,6 +104,7 @@
     $("#rowAdder").click(function() {
         newRowAdd =
             '<div class="row shadow-lg p-3 bg-body rounded mt-2" id="row">' +
+            '<input type="hidden" id="inputPassword5" class="form-control-file" name="add_more_image[]" value="1">'+
             '<div class="col-md-6">' +
             '<label for="inputPassword5" class="form-label">Image</label><br>' +
             '<input type="file" id="inputPassword5" class="form-control-file" name="more_image[]">' +
@@ -162,9 +164,10 @@
                 $.each(data.error, function(index, value) {
                     const textValue = index.split(".");
                     const line_number = parseInt(textValue[1]) + 1;
-                    if (index == 'official_type') {
+                    if (index == 'header' || 'blog_date' || 'image') {
                         message.push('<li><b class="text-danger">Validation error</b>: ' + value + '</li>');
-                    } else {
+                    }
+                     else {
                         message.push('<li><b class="text-danger">Validation error on row number ' + line_number + ' </b>: ' + value + '</li>');
                         // $("#validation_message").html('<li><b class="text-danger">Validation error on row number '+line_number+' </b>: '+value+'</li>')
                     }

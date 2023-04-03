@@ -16,7 +16,7 @@ class CreateDesignatedOfficialDetailsTable extends Migration
         Schema::create('designated_official_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address');
+            $table->string('designation');
             $table->bigInteger('contact_no');
             $table->bigInteger('alt_contact_no')->nullable();
             $table->string('email')->nullable();

@@ -30,7 +30,7 @@
                                 <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 22px;"></i>
                             </div>
                             <div class="d-flex align-items-center gap-3">
-                                <a href="#">
+                                <a href="{{url('login')}}">
                                     <i class="fa-regular fa-lock-keyhole"></i>
                                     <span>Login</span>
                                 </a>
@@ -105,7 +105,6 @@
                 </div>
             </div>
         </nav>
-
         <div class="slider-wrapper position-relative">
             <!-- Carousel -->
             <div id="carouselImageSlider" class="carousel slide" data-bs-ride="carousel">
@@ -194,9 +193,7 @@
             <!-- End of News Section -->
         </div>
         <!-- End of Slider, Nav Bar and News section -->
-
     </div>
-
     <!-- About Section -->
     <div class="about-wrapper">
         <div class="container">
@@ -238,7 +235,7 @@
 
                                 <div id="slide_2" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1 class="head-title">About Nagaland</h1>
+                                        <h1 class="head-title">Entry Permits</h1>
                                         <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
 
                                         <a class="more-btn" href="#">
@@ -250,7 +247,7 @@
 
                                 <div id="slide_3" class="slide slide-content">
                                     <div class="inner_content">
-                                        <h1 class="head-title">About Nagaland</h1>
+                                        <h1 class="head-title">How to get there</h1>
                                         <p class="main-text">A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture – dancers, warriors, head-hunters; mountains, valleys, forests – all these form the portrait of Nagaland the moment the word is uttered.</p>
 
                                         <a class="more-btn" href="#">
@@ -282,14 +279,14 @@
                 <div class="col-12 col-lg-8">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-
+                            @foreach($destination AS $destiny)
                             <div class="swiper-slide">
                                 <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-1.jpeg')}}" alt="Visit Now Pic">
+                                    <img class="hover" src="{{ url('storage/'."$destiny->image") }}" alt="Visit Now Pic">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <h6>
-                                                Doyang Hydro Project
+                                                {{Str::limit($destiny->header, 30)}}
                                             </h6>
                                             <p>
                                                 <i class="fa-regular fa-heart"></i>
@@ -301,101 +298,8 @@
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
-                            <div class="swiper-slide">
-                                <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-2.jpg')}}" alt="Visit Now Pic">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                Touphema Tourist Village
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
-                                        </div>
-                                        <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-3.jpg')}}" alt="Visit Now Pic">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                Khezhakeno Village and Chida Resort
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
-                                        </div>
-                                        <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-1.jpeg')}}" alt="Visit Now Pic">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                Doyang Hydro Project
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
-                                        </div>
-                                        <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-2.jpg')}}" alt="Visit Now Pic">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                Touphema Tourist Village
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
-                                        </div>
-                                        <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card h-100">
-                                    <img class="hover" src="{{asset('img/visit-3.jpg')}}" alt="Visit Now Pic">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                Khezhakeno Village and Chida Resort
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
-                                        </div>
-                                        <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -664,9 +568,9 @@
         </div>
     </div>
     <!-- End of Upcomming Events -->
-
     <!-- Video and Blog Section -->
     <div class="video-blog-wrapper">
+
         <div class="video-wrapper">
             <video class="video-nagaland" onpause="videoPlay(0)">
                 <!-- <source src="{{asset('video/nagaland.mp4')}}" type="video/mp4"> -->
@@ -1059,7 +963,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Footer Section -->
         <footer>
             <div class="container pt-4">
