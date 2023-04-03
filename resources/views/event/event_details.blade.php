@@ -90,9 +90,9 @@
                                                             <div class="col-md-3"><strong>Event Description :</strong></div>
                                                             <div class="col-md-9">{{$key->event_description;}}</div>
                                                             <div class="col-md-3"><strong>Event Photo :</strong></div>
-                                                            <div class="col-md-9">{{$key->event_image_main}}</div>
-                                                            <div class="col-md-12">
-                                                                <img src="{{ url("storage/").'/'.$key->event_image_main }}" alt="" title="" style="width:40%; height:100px"/>
+                                                            <div class="col-md-9"></div>
+                                                            <div class="col-md-12 mt-3 text-center">
+                                                                <img src="{{ url("storage/").'/'.$key->event_image_main }}" alt="" title="" style="width:80%; height:60%"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -115,35 +115,47 @@
     </div>
     <!-- edit modal -->
     <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
+                <form id="edit_form">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Record</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Event Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="edit_form">
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Event Title:</label>
-                            <input type="text" class="form-control" id="eventTitle" name="event_title">
-                            <input type="hidden" class="form-control" id="event_id" name="event_id">
+                        <div class="row">
+                                <input type="hidden" class="form-control" id="event_id" name="event_id">
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-name" class="col-form-label">Event Title <span class="text-danger">&#9733;</span></label>
+                                    <input type="text" class="form-control" id="eventTitle" name="event_title">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="message-text" class="col-form-label">Event Date <span class="text-danger">&#9733;</span></label>
+                                    <input type="date" class="form-control" id="eventDate" name="event_date">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="message-text" class="col-form-label">Event Description :</label>
+                                    <textarea class="form-control" id="eventDescription" name="event_description" rows="6"></textarea>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="message-text" class="col-form-label">Event Photo <span class="text-danger">&#9733;</span></label>
+                                    <div class="mt-2 text-center" id="eventImageMain">
+                                </div><br>
+                                <div class="col-md-6 mb-3 mt-3 form-check form-switch">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Want to Replace Photo</label>
+                                    <input class="form-check-input checkbox_check" type="checkbox" id="replacePhoto" value="1" name="replace_photo">
+                                </div>
+                                <div class="col-md-6" style="display:none" id="replacePhotoDiv">
+                                    <label for="message-text" class="col-form-label">Replace Photo :</label>
+                                    <input type="file" class="form-control" id="eventImageMain" name="event_image_main">
+                                </div><br>
                         </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Event Date:</label>
-                            <input type="date" class="form-control" id="eventDate" name="event_date">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Event Description:</label>
-                            <textarea class="form-control" id="eventDescription" name="event_description" rows="10"></textarea>
-                        </div>
-                        <div class="row justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-sm rounded-0" style="width:30%">Save Change</button>
-                        </div>
-                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-md" style="border-radius:5px"><i class="fa-solid fa-floppy-disk"></i> Save Change</button>
+                    <button type="button" class="btn btn-secondary btn-md" style="border-radius:5px" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Close</button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
@@ -217,6 +229,7 @@
                 $("#eventTitle").val(data.data.event_title);
                 $("#eventDate").val(data.data.event_date);
                 $("#eventDescription").val(data.data.event_description);
+                $("#eventImageMain").html('<img src="{{ url("storage/") }}/'+data.data.event_image_main+'" alt="" title="" style="width:80%;"/>')
 
             }
             if (data.message == 'error') {
@@ -271,4 +284,11 @@
 
         });
     });
+    $(document).on("click", "#replacePhoto", function(e) {
+        if ($('input.checkbox_check').is(':checked')) {
+            $("#replacePhotoDiv").show();
+        } else {
+            $("#replacePhotoDiv").hide();
+        }
+    })
 </script>
