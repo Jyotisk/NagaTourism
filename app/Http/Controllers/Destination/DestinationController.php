@@ -118,13 +118,6 @@ class DestinationController extends Controller
             ->addIndexColumn()
             ->make(true);
     }
-    public function GetEditDestinatioData(Request $request)
-    {
-        return  response()->json([
-            'message' => 'success',
-            'data' => DestinationDetail::where('id', $request->id)->first()
-        ]);
-    }
     public function DeleteDestinatioData(Request $request)
     {
         $data = DestinationDetail::where('id', $request->id)->first();

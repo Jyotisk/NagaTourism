@@ -29,12 +29,12 @@
                             </div>
                             <div class="row shadow-lg p-3 mb-5 bg-body rounded mt-2">
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Travel Operator Name</label>
+                                    <label for="inputPassword5" class="form-label">Name</label>
                                     <input type="text" id="inputPassword5" name="name[]" class="form-control" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">Address</label>
-                                    <input type="text" id="inputPassword5" class="form-control" name="address[]" aria-describedby="passwordHelpBlock">
+                                    <label for="inputPassword5" class="form-label">designation</label>
+                                    <input type="text" id="inputPassword5" class="form-control" name="designation[]" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Contact Number</label>
@@ -91,12 +91,12 @@
     $("#rowAdder").click(function() {
         newRowAdd =
             '<div class="row shadow-lg p-3 mb-5 bg-body rounded mt-2" id="row">' +
-            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Travel Operator Name</label>' +
+            '<div class="col-md-4"><label for="inputPassword5" class="form-label">Name</label>' +
             '<input type="text" id="inputPassword5" name="name[]" class="form-control" aria-describedby="passwordHelpBlock">' +
             '</div>' +
             '<div class="col-md-4">' +
-            '<label for="inputPassword5" class="form-label">Address</label>' +
-            '<input type="text" id="inputPassword5" name="address[]" class="form-control" aria-describedby="passwordHelpBlock"></div>' +
+            '<label for="inputPassword5" class="form-label">designation</label>' +
+            '<input type="text" id="inputPassword5" name="designation[]" class="form-control" aria-describedby="passwordHelpBlock"></div>' +
             '<div class="col-md-4">' +
             '<label for="inputPassword5" class="form-label">Contact Number</label><input type="text" name="contact_no[]" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" Maxlength="10"></div>' +
             '<div class="col-md-4">' +

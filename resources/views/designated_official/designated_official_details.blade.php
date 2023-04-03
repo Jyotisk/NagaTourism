@@ -26,7 +26,7 @@
                         <table class="table registered_guide-list w-100">
                             <thead>
                                 <th>Designated Official Name</th>
-                                <th>Address</th>
+                                <th>designation</th>
                                 <th>Contact Number</th>
                                 <th>Alt Contact Number</th>
                                 <th>Email</th>
@@ -54,13 +54,13 @@
                 <div class="modal-body">
                     <form id="edit_form">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Registered Guide Name:</label>
+                            <label for="recipient-name" class="col-form-label">Name:</label>
                             <input type="text" class="form-control" id="registered_guide_name" name="name">
                             <input type="hidden" class="form-control" id="registered_guide_id" name="id">
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Address:</label>
-                            <input type="text" class="form-control" id="address" name="address">
+                            <label for="message-text" class="col-form-label">designation:</label>
+                            <input type="text" class="form-control" id="designation" name="designation">
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">Contact Number:</label>
@@ -149,7 +149,7 @@
                 "data": "name"
             },
             {
-                "data": "address"
+                "data": "designation"
             },
             {
                 "data": "contact_no"
@@ -241,7 +241,7 @@
                 $("#edit_modal").modal("show");
                 $("#registered_guide_id").val(data.data.id);
                 $("#registered_guide_name").val(data.data.name);
-                $("#address").val(data.data.address);
+                $("#designation").val(data.data.designation);
                 $("#alt_contact_no").val(data.data.alt_contact_no);
                 $("#contact_no").val(data.data.contact_no);
                 $("#email").val(data.data.email);

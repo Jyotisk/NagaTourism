@@ -5,6 +5,7 @@ use App\Http\Controllers\Accomodation\AccomodationController;
 use App\Http\Controllers\DesignatedOfficial\DesignatedOfficialController;
 use App\Http\Controllers\Destination\DestinationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +22,9 @@ use App\Http\Controllers\HomeController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('index');
-
-
-
-
 require __DIR__ . '/auth.php';
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
     //accomodation
@@ -86,7 +82,6 @@ Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
         Route::get('DatatableDestinatioList', [DestinationController::class, 'DatatableDestinatioList'])->name('DatatableDestinatioList');
         Route::post('ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
         Route::post('EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
-        Route::post('GetEditDestinationData', [DestinationController::class, 'GetEditDestinationData'])->name('GetEditDestinationData');
         Route::post('DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
     });
 });

@@ -22,7 +22,7 @@ class DesignatedOfficialController extends Controller
                 $validator = Validator::make($request->all(), [
                     'official_type' => 'required',
                     'name.*' => 'required|string|max:255',
-                    'address.*' => 'required',
+                    'designation.*' => 'required',
                     'contact_no.*' => 'required|digits:10',
                     'email.*' => 'email|max:255|nullable',
                     'alt_email.*' => 'email|max:255|nullable',
@@ -30,7 +30,7 @@ class DesignatedOfficialController extends Controller
                 ],
                 [
                     'name.*.required' => 'You must provide a hotel name',
-                    'address.*.required' => 'You must provide a address',
+                    'designation.*.required' => 'You must provide a designation',
                     'contact_no.*.required' => 'You must provide a contact no',
                     'email.*.required' => 'You must provide a wmail',
 
@@ -46,7 +46,7 @@ class DesignatedOfficialController extends Controller
                     for ($i = 0; $i < count($request->name); $i++) {
                         $details[] = [
                             'name' => $request->name[$i],
-                            'address' => $request->address[$i],
+                            'designation' => $request->designation[$i],
                             'contact_no' => $request->contact_no[$i],
                             'email' => $request->email[$i],
                             'official_type'=>$request->official_type,
@@ -116,7 +116,7 @@ class DesignatedOfficialController extends Controller
                     $request->all(),
                     [
                         'name' => 'required|string|max:255',
-                        'address' => 'required',
+                        'designation' => 'required',
                         // 'contact_no' => 'required|digits:10|unique:homestay_details',
                         'contact_no' => 'required|digits:10',
                         'email' => 'email|max:255|nullable',
@@ -126,7 +126,7 @@ class DesignatedOfficialController extends Controller
                     ],
                     [
                         'name.required' => 'You must provide a name',
-                        'address.required' => 'You must provide a address',
+                        'designation.required' => 'You must provide a designation',
                         'contact_no.required' => 'You must provide a contact no',
                         // 'email.*.email' => 'You must provide a email',
                     ]
@@ -140,7 +140,7 @@ class DesignatedOfficialController extends Controller
                 } else {
                     $data = DesignatedOfficialDetail::where('id', $request->id)->first();
                     $data->name = $request->name;
-                    $data->address = $request->address;
+                    $data->designation = $request->designation;
                     $data->contact_no = $request->contact_no;
                     $data->alt_contact_no = $request->alt_contact_no;
                     $data->email = $request->email;
