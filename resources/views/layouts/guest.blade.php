@@ -103,7 +103,7 @@
                 </div>
             </div>
         </nav>
-        
+
         <!-- End of Slider, Nav Bar and News section -->
     </div>
 
