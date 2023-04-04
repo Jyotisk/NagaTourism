@@ -7,71 +7,29 @@
         <div class="container">
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-8 order-last order-lg-first" style="overflow-y: scroll; height: 100vh; scrollbar-width: none;">
-                    <div class="dest-card card mb-4">
+                @foreach($destinations AS $destination)  
+                <div class="dest-card card mb-4">
                         <div class="card-header">
-                            <img class="destination-pic" src="{{asset('img/things_3.jpg')}}" alt="Destination Picture">
+                            <img class="destination-pic" src="{{ url('storage/'."$destination->image") }}" alt="Destination Picture">
                             <div class="date-field">
                                 <p class="mb-0">
-                                    02
+                                {{$destination->day}}
                                 </p>
-                                <p class="mb-0">Sep</p>
+                                <p class="mb-0">{{$destination->month}}</p>
                             </div>
                         </div>
                         <div class="card-body mt-5">
                             <h3 class="text-center">
-                                <a href="#">A new off-roading experience in India’s wild, wild east</a>
+                                <a href="{{url('destination-details')}}/{{$destination->id}}">{{$destination->header}}</a>
                             </h3>
-                            <p class="text-center">A new off-roading experience in India’s wild, wild eastA chance to experience…</p>
+                            <p class="text-center">{{Str::limit($destination->description, 60)}}</p>
                             <p class="mb-0 date-text">
                                 <i class="fa-regular fa-calendar-days"></i>
-                                September 2, 2022
+                                {{$destination->month}} {{$destination->day}}, {{$destination->year}}
                             </p>
                         </div>
                     </div>
-
-                    <div class="dest-card card mb-4">
-                        <div class="card-header">
-                            <img class="destination-pic" src="{{asset('img/things_3.jpg')}}" alt="Destination Picture">
-                            <div class="date-field">
-                                <p class="mb-0">
-                                    02
-                                </p>
-                                <p class="mb-0">Sep</p>
-                            </div>
-                        </div>
-                        <div class="card-body mt-5">
-                            <h3 class="text-center">
-                                <a href="#">A new off-roading experience in India’s wild, wild east</a>
-                            </h3>
-                            <p class="text-center">A new off-roading experience in India’s wild, wild eastA chance to experience…</p>
-                            <p class="mb-0 date-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                                September 2, 2022
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="dest-card card mb-4">
-                        <div class="card-header">
-                            <img class="destination-pic" src="{{asset('img/things_3.jpg')}}" alt="Destination Picture">
-                            <div class="date-field">
-                                <p class="mb-0">
-                                    02
-                                </p>
-                                <p class="mb-0">Sep</p>
-                            </div>
-                        </div>
-                        <div class="card-body mt-5">
-                            <h3 class="text-center">
-                                <a href="#">A new off-roading experience in India’s wild, wild east</a>
-                            </h3>
-                            <p class="text-center">A new off-roading experience in India’s wild, wild eastA chance to experience…</p>
-                            <p class="mb-0 date-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                                September 2, 2022
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-12 col-lg-4 order-first order-lg-last">
                     <div class="card">

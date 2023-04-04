@@ -9,26 +9,57 @@
                 <div class="col-12 col-lg-8 order-last order-lg-first" style="overflow-y: scroll; height: 100vh; scrollbar-width: none;">
                     <div class="dest-card card mb-4">
                         <div class="card-header">
-                            <img class="destination-pic" src="{{asset('img/things_3.jpg')}}" alt="Destination Picture">
+                            <img class="destination-pic" src="{{ url('storage/'."$destinations->image") }}" alt="Destination Picture">
                         </div>
                         <div class="card-body mt-5">
                             <h3 class="text-start">
-                                A new off-roading experience in India’s wild, wild east
+                                {{$destinations->header}}
                             </h3>
                             <div class="d-flex align-items-center justify-content-between">
                                 <p class="date-text">
                                     <i class="fa-regular fa-calendar-days"></i>
-                                    September 2, 2022
+                                    {{$destinations->month}} {{$destinations->day}}, {{$destinations->year}}
+
                                 </p>
+                                @if(isset($destinations->blog_by))
                                 <p class="text-uppercase">
-                                    By, Jyotiska Madhav Saikia
+                                    By, {{$destinations->blog_by}}
                                 </p>
+                                @endif
                             </div>
-                            <p class="" style="text-align: justify; text-justify: inter-word">One moment we were trundling down a forested hill, wary of the blade-like bamboo stumps that could slice the tyre sidewalls, the next instant we were fording through a nala. Easing into the water, we heard the gentle jangle of heavy metal gingerly crawling over rocky boulders on steady speed. A sigh of relief escaped our lips as our Thar inched out without any belly scrapes and slid up the incline safely. Suddenly, we were skating like liquid mercury in a petri dish, swimming the steering wheel through a muck-track by the paddy fields. Hoping to avoid getting mired, we drove along a bund overgrown with grass and wildflowers at the edge of the field. ‘Keep moving,’ a voice instructed on the radio. And then, the soft earth just sank and pooled around the tyres.</p>
-                            
+                            @if(isset($destinations->description))
+                            <p class="" style="text-align: justify; text-justify: inter-word">
+                                {{$destinations->description}}
+                            </p>
+                            @endif
                         </div>
                     </div>
+                    @if($destinations->add_more_status==1)
+                    @foreach($more_destination AS $more)
+                    <div class="dest-card card mb-4">
+                        <div class="card-header">
+                            <img class="destination-pic" src="{{ url('storage/'."$more->image") }}" alt="Destination Picture">
+                            @if(isset($more->image_by))
+                                <p class="text-uppercase">
+                                    Photo: {{$more->image_by}}
+                                </p>
+                                @endif
+                        </div>
+                        <div class="card-body mt-5">
+                            <div class="d-flex align-items-center justify-content-between">
+                               
+                            </div>
+                            @if(isset($more->description))
+                            <p class="" style="text-align: justify; text-justify: inter-word">
+                                {{$more->description}}
+                            </p>
+                            @endif
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
                 </div>
+
                 <div class="col-12 col-lg-4 order-first order-lg-last">
                     <div class="card">
                         <div class="card-header">

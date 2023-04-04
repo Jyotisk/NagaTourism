@@ -37,7 +37,7 @@ Route::get('/TravelOperatorLists', [PublicAccomocationController::class, 'Travel
 Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
 // Destination Routes
 Route::get('/destination', [PublicDestinationController::class, 'destination'])->name('destination');
-Route::get('/destination-details', [PublicDestinationController::class, 'destination_details'])->name('destination-details');
+Route::get('/destination-details/{id}', [PublicDestinationController::class, 'destination_details'])->name('destination-details');
 
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
