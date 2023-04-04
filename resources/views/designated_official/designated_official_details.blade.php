@@ -17,8 +17,11 @@
                         <div class="col-md-4 mx-3">
                             <select name="official_type" id="official_type" class="form-control">
                                 <option selected disabled>Select Official</option>
-                                <option value="1">Designated Official</option>
-                                <option value="2">Police Official</option>
+                                <option value="1">Tourism Directorate Officers & Staffs</option>
+                                <option value="2">Secretariat Staff</option>
+                                <option value="3">Engineering Wing</option>
+                                <option value="4">Statistical Cell Staff</option>
+                                <option value="5">Police Official</option>
                             </select>
                         </div>
                     </div>
@@ -26,13 +29,12 @@
                         <table class="table registered_guide-list w-100">
                             <thead>
                                 <th>Designated Official Name</th>
-                                <th>designation</th>
+                                <th>Designation</th>
                                 <th>Contact Number</th>
                                 <th>Alt Contact Number</th>
                                 <th>Email</th>
                                 <th>Alt Email</th>
                                 <th>Action</th>
-
                             </thead>
                             <tbody>
 
@@ -47,8 +49,8 @@
     <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <div class="modal-header text-white" style="background-color:#443ea2">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -108,78 +110,78 @@
     $(document).on("change", "#official_type", function(e) {
         $('.registered_guide-list').DataTable().destroy();
         $('.registered_guide-list').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "responsive": true,
-        "scrollX": true,
-        buttons: [
-            // 'copyHtml5',
-            // 'excelHtml5',
-            // 'csvHtml5',
-            // 'pdfHtml5'
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        dom: 'Blfrtip',
-        "language": {
-            "processing": 'Loading data...'
-        },
+            "processing": true,
+            "serverSide": true,
+            "responsive": true,
+            "scrollX": true,
+            buttons: [
+                // 'copyHtml5',
+                // 'excelHtml5',
+                // 'csvHtml5',
+                // 'pdfHtml5'
+            ],
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            dom: 'Blfrtip',
+            "language": {
+                "processing": 'Loading data...'
+            },
 
-        "ajax": {
-            "url": "{{ route('DatatableOfficialList')}}",
-            "data": function(d) {
-                d.official_type = $('#official_type').val();
-                // d.block_id = $('#block').val();
-                // d.panchayat_id = $('#panchyat').val();
-                // d.program_id = $('#program').val();
-                // d.level_id = $('#level').val();
-                // d.des_id = $('#designation').val();
-                // d.ser_status = $('#service_status').val();
-            }
-        },
-        "columns": [
-            // {
-            //     data: 'DT_Row_Index',
-            //     name: 'DT_Row_Index'
-            // },
-
-            {
-                "data": "name"
-            },
-            {
-                "data": "designation"
-            },
-            {
-                "data": "contact_no"
-            },
-            {
-                "data": "alt_contact_no"
-            },
-            {
-                "data": "email"
-            },
-            {
-                "data": "alt_email"
-            },
-            {
-                "data": "id",
-                "render": function(data, type, row, meta) {
-                    if (type === 'display') {
-                        data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '">Edit</a><a class="btn btn-danger btn-sm delete rounded-0" style="text-decoration:none" href="' + row.id + '">Delete</a>';
-                    }
-                    return data;
+            "ajax": {
+                "url": "{{ route('DatatableOfficialList')}}",
+                "data": function(d) {
+                    d.official_type = $('#official_type').val();
+                    // d.block_id = $('#block').val();
+                    // d.panchayat_id = $('#panchyat').val();
+                    // d.program_id = $('#program').val();
+                    // d.level_id = $('#level').val();
+                    // d.des_id = $('#designation').val();
+                    // d.ser_status = $('#service_status').val();
                 }
             },
+            "columns": [
+                // {
+                //     data: 'DT_Row_Index',
+                //     name: 'DT_Row_Index'
+                // },
+
+                {
+                    "data": "name"
+                },
+                {
+                    "data": "designation"
+                },
+                {
+                    "data": "contact_no"
+                },
+                {
+                    "data": "alt_contact_no"
+                },
+                {
+                    "data": "email"
+                },
+                {
+                    "data": "alt_email"
+                },
+                {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a class="btn btn-warning btn-sm edit rounded-0" style="text-decoration:none" href="' + row.id + '">Edit</a><a class="btn btn-danger btn-sm delete rounded-0" style="text-decoration:none" href="' + row.id + '">Delete</a>';
+                        }
+                        return data;
+                    }
+                },
 
 
 
-        ],
+            ],
 
+        });
     });
-    });
-  
+
     $(document).on("click", ".delete", function(e) {
         e.preventDefault();
         Swal.fire({

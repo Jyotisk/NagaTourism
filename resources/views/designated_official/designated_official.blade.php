@@ -21,9 +21,11 @@
                                     <label for="inputPassword5" class="form-label"><b>SELECT OFFICIAL TYPE</b></label>
                                     <select name="official_type" id="" class="form-control">
                                         <option disabled selected>Select Official</option>
-                                        <option value="1">Designated Offical</option>
-                                        <option value="2">Police Offical</option>
-
+                                        <option value="1">Tourism Directorate Officers  &  Staffs</option>
+                                        <option value="2">Secretariat Staff</option>
+                                        <option value="3">Engineering Wing</option>
+                                        <option value="4">Statistical Cell staff</option>
+                                        <option value="5">Police Offical</option>
                                     </select>
                                 </div>
                             </div>
@@ -33,7 +35,7 @@
                                     <input type="text" id="inputPassword5" name="name[]" class="form-control" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="inputPassword5" class="form-label">designation</label>
+                                    <label for="inputPassword5" class="form-label">Designation</label>
                                     <input type="text" id="inputPassword5" class="form-control" name="designation[]" aria-describedby="passwordHelpBlock">
                                 </div>
                                 <div class="col-md-4">
