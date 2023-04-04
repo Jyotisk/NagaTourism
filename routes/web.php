@@ -7,6 +7,8 @@ use App\Http\Controllers\Destination\DestinationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Accomodation\PublicAccomocationController;
+use App\Http\Controllers\Blog\PublicBlogController;
+use App\Http\Controllers\Destination\PublicDestinationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +32,13 @@ Route::get('/homestay', [PublicAccomocationController::class, 'Homestay'])->name
 Route::get('/HomestayLists', [PublicAccomocationController::class, 'HomestayLists'])->name('HomestayLists');
 Route::get('/travel-operators', [PublicAccomocationController::class, 'TravelOperators'])->name('TravelOperators');
 Route::get('/TravelOperatorLists', [PublicAccomocationController::class, 'TravelOperatorLists'])->name('TravelOperatorLists');
+
+// Blog Page Routes
+Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
+// Destination Routes
+Route::get('/destination', [PublicDestinationController::class, 'destination'])->name('destination');
+Route::get('/destination-details', [PublicDestinationController::class, 'destination_details'])->name('destination-details');
+
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
     //accomodation
