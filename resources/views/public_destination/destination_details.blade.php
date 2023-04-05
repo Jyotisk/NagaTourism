@@ -96,7 +96,7 @@
                                         <div class="calendar-button-group">
                                             <button id="prevMonth">&lt;</button>
                                             <button id="today">Today</button>
-                                            <button id="nextMonth">&gt;</button>
+                                            <button id="nextMonth" class="d-none">&gt;</button>
                                         </div>
                                     </div>
                                     <div class="calendar-day-name"></div>
@@ -112,7 +112,9 @@
 
     <script src="{{asset('js/day.js')}}"></script>
     <script>
+        let currentMonth = dayjs();
         let currentDate = dayjs();
+        let currentYear = dayjs();
         let daysInMonth = dayjs().daysInMonth();
         let firstDayPosition = dayjs().startOf("month").day();
         let monthNames = [
@@ -136,8 +138,8 @@
         let prevMonthButton = document.querySelector("#prevMonth");
         let dayNamesElement = document.querySelector(".calendar-day-name");
         let todayButton = document.querySelector("#today");
-        let dateItems = null;
-        let newMonth = null;
+        let dateItems = dayjs();
+        let newMonth = dayjs();
 
         weekNames.forEach(function(item) {
             dayNamesElement.innerHTML += `<div>${item}</div>`;
@@ -160,7 +162,12 @@
 
             //plot current month dates
             for (let i = 0; i < daysInMonth; i++) {
-                dateElement.innerHTML += `<button class="calendar-dates-day">${count++}</button>`;
+                // dateElement.innerHTML += `<button class="calendar-dates-day">${count++}</button>`;
+                if ((currentDate.$M < currentMonth && currentDate.$y <= currentYear) || (currentDate.$M == currentMonth && count <= currentDate.$D)) {
+                    dateElement.innerHTML += `<button class="calendar-dates-day" onclick="selectDate(event)" d-date="${count}" d-month="${currentDate.$M}">${count++}</button>`;
+                } else {
+                    dateElement.innerHTML += `<button class="calendar-dates-day calendar-dates-day-empty" disabled="true">${count++}</button>`;
+                }
             }
 
             //next month dates
@@ -200,6 +207,8 @@
         //today button event
         todayButton.addEventListener("click", function() {
             newMonth = dayjs();
+            currentMonth = newMonth.$M;
+            currentYear = newMonth.$y;
             setSelectedMonth();
             setTimeout(function() {
                 highlightCurrentDate();
@@ -214,10 +223,26 @@
             plotDays();
         }
 
+        window.addEventListener("load", function() {
+            newMonth = dayjs();
+            currentMonth = newMonth.$M;
+            currentYear = newMonth.$y;
+            setSelectedMonth();
+            setTimeout(function() {
+                highlightCurrentDate();
+            }, 50);
+        })
+
         //init
         plotDays();
         setTimeout(function() {
             highlightCurrentDate();
         }, 50);
+    </script>
+
+    <script>
+        selectDate = (event) => {
+            console.log(event)
+        }
     </script>
 </x-guest-layout>
