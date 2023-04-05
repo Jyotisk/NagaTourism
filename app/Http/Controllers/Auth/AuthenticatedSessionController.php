@@ -39,9 +39,12 @@ class AuthenticatedSessionController extends Controller
                 return redirect('/admin/dashboard');
             case Auth::user()->user_type_id == 3:
                 return redirect('/blogger/dashboard');
+            case Auth::user()->user_type_id == 4:
+                return redirect('/user/dashboard');
             default:
                 return '/';
-        }    }
+        }
+    }
 
     /**
      * Destroy an authenticated session.
@@ -57,6 +60,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

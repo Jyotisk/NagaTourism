@@ -22,7 +22,18 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                switch (true) {
+                    case Auth::user()->user_type_id == 1:
+                        return redirect()->intended(RouteServiceProvider::HOME);
+                    case Auth::user()->user_type_id == 2:
+                        return redirect('/admin/dashboard');
+                    case Auth::user()->user_type_id == 3:
+                        return redirect('/blogger/dashboard');
+                    case Auth::user()->user_type_id == 4:
+                        return redirect('/user/dashboard');
+                    default:
+                        return '/';
+                }
             }
         }
 

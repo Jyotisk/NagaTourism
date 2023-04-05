@@ -2,9 +2,6 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
 
     <div class="login-wrapper">
         <div class="bg-mask">
@@ -18,7 +15,7 @@
                             <a class="login-btn nav-link active" aria-current="page" href="#" onclick="viewFroms(event)">Log-In</a>
                         </li>
                         <li class="nav-item">
-                            <a class="registration-btn nav-link" href="#" onclick="viewFroms(event)">Registration</a>
+                            <a class="registration-btn nav-link" href="{{Route('register')}}">Registration</a>
                         </li>
                     </ul>
 
@@ -47,14 +44,16 @@
                                         <div>
                                             <x-label for="email" :value="__('Email')" />
 
-                                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
+                                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" autofocus />
+                                            @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
                                         <!-- Password -->
                                         <div class="mt-4">
                                             <x-label for="password" :value="__('Password')" />
 
-                                            <x-input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
+                                            <x-input id="password" class="form-control" type="password" name="password" autocomplete="current-password" />
+                                            @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center mt-4">
@@ -65,37 +64,7 @@
                                         </div>
                                     </form>
                                     <!-- End of Login Form -->
-                                </div>
-                                <div class="col-md-6 col-sm-12 col-xl-6 registration-div">
-                                    <div class="text-clip w-100">
-                                        <h3 class="text-center login-text">Registration</h3>
-                                        <img class="login-img2" src="{{asset('img/login-bg.jpg')}}" alt="Login Background">
-                                    </div>
-                                    <!-- Login Form -->
-                                    <form method="POST" action="{{ route('login') }}" class="w-100">
-                                        @csrf
-                                        <!-- Email Address -->
-                                        <div>
-                                            <x-label for="email" :value="__('Email')" />
 
-                                            <x-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus />
-                                        </div>
-
-                                        <!-- Password -->
-                                        <div class="mt-4">
-                                            <x-label for="password" :value="__('Password')" />
-
-                                            <x-input id="password" class="form-control" type="password" name="password" required autocomplete="current-password" />
-                                        </div>
-
-                                        <div class="d-flex align-items-center justify-content-center mt-4">
-
-                                            <x-button class="btn btn-success btn-sm rounded-0">
-                                                {{ __('Log in') }}
-                                            </x-button>
-                                        </div>
-                                    </form>
-                                    <!-- End of Login Form -->
                                 </div>
                             </div>
 

@@ -36,14 +36,15 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'user_type' => ['required'],
+            'mobile_no' => ['required','digits:10','unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'user_type_id' => $request->user_type,
+            'mobile_no' => $request->mobile_no,
+            'user_type_id' => 4,
             'password' => Hash::make($request->password),
             'status' => true,
 
@@ -53,6 +54,17 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        switch (true) {
+            case Auth::user()->user_type_id == 1:
+                return redirect()->intended(RouteServiceProvider::HOME);
+            case Auth::user()->user_type_id == 2:
+                return redirect('/admin/dashboard');
+            case Auth::user()->user_type_id == 3:
+                return redirect('/blogger/dashboard');
+            case Auth::user()->user_type_id == 4:
+                return redirect('/user/dashboard');
+            default:
+                return '/';
+        }
     }
 }
