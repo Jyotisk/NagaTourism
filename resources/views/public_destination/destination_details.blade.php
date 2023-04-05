@@ -6,7 +6,7 @@
         </div>
         <div class="container">
             <div class="row g-4 mb-4">
-                <div class="col-12 col-lg-8 order-last order-lg-first" style="overflow-y: scroll; height: 100vh; scrollbar-width: none;">
+                <div class="col-12 col-lg-8 order-last order-lg-first body-fix">
                     <div class="dest-card card mb-4">
                         <div class="card-header">
                             <img class="destination-pic" src="{{ url('storage/'."$destinations->image") }}" alt="Destination Picture">
@@ -32,22 +32,38 @@
                                 {{$destinations->description}}
                             </p>
                             @endif
+
+                            @if($destinations->add_more_status==1)
+                            @foreach($more_destination AS $more)
+                            <img class="destination-pic" src="{{ url('storage/'."$more->image") }}" alt="Destination Picture">
+                            @if(isset($more->image_by))
+                            <p class="text-uppercase">
+                                Photo: {{$more->image_by}}
+                            </p>
+                            @endif
+                            @if(isset($more->description))
+                            <p class="" style="text-align: justify; text-justify: inter-word">
+                                {{$more->description}}
+                            </p>
+                            @endif
+                            @endforeach
+                            @endif
                         </div>
                     </div>
-                    @if($destinations->add_more_status==1)
+                    <!-- @if($destinations->add_more_status==1)
                     @foreach($more_destination AS $more)
                     <div class="dest-card card mb-4">
                         <div class="card-header">
                             <img class="destination-pic" src="{{ url('storage/'."$more->image") }}" alt="Destination Picture">
                             @if(isset($more->image_by))
-                                <p class="text-uppercase">
-                                    Photo: {{$more->image_by}}
-                                </p>
-                                @endif
+                            <p class="text-uppercase">
+                                Photo: {{$more->image_by}}
+                            </p>
+                            @endif
                         </div>
                         <div class="card-body mt-5">
                             <div class="d-flex align-items-center justify-content-between">
-                               
+
                             </div>
                             @if(isset($more->description))
                             <p class="" style="text-align: justify; text-justify: inter-word">
@@ -57,7 +73,7 @@
                         </div>
                     </div>
                     @endforeach
-                    @endif
+                    @endif -->
                 </div>
 
                 <div class="col-12 col-lg-4 order-first order-lg-last">

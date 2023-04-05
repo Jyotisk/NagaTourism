@@ -6,14 +6,14 @@
         </div>
         <div class="container">
             <div class="row g-4 mb-4">
-                <div class="col-12 col-lg-8 order-last order-lg-first" style="overflow-y: scroll; height: 100vh; scrollbar-width: none;">
-                @foreach($destinations AS $destination)  
-                <div class="dest-card card mb-4">
+                <div class="col-12 col-lg-8 order-last order-lg-first body-fix">
+                    @foreach($destinations AS $destination)
+                    <div class="dest-card card mb-4">
                         <div class="card-header">
                             <img class="destination-pic" src="{{ url('storage/'."$destination->image") }}" alt="Destination Picture">
                             <div class="date-field">
                                 <p class="mb-0">
-                                {{$destination->day}}
+                                    {{$destination->day}}
                                 </p>
                                 <p class="mb-0">{{$destination->month}}</p>
                             </div>
