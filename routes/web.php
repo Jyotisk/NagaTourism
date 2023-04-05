@@ -111,7 +111,7 @@ Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
 
 Route::middleware(['public_user'])->group(function () {
 Route::group(['prefix' => 'user'], function () {
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard')->middleware('auth');
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard');
 });
 });
 

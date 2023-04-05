@@ -42,12 +42,12 @@
                             </p>
                             @endif
                             @if(isset($more->description))
-                            @php 
-                            $text = trim($more->description); 
-                            $textAr = explode("\n", $text); 
-                            $textAr = array_filter($textAr, 'trim'); 
+                            @php
+                            $text = trim($more->description);
+                            $textAr = explode("\n", $text);
+                            $textAr = array_filter($textAr, 'trim');
                             @endphp
-                            @foreach ($textAr as $line) 
+                            @foreach ($textAr as $line)
                             <p class="" style="text-align: justify; text-justify: inter-word">
                                 {{$line}}
                             </p>
@@ -84,6 +84,12 @@
                 </div>
 
                 <div class="col-12 col-lg-4 order-first order-lg-last">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{Route('destination')}}">Destinations</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$destinations->category_name}}</li>
+                        </ol>
+                    </nav>
                     <div class="card">
                         <div class="card-header">
                             Search
