@@ -17,8 +17,8 @@
                         <table class="table registered_guide-list w-100">
                             <thead>
                                 <th>Sl No</th>
-                                <th>Heeader</th>
                                 <th>Categories</th>
+                                <th>Header</th>
                                 <th>Blog Date</th>
                                 <th>Blog By</th>
                                 <th>Action</th>

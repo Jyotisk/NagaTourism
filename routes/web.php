@@ -35,6 +35,8 @@ Route::get('/homestay', [PublicAccomocationController::class, 'Homestay'])->name
 Route::get('/HomestayLists', [PublicAccomocationController::class, 'HomestayLists'])->name('HomestayLists');
 Route::get('/travel-operators', [PublicAccomocationController::class, 'TravelOperators'])->name('TravelOperators');
 Route::get('/TravelOperatorLists', [PublicAccomocationController::class, 'TravelOperatorLists'])->name('TravelOperatorLists');
+Route::get('/registered-guide', [PublicAccomocationController::class, 'RegisteredGuide'])->name('RegisteredGuide');
+Route::get('/RegisteredGuideLists', [PublicAccomocationController::class, 'RegisteredGuideLists'])->name('RegisteredGuideLists');
 
 // Blog Page Routes
 Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
@@ -42,6 +44,10 @@ Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
 Route::get('/destination', [PublicDestinationController::class, 'destination'])->name('destination');
 Route::get('/search-destination', [PublicDestinationController::class, 'SearchDestination'])->name('SearchDestination');
 Route::get('/destination-details/{id}', [PublicDestinationController::class, 'destination_details'])->name('destination-details');
+
+// About Page Routes
+Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
+Route::get('/about-nagaland', [HomeController::class, 'about_nagaland'])->name('about-nagaland');
 
 
 
@@ -116,6 +122,9 @@ Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
     });
 });
 
+Route::middleware(['public_user'])->group(function () {
 Route::group(['prefix' => 'user'], function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard')->middleware('auth');
 });
+});
+
