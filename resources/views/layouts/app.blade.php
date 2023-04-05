@@ -523,6 +523,15 @@
                         <a href="{{url('event/event-list')}}" class="dashboard-nav-dropdown-item {{ Route::is('EventList') ? 'active' : '' }}" class="dashboard-nav-dropdown-item">Event Lists</a>
                     </div>
                 </div>
+
+                  {{-- Blogs Section --}}
+                <div class='dashboard-nav-dropdown accomodation'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i>Manage Blogs </a>
+                    <div class='dashboard-nav-dropdown-menu'>
+                        <a href="{{url('blog/add-blog')}}" class="dashboard-nav-dropdown-item {{ Route::is('GetAddBlog') ? 'active' : '' }}">Add Blogs</a>
+                        <a href="{{url('blog/blog-list')}}" class="dashboard-nav-dropdown-item {{ Route::is('BlogList') ? 'active' : '' }}" class="dashboard-nav-dropdown-item">Blog Lists</a>
+                    </div>
+                </div>
+                {{-- Blog section end --}}
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a><a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
                 <div class="nav-item-divider"></div>
                 <a href="#" class="dashboard-nav-item">
@@ -605,9 +614,9 @@
         }
         if("{{ Route::is('GetAddDestination') ? 'active' : '' }}"=='active' || "{{ Route::is('DestinationList') ? 'active' : '' }}"=='active'){
             $(".destination").toggleClass("show")
-               
+
         }
-        
+
     });
 </script>
 

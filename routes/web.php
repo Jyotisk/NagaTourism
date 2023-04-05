@@ -12,6 +12,8 @@ use App\Http\Controllers\Contactus\ContactController;
 use App\Http\Controllers\Blog\PublicBlogController;
 use App\Http\Controllers\Destination\PublicDestinationController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Blog\BlogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,9 +136,20 @@ Route::group(['prefix' => 'event'], function () {
         Route::post('AddQuery', [ContactController::class, 'AddQuery'])->name('AddQuery');
     });
 
+    //Blogs
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('add-blog', [BlogController::class, 'GetAddBlog'])->name('AddBlog');
+        Route::post('post-new-blog', [BlogController::class, 'PostNewBlog'])->name('PostNewBlog');
+        Route::get('blog-list', [BlogController::class, 'GetBlogList'])->name('BlogList');
+        Route::get('datatable-blog-list', [BlogController::class, 'DatatableBlogList'])->name('DatatableBlogList');
+        Route::post('/DeleteBlogData', [BlogController::class, 'DeleteBlogData'])->name('DeleteBlogData');
+
+    });
+
+
 Route::middleware(['public_user'])->group(function () {
 Route::group(['prefix' => 'user'], function () {
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard')->middleware('auth');
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard');
 });
 });
 

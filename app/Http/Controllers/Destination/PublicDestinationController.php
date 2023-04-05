@@ -21,10 +21,13 @@ class PublicDestinationController extends Controller
 
     public function destination_details($id)
     {
-        $destinations = collect(DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
-        TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year,add_more_status
-        FROM destination_details 
-        WHERE status=1 AND id=$id"))->first();
+        $destinations = collect(DB::select("SELECT DD.id,DD.header,DD.image,DD.description,date_part('day',DD.blog_date) AS day,
+        TO_CHAR(DATE(DD.blog_date), 'Month') AS month,date_part('year',DD.blog_date) AS year,DD.add_more_status,
+        BC.category_name AS category_name
+        FROM destination_details DD
+        LEFT JOIN blog_categories BC
+        ON DD.blog_categories_id=BC.id
+        WHERE DD.status=1 AND DD.id=$id"))->first();
         $more_destination = DestinationDetail::leftjoin('more_destination_details', 'more_destination_details.destination_detail_id', '=', 'destination_details.id')
             ->where('destination_details.id', $id)
             ->where('destination_details.status', 1)
