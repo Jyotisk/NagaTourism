@@ -10,6 +10,8 @@ use App\Http\Controllers\Accomodation\PublicAccomocationController;
 use App\Http\Controllers\Blog\PublicBlogController;
 use App\Http\Controllers\Destination\PublicDestinationController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Blog\BlogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,6 +108,17 @@ Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
         Route::post('/ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
         Route::post('/EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
         Route::post('/DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
+    });
+
+
+    //Blogs
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('add-blog', [BlogController::class, 'GetAddBlog'])->name('AddBlog');
+        Route::post('post-new-blog', [BlogController::class, 'PostNewBlog'])->name('PostNewBlog');
+        Route::get('blog-list', [BlogController::class, 'GetBlogList'])->name('BlogList');
+        Route::get('datatable-blog-list', [BlogController::class, 'DatatableBlogList'])->name('DatatableBlogList');
+        Route::post('/DeleteBlogData', [BlogController::class, 'DeleteBlogData'])->name('DeleteBlogData');
+
     });
 });
 
