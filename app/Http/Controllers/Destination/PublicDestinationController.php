@@ -8,7 +8,7 @@ use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\DB;
 class PublicDestinationController extends Controller
 {
-    public function destination()
+    public function destination(Request $request)
     {
         $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
         TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
