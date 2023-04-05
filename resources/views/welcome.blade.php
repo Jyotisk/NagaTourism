@@ -85,7 +85,7 @@
                                 <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
                                 <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
                                 <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
-                                <li><a class="dropdown-item" href="#">Registered Guide</a></li>
+                                <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -134,7 +134,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="img-overlay">
-                            <img src="{{asset('img/pic-3.png')}}" class="d-block w-100" alt="Slider Image 3">
+                            <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 3">
                         </div>
                         <div class="carousel-caption d-none d-md-block">
                             <h3 class="head-title">Stalingrad of the East</h3>
@@ -285,15 +285,18 @@
                                     <img class="hover" src="{{ url('storage/'."$destiny->image") }}" alt="Visit Now Pic">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                {{Str::limit($destiny->header, 30)}}
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
+                                            <a href="{{url('destination-details')}}/{{$destiny->id}}">
+                                                <h6>
+                                                    {{Str::limit($destiny->header, 30)}}
+                                                </h6>
+                                                <p>
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </p>
+                                            </a>
+
                                         </div>
                                         <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                            {{Str::limit($destiny->description, 30)}}
                                         </p>
                                     </div>
                                 </div>

@@ -42,9 +42,16 @@
                             </p>
                             @endif
                             @if(isset($more->description))
+                            @php 
+                            $text = trim($more->description); 
+                            $textAr = explode("\n", $text); 
+                            $textAr = array_filter($textAr, 'trim'); 
+                            @endphp
+                            @foreach ($textAr as $line) 
                             <p class="" style="text-align: justify; text-justify: inter-word">
-                                {{$more->description}}
+                                {{$line}}
                             </p>
+                            @endforeach
                             @endif
                             @endforeach
                             @endif
@@ -82,7 +89,7 @@
                             Search
                         </div>
                         <div class="card-body">
-                            <form method="GET" action="#">
+                            <form method="GET" action="{{Route('SearchDestination')}}">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="search" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" required="">
                                     <button class="btn btn-primary shadow-none search-btn" id="button-search" type="submit">Go!</button>
@@ -90,18 +97,24 @@
                             </form>
 
                             <div class="row mt-4">
-                                <div id="calendar" class="calendar">
-                                    <div class="calendar-title">
-                                        <div class="calendar-title-text"></div>
-                                        <div class="calendar-button-group">
-                                            <button id="prevMonth">&lt;</button>
-                                            <button id="today">Today</button>
-                                            <button id="nextMonth" class="d-none">&gt;</button>
+                                <form action="{{Route('SearchDestination')}}" id="date_form">
+                                    <input type="hidden" id="d_date" value="" name="date">
+                                    <input type="hidden" id="d_month" value="" name="month">
+                                    <input type="hidden" id="d_year" value="" name="year">
+
+                                    <div id="calendar" class="calendar">
+                                        <div class="calendar-title">
+                                            <div class="calendar-title-text"></div>
+                                            <div class="calendar-button-group">
+                                                <button id="prevMonth" type="button">&lt;</button>
+                                                <button id="today" type="button">Today</button>
+                                                <button id="nextMonth" class="d-none" type="button">&gt;</button>
+                                            </div>
                                         </div>
+                                        <div class="calendar-day-name"></div>
+                                        <div class="calendar-dates"></div>
                                     </div>
-                                    <div class="calendar-day-name"></div>
-                                    <div class="calendar-dates"></div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -164,7 +177,7 @@
             for (let i = 0; i < daysInMonth; i++) {
                 // dateElement.innerHTML += `<button class="calendar-dates-day">${count++}</button>`;
                 if ((currentDate.$M < currentMonth && currentDate.$y <= currentYear) || (currentDate.$M == currentMonth && count <= currentDate.$D)) {
-                    dateElement.innerHTML += `<button class="calendar-dates-day" onclick="selectDate(event)" d-date="${count}" d-month="${currentDate.$M}">${count++}</button>`;
+                    dateElement.innerHTML += `<button class="calendar-dates-day date-select" onclick="selectDate(event)" d_date="${count}" d_month="${currentDate.$M}" d_year="${currentDate.$y}">${count++}</button>`;
                 } else {
                     dateElement.innerHTML += `<button class="calendar-dates-day calendar-dates-day-empty" disabled="true">${count++}</button>`;
                 }
@@ -238,11 +251,22 @@
         setTimeout(function() {
             highlightCurrentDate();
         }, 50);
-    </script>
 
-    <script>
         selectDate = (event) => {
-            console.log(event)
+            // console.log(event.target.attributes)
+            var date = event.target.attributes.d_date.value;
+            var month = event.target.attributes.d_month.value;
+            var year = event.target.attributes.d_year.value;
+            $('#d_date').val(date)
+            $('#d_month').val(month)
+            $('#d_year').val(year)
+            $(document).on('click', '.date-select', function() {
+                if ($('#d_date').val(date) && $('#d_month').val(month) && $('#d_year').val(year)) {
+                    $("#date_form").submit();
+                }
+            })
+
+
         }
     </script>
 </x-guest-layout>

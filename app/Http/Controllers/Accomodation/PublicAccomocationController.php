@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Hotel\HotelDetail;
 use App\Models\Homestay\HomestayDetail;
 use App\Models\TravelOperator\TravelOperatorDetail;
+use App\Models\RegisteredGuide\RegisteredGuideDetail;
+
+
 class PublicAccomocationController extends Controller
 {
     public function Hotels()
@@ -38,6 +41,17 @@ class PublicAccomocationController extends Controller
     public function TravelOperatorLists()
     {
         $to_list = TravelOperatorDetail::where('status', 1)->get();
+        return datatables()->of($to_list)
+            ->addIndexColumn()
+            ->make(true);
+    }
+    public function RegisteredGuide()
+    {
+        return view('public_accomodation.registered_guide');
+    }
+    public function RegisteredGuideLists()
+    {
+        $to_list = RegisteredGuideDetail::where('status', 1)->get();
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);

@@ -34,15 +34,18 @@ class PublicDestinationController extends Controller
     }
     public function SearchDestination(Request $request)
     {
+        $messege="";
         if ($request->date) {
             $month = $request->month + 1;
             $i_date = $request->date . '-' . $month . '-' . $request->year;
             $date = Carbon::parse($i_date)->format("Y-m-d");
+            $messege=$date;
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
             WHERE status=1 AND blog_date='$date'");
         } elseif ($request->search) {
+            $messege=$request->search;
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
@@ -56,11 +59,12 @@ class PublicDestinationController extends Controller
         if (!empty($destinations)) {
             $destinations = $destinations;
         } else {
+            $messege="No Data Found";
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
             WHERE status=1");
         }
-        return view("public_destination.destination_land", compact('destinations'));
+        return view("public_destination.destination_land", compact('destinations','messege'));
     }
 }

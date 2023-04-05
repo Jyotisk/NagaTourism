@@ -32,6 +32,14 @@
                     @endforeach
                 </div>
                 <div class="col-12 col-lg-4 order-first order-lg-last">
+                    @if(isset($messege))
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{Route('destination')}}">Destinations</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$messege}}</li>
+                        </ol>
+                    </nav>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             Search
@@ -199,9 +207,7 @@
         setTimeout(function() {
             highlightCurrentDate();
         }, 50);
-    </script>
 
-    <script>
         selectDate = (event) => {
             // console.log(event.target.attributes)
             var date = event.target.attributes.d_date.value;

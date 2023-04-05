@@ -31,7 +31,7 @@ class HomeController extends Controller
         $visitors->ip_address = $ip;
         $visitors->save();
 
-        $destination = DestinationDetail::limit(5)->where('status', 1)->select('header', 'image', 'description')->get();
+        $destination = DestinationDetail::limit(5)->where('status', 1)->select('id','header', 'image', 'description')->get();
         return view('welcome', compact('destination'));
     }
 
