@@ -16,7 +16,9 @@
                     <div class='card-body'>
                         <table class="table registered_guide-list w-100">
                             <thead>
+                                <th>Sl No</th>
                                 <th>Heeader</th>
+                                <th>Categories</th>
                                 <th>Blog Date</th>
                                 <th>Blog By</th>
                                 <th>Action</th>
@@ -149,11 +151,10 @@
             "url": "{{ route('DatatableDestinatioList')}}",
         },
         "columns": [
-            // {
-            //     data: 'DT_Row_Index',
-            //     name: 'DT_Row_Index'
-            // },
-
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+            {
+                "data": "name"
+            },
             {
                 "data": "header"
             },

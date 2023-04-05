@@ -29,7 +29,7 @@ class DestinationController extends Controller
                         'header' => 'required',
                         'blog_date' => 'required',
                         // 'add_more_status' => 'required',
-                        // 'add_more_status' => 'sometimes',
+                        'blog_categories_id' => 'required',
                         'source_link' => 'nullable',
                         'description' => 'nullable',
                         'image' => 'required|image|mimes:jpg,png,jpeg|max:5120',
@@ -69,6 +69,7 @@ class DestinationController extends Controller
                     $DestinationDetail->blog_by = $request->blog_by;
                     $DestinationDetail->source_link = $request->source_link;
                     $DestinationDetail->description = $request->description;
+                    $DestinationDetail->blog_categories_id = $request->blog_categories_id;
                     $DestinationDetail->image = $image_path;
                     $DestinationDetail->status = 1;
                     $DestinationDetail->add_more_status = $request->add_more_status == 1 ? 1 : 0;
@@ -114,7 +115,8 @@ class DestinationController extends Controller
     }
     public function DatatableDestinatioList(Request $request)
     {
-        $to_list = DestinationDetail::where(['status' => 1])->get();
+        $to_list = DestinationDetail::leftjoin('blog_categories','destination_details.blog_categories_id','=','blog_categories.id')->
+        where(['status' => 1])->select('destination_details.id','destination_details.header','destination_details.blog_by','destination_details.blog_date','blog_categories.name')->get();
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);

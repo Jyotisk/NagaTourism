@@ -43,8 +43,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputPassword5" class="form-label">Category<span class="text-danger">*</span></label><br>
-                                    <select name="category" class="form-control" id="">
-                                        <option value="" disabled>Select Category</option>
+                                    <select name="blog_categories_id" class="form-control" id="">
+                                        <option value="">Select Category</option>
                                         @foreach($blogs AS $blog)
                                         <option value="{{$blog->id}}">{{$blog->name}}</option>
                                         @endforeach
