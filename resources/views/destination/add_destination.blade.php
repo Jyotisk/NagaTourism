@@ -41,6 +41,16 @@
                                     <label for="inputPassword5" class="form-label">Image<span class="text-danger">*</span></label><br>
                                     <input type="file" id="inputPassword5" class="form-control-file" name="image">
                                 </div>
+                                <div class="col-md-4">
+                                    <label for="inputPassword5" class="form-label">Category<span class="text-danger">*</span></label><br>
+                                    <select name="blog_categories_id" class="form-control" id="">
+                                        <option value="">Select Category</option>
+                                        @foreach($blogs AS $blog)
+                                        <option value="{{$blog->id}}">{{$blog->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
                                 <div class="col-md-8">
                                     <br>
                                     <div class="form-check form-switch">

@@ -17,8 +17,9 @@ class ContactController extends Controller
     public function GetContactus()
     {
         try {
-            $data = DesignatedOfficialDetail::all();
-            return view('contactus.contactus',['desgoffcials'=>$data]);
+            $data = DesignatedOfficialDetail::all()->where('official_type',1);
+            $secData = DesignatedOfficialDetail::all()->where('official_type',2);
+            return view('contactus.contactus',['desgoffcials'=>$data, 'secoffcials'=>$secData]);
         } catch (Exception $e) {
         }
     }

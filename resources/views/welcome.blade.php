@@ -32,7 +32,19 @@
                             <div class="d-flex align-items-center gap-3">
                                 <a href="{{url('login')}}">
                                     <i class="fa-regular fa-lock-keyhole"></i>
+                                    @if(Auth::User())
+                                    <span>Dashboard</span>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                            <span class="text-danger">Log Out</span>
+                                        </x-dropdown-link>
+                                    </form>
+                                    @else
                                     <span>Login</span>
+                                    @endif
                                 </a>
                             </div>
                         </div>
@@ -62,30 +74,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Nagaland Offroad</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Destinations
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Option1</a></li>
-                                <li><a class="dropdown-item" href="#">Option2</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accomodations
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Option1</a></li>
-                                <li><a class="dropdown-item" href="#">Option2</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
+                                <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
+                                <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
+                                <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -94,9 +94,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -134,7 +134,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="img-overlay">
-                            <img src="{{asset('img/pic-3.png')}}" class="d-block w-100" alt="Slider Image 3">
+                            <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 3">
                         </div>
                         <div class="carousel-caption d-none d-md-block">
                             <h3 class="head-title">Stalingrad of the East</h3>
@@ -285,15 +285,18 @@
                                     <img class="hover" src="{{ url('storage/'."$destiny->image") }}" alt="Visit Now Pic">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h6>
-                                                {{Str::limit($destiny->header, 30)}}
-                                            </h6>
-                                            <p>
-                                                <i class="fa-regular fa-heart"></i>
-                                            </p>
+                                            <a href="{{url('destination-details')}}/{{$destiny->id}}">
+                                                <h6>
+                                                    {{Str::limit($destiny->header, 30)}}
+                                                </h6>
+                                                <p>
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </p>
+                                            </a>
+
                                         </div>
                                         <p class="mb-0 main-text">
-                                            A land engulfed in mystery, inhabited by vibrant people zealously guarding their culture –
+                                            {{Str::limit($destiny->description, 30)}}
                                         </p>
                                     </div>
                                 </div>

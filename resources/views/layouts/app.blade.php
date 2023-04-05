@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Nagaland Tourism') }}</title>
+    <title>Nagaland Tourism</title>
 
     <!-- Style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -470,7 +470,7 @@
 
         @media (min-width: 992px) {
             .dashboard-toolbar {
-                left: 252px;
+                left: 269px;
             }
 
             .dashboard-compact .dashboard-toolbar {
@@ -484,8 +484,10 @@
     <div class='dashboard'>
         <div class="dashboard-nav">
             <header><a href="{{Route('dashboard')}}" class="brand-logo"> <img src="https://tourism.nagaland.gov.in/wp-content/uploads/2022/06/Untitled-1.png" alt=""></a></header>
-            <nav class="dashboard-nav-list"><a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>
-                    Home </a><a href="{{Route('dashboard')}}" class="dashboard-nav-item {{ Route::is('dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard
+            <nav class="dashboard-nav-list">
+                <!-- <a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>
+                    Home </a> -->
+                <a href="{{Route('dashboard')}}" class="dashboard-nav-item {{ Route::is('dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard
                 </a><a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
                 <div class='dashboard-nav-dropdown accomodation'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Accomodation </a>
                     <div class='dashboard-nav-dropdown-menu'>

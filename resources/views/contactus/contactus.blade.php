@@ -42,10 +42,10 @@
         <div class="bg-mask">
             <img src="{{asset('img/pic-2.jpg')}}" />
         </div>
-        <div class="container mt-5 mb-1" style="width:70%">
+        <div class="container mt-2 mb-1" style="width:70%">
             <div class="row mb-2 g-4">
                 <h4>Contact us</h4>
-                <p>Directorate of Tourism, <br>Opp: Indoor Stadium, <br>Raj Bhawan Road, <br>Kohima -797001, Nagaland<br><br>nagalandtourism2014@gmail.com</p>
+                <p>Directorate of Tourism, Opp: Indoor Stadium, <br>Raj Bhawan Road, Kohima -797001, Nagaland<br><br>nagalandtourism2014@gmail.com</p>
             </div>
             <div class="row mb-2 mt-3 ms-1 g-4 phone">
                 <p>Phone: 91 370 2243124</p>
@@ -85,7 +85,7 @@
                 <h5>Secretariat Staff Contact No.</h5>
             </div>
             <div class="row mb-2 ms-1 g-4">
-                <table class="table table-bordered">
+                <table class="table table-bordered secretariatStaff">
                     <thead>
                         <th class="text-center">Sl.No</th>
                         <th class="text-center">Name</th>
@@ -93,12 +93,16 @@
                         <th class="text-center">Contact No</th>
                     </thead>
                     <tbody>
+                        <?php $i = 1; ?>
+                        @foreach ($secoffcials as $key)
                             <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">I .Kitto Zhimomi</td>
-                                <td class="text-center">Commissioner & Secretary</td>
-                                <td class="text-center">9436500009</td>
+                                <td class="text-center">{{$i}}</td>
+                                <td class="text-center">{{$key->name}}</td>
+                                <td class="text-center">{{$key->designation}}</td>
+                                <td class="text-center">{{$key->contact_no}}</td>
                             </tr>
+                            <?php $i++ ?>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -166,6 +170,7 @@
 
 <script type="text/javascript">
     $('.desgOfficial').DataTable();
+    // $('.secretariatStaff').DataTable();
 
     $(document).on("submit", "#queryForm", function(e) {
         e.preventDefault();
