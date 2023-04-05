@@ -114,6 +114,16 @@ a.more-btn {
     color: #27aae1;
 }
 
+.body-fix {
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+}
+
+.body-fix::-webkit-scrollbar {
+    width: 0 !important;
+}
+
 /* Logo */
 .navbar-brand {
     width: 10%;
@@ -365,16 +375,16 @@ footer {
 }
 
 footer .footer_logo {
-    width: 88%;
+    width: 70%;
 }
 
 footer .govt_logo {
-    width: 55%;
+    width: 42%;
 }
 
 footer .quick-links {
     padding-left: 0 !important;
-    line-height: 3;
+    line-height: 2.4;
 }
 
 footer .quick-links.govt-details {
