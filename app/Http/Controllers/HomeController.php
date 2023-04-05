@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
+
 class HomeController extends Controller
 {
     public function index()
@@ -26,11 +27,21 @@ class HomeController extends Controller
             $ip = $remote;
         }
 
-        $visitors=new VisitorCountDetail;
-        $visitors->ip_address=$ip;
+        $visitors = new VisitorCountDetail;
+        $visitors->ip_address = $ip;
         $visitors->save();
 
         $destination = DestinationDetail::limit(5)->where('status', 1)->select('header', 'image', 'description')->get();
         return view('welcome', compact('destination'));
+    }
+
+    public function about_us()
+    {
+        return view('public_about.about_us');
+    }
+
+    public function about_nagaland()
+    {
+        return view('public_about.about_nagaland');
     }
 }

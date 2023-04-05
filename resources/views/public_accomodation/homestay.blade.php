@@ -17,20 +17,20 @@
                         </div>
                         <div class='card-body'>
                             <div class="table-responsive">
-                            <table class="table homestay-list w-100 table-striped">
-                            <thead>
-                                <th>Sl No</th>
-                                <th>Homestay/PG Name</th>
-                                <th>Location</th>
-                                <th>Contact Number</th>
-                                <th>Alt Contact Number</th>
-                                <th>Email</th>
-                                <th>Alt Email</th>
-                            </thead>
-                            <tbody>
+                                <table class="table homestay-list w-100 table-striped">
+                                    <thead>
+                                        <th>Sl No</th>
+                                        <th>Homestay/PG Name</th>
+                                        <th>Location</th>
+                                        <th>Contact Number</th>
+                                        <th>Alt Contact Number</th>
+                                        <th>Email</th>
+                                        <th>Alt Email</th>
+                                    </thead>
+                                    <tbody>
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -67,8 +67,12 @@
         "ajax": {
             "url": "{{ route('HomestayLists')}}",
         },
-        "columns": [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
 
             {
                 "data": "homestay_name"
