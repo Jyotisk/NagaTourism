@@ -38,11 +38,13 @@ Route::get('/TravelOperatorLists', [PublicAccomocationController::class, 'Travel
 Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
 // Destination Routes
 Route::get('/destination', [PublicDestinationController::class, 'destination'])->name('destination');
+Route::get('/search-destination', [PublicDestinationController::class, 'SearchDestination'])->name('SearchDestination');
 Route::get('/destination-details/{id}', [PublicDestinationController::class, 'destination_details'])->name('destination-details');
 
 // About Page Routes
 Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
 Route::get('/about-nagaland', [HomeController::class, 'about_nagaland'])->name('about-nagaland');
+
 
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
