@@ -116,7 +116,7 @@ class DestinationController extends Controller
     public function DatatableDestinatioList(Request $request)
     {
         $to_list = DestinationDetail::leftjoin('blog_categories','destination_details.blog_categories_id','=','blog_categories.id')->
-        where(['status' => 1])->select('destination_details.id','destination_details.header','destination_details.blog_by','destination_details.blog_date','blog_categories.name')->get();
+        where(['status' => 1])->select('destination_details.id','destination_details.header','destination_details.blog_by','destination_details.blog_date','blog_categories.category_name AS name')->get();
         return datatables()->of($to_list)
             ->addIndexColumn()
             ->make(true);

@@ -121,8 +121,15 @@
                 "data": "blog_creator_name"
             },
             {
-                "data": "blog_description"
+                "data": "blog_description",
+                "render": function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = row.blog_description;
+                    }
+                    return data;
+                }
             },
+            
             {
                 "data": "category_name"
             },

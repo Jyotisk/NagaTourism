@@ -23,7 +23,7 @@ class PublicDestinationController extends Controller
     {
         $destinations = collect(DB::select("SELECT DD.id,DD.header,DD.image,DD.description,date_part('day',DD.blog_date) AS day,
         TO_CHAR(DATE(DD.blog_date), 'Month') AS month,date_part('year',DD.blog_date) AS year,DD.add_more_status,
-        BC.name AS category_name
+        BC.category_name AS category_name
         FROM destination_details DD
         LEFT JOIN blog_categories BC
         ON DD.blog_categories_id=BC.id

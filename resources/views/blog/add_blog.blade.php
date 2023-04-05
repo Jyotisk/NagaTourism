@@ -99,6 +99,9 @@
     </div>
     {{-- Validatin Modal End--}}
 </x-app-layout>
+<script src="//cdn.gaic.com/cdn/ui-bootstrap/0.58.0/js/lib/ckeditor/ckeditor.js"></script>
+  <script src="//cdn.gaic.com/cdn/ui-bootstrap/0.58.0/js/lib/jquery.min.js"></script>
+  <script src='http://ckeditor.com/cke4/addon/wordcount.js'></script>
 <script type="text/javascript">
     $("#rowAdder").click(function() {
         newRowAdd =
@@ -166,9 +169,7 @@
 
         });
     });
-</script>
 
-<script>
     $(() => {
   CKEDITOR.config.toolbar = [
     { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Undo', 'Redo' ] },
@@ -208,6 +209,3 @@
 });
 
 </script>
- <script src="//cdn.gaic.com/cdn/ui-bootstrap/0.58.0/js/lib/ckeditor/ckeditor.js"></script>
-  <script src="//cdn.gaic.com/cdn/ui-bootstrap/0.58.0/js/lib/jquery.min.js"></script>
-  <script src='http://ckeditor.com/cke4/addon/wordcount.js'></script>
