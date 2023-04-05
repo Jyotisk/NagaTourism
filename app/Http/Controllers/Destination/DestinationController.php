@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Destination\DestinationDetail;
 use App\Models\Destination\MoreDestinationDetail;;;
-
+use App\Models\BlogCategory;
 class DestinationController extends Controller
 {
     public function GetAddDestination()
     {
-        return view('destination.add_destination');
+        $blogs=BlogCategory::get();
+        return view('destination.add_destination',compact('blogs'));
     }
     public function AddDestination(Request $request)
     {
