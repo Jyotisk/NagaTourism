@@ -51,7 +51,7 @@
                                         <div class="calendar-button-group">
                                             <button id="prevMonth">&lt;</button>
                                             <button id="today">Today</button>
-                                            <button id="nextMonth">&gt;</button>
+                                            <button id="nextMonth" class="d-none">&gt;</button>
                                         </div>
                                     </div>
                                     <div class="calendar-day-name"></div>
