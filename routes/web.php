@@ -8,6 +8,7 @@ use App\Http\Controllers\Destination\DestinationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Accomodation\PublicAccomocationController;
+use App\Http\Controllers\Contactus\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,4 +95,10 @@ Route::group(['prefix' => 'event'], function () {
         Route::post('ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
         Route::post('EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
         Route::post('DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
+    });
+
+    //contactus
+    Route::group(['prefix' => 'contactus'], function () {
+        Route::get('contact-us', [ContactController::class, 'GetContactus'])->name('GetContactus');
+        Route::post('AddQuery', [ContactController::class, 'AddQuery'])->name('AddQuery');
     });
