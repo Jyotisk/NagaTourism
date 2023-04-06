@@ -114,6 +114,7 @@ class EventController extends Controller
                 }
 
         } catch (Exception $e) {
+            return $e;
             return response()->json([
                 'messege' => 'error',
                 'request' =>'Something Went Wrong',

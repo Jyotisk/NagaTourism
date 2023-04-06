@@ -13,7 +13,7 @@ use App\Http\Controllers\Blog\PublicBlogController;
 use App\Http\Controllers\Destination\PublicDestinationController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Blog\BlogController;
-
+use App\Http\Controllers\Event\PublicEventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +50,11 @@ Route::get('/destination-details/{id}', [PublicDestinationController::class, 'de
 // About Page Routes
 Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
 Route::get('/about-nagaland', [HomeController::class, 'about_nagaland'])->name('about-nagaland');
+//event page
 
+Route::get('/events', [PublicEventController::class, 'events'])->name('events');
+Route::get('/search-events', [PublicEventController::class, 'SearchEvents'])->name('SearchEvents');
+Route::get('/event-details/{id}', [PublicEventController::class, 'event_details'])->name('event_details');
 
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
@@ -131,10 +135,8 @@ Route::group(['prefix' => 'event'], function () {
     });
 
     //contactus
-    Route::group(['prefix' => 'contactus'], function () {
         Route::get('contact-us', [ContactController::class, 'GetContactus'])->name('GetContactus');
         Route::post('AddQuery', [ContactController::class, 'AddQuery'])->name('AddQuery');
-    });
 
     //Blogs
     Route::group(['prefix' => 'blog'], function () {

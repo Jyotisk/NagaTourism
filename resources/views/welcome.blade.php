@@ -382,7 +382,98 @@
                 </div>
             </div>
             <div class="row mb-4 event-card-wrapper">
+                <!-- <div class="col-12 event-inside-column">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row g-3">
+                                        <div class="col-12 col-lg-3">
+                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-12 col-lg-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>Tuluni Festival</h6>
+                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>08 July, 2023</h6>
+                                            <p class="mb-0 main-text">Start Date</p>
+                                        </div>
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>15 July, 2023</h6>
+                                            <p class="mb-0 main-text">End Date</p>
+                                        </div>
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div>
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="#">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                @foreach($events AS $event)
                 <div class="col-12 event-inside-column">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-12 col-lg-6">
+                                    <div class="row g-3">
+                                        <div class="col-12 col-lg-3">
+                                            <img class="event-pic" src="{{ url('storage/'."$event->event_image_main") }}" alt="Events Pic">
+                                        </div>
+                                        <div class="col-12 col-lg-9 d-flex">
+                                            <div class="d-flex flex-column justify-content-between">
+                                                <h6>{{$event->event_title}}</h6>
+                                                <p class="mb-0 main-text">
+                                                {{Str::limit($event->event_description, 100)}}
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 d-flex">
+                                    <div class="row g-3 d-flex align-items-center w-100">
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>{{$event->event_date}}</h6>
+                                            <p class="mb-0 main-text">Event Date</p>
+                                        </div>
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>{{$event->created_at->toDateString()}}</h6>
+                                            <p class="mb-0 main-text">Uploaded Date</p>
+                                        </div>
+                                        <!-- <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <h6>Wokha</h6>
+                                            <p class="mb-0 main-text">Location</p>
+                                        </div> -->
+                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
+                                            <a class="more-btn" href="{{url('event-details')}}/{{$event->id}}">
+                                                See more
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                <!-- <div class="col-12 event-inside-column">
                     <div class="card w-100">
                         <div class="card-body">
                             <div class="row g-3">
@@ -468,100 +559,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 event-inside-column">
-                    <div class="card w-100">
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-12 col-lg-6">
-                                    <div class="row g-3">
-                                        <div class="col-12 col-lg-3">
-                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
-                                        </div>
-                                        <div class="col-12 col-lg-9 d-flex">
-                                            <div class="d-flex flex-column justify-content-between">
-                                                <h6>Tuluni Festival</h6>
-                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6 d-flex">
-                                    <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>08 July, 2023</h6>
-                                            <p class="mb-0 main-text">Start Date</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>15 July, 2023</h6>
-                                            <p class="mb-0 main-text">End Date</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>Wokha</h6>
-                                            <p class="mb-0 main-text">Location</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <a class="more-btn" href="#">
-                                                See more
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 event-inside-column">
-                    <div class="card w-100">
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-12 col-lg-6">
-                                    <div class="row g-3">
-                                        <div class="col-12 col-lg-3">
-                                            <img class="event-pic" src="{{asset('img/things_3.jpg')}}" alt="Events Pic">
-                                        </div>
-                                        <div class="col-12 col-lg-9 d-flex">
-                                            <div class="d-flex flex-column justify-content-between">
-                                                <h6>Tuluni Festival</h6>
-                                                <p class="mb-0 main-text">Tuluni is a festival of great significance for the Sumi Nagas. This festival is marked with feasts as the occasion occurs in the bountiful…</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6 d-flex">
-                                    <div class="row g-3 d-flex align-items-center w-100">
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>08 July, 2023</h6>
-                                            <p class="mb-0 main-text">Start Date</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>15 July, 2023</h6>
-                                            <p class="mb-0 main-text">End Date</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <h6>Wokha</h6>
-                                            <p class="mb-0 main-text">Location</p>
-                                        </div>
-                                        <div class="col-6 col-lg-3 d-flex flex-column align-items-end">
-                                            <a class="more-btn" href="#">
-                                                See more
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
             <div class="row mb-4">
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-center">
-                        <a class="more-btn" href="#">
+                        <a class="more-btn" href="{{Route('events')}}">
                             View all
                             <i class="fa-solid fa-chevron-right"></i>
                         </a>

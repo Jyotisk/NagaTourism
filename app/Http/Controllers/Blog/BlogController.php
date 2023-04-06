@@ -85,7 +85,8 @@ class BlogController extends Controller
 
     public function GetBlogList()
     {
-        return view('blog.manage_blogs');
+        $blog=Blog::first();
+        return view('blog.manage_blogs',compact('blog'));
     }
 
 

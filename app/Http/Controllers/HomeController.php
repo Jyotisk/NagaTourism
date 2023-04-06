@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
+use App\Models\Event\EventDetail;
 
 class HomeController extends Controller
 {
@@ -31,8 +32,9 @@ class HomeController extends Controller
         $visitors->ip_address = $ip;
         $visitors->save();
 
-        $destination = DestinationDetail::limit(5)->where('status', 1)->select('id','header', 'image', 'description')->get();
-        return view('welcome', compact('destination'));
+        $destination = DestinationDetail::limit(5)->where('status', 1)->select('id','header', 'image', 'description')->orderBY('id','DESC')->get();
+        $events=EventDetail::limit(4)->where('status', 1)->select('id','event_title','event_date', 'event_image_main', 'event_description','created_at')->orderBY('id','DESC')->get();
+        return view('welcome', compact('destination','events'));
     }
 
     public function about_us()

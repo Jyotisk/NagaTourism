@@ -17,8 +17,8 @@ class CreateEventDetailsTable extends Migration
             $table->id();
             $table->string('event_title');
             $table->date('event_date');
-            $table->string('event_image');
-            $table->string('event_description');
+            $table->string('event_image_main');
+            $table->text('event_description');
             $table->bigInteger('insert_by');
             $table->boolean('wheather_active')->default(TRUE);
             $table->timestamps();

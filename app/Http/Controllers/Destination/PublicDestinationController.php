@@ -15,7 +15,7 @@ class PublicDestinationController extends Controller
         $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
         TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
         FROM destination_details 
-        WHERE status=1");
+        WHERE status=1 ORDER BY id DESC");
         return view("public_destination.destination_land", compact('destinations'));
     }
 
@@ -46,18 +46,18 @@ class PublicDestinationController extends Controller
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
-            WHERE status=1 AND blog_date='$date'");
+            WHERE status=1 AND blog_date='$date'  ORDER BY id DESC");
         } elseif ($request->search) {
             $messege=$request->search;
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
-            WHERE status=1 AND LOWER(header) LIKE LOWER('%$request->search%')");
+            WHERE status=1 AND LOWER(header) LIKE LOWER('%$request->search%')  ORDER BY id DESC");
         } else {
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
-            WHERE status=1");
+            WHERE status=1  ORDER BY id DESC");
         }
         if (!empty($destinations)) {
             $destinations = $destinations;
@@ -66,7 +66,7 @@ class PublicDestinationController extends Controller
             $destinations = DB::select("SELECT id,header,image,description,date_part('day',blog_date) AS day,
             TO_CHAR(DATE(blog_date), 'Month') AS month,date_part('year',blog_date) AS year
             FROM destination_details 
-            WHERE status=1");
+            WHERE status=1  ORDER BY id DESC");
         }
         return view("public_destination.destination_land", compact('destinations','messege'));
     }
