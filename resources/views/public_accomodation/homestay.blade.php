@@ -1,17 +1,24 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div class="parallax-image">
+        <div>
+            <h3 class="parallax-title">Homestay</h3>
+        </div>
+    </div>
 
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
     <div class="login-wrapper">
         <div class="bg-mask">
             <img src="{{asset('img/pic-2.jpg')}}" />
         </div>
-        <div class="container mt-3 mb-5 ">
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <div class="container mt-3 mb-5">
             <div class="row mb-4 g-4">
                 <div class="col-md-12">
-                    <div class='card'>
+                    <h3 class="head-title">Homestay</h3>
+                    <div class='card mt-3'>
                         <div class='card-header text-center'>
                             <h3>LIST OF PAYING GUEST AND HOMESTAY IN NAGALAND </h3>
                         </div>

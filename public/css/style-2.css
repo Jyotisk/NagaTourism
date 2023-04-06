@@ -123,6 +123,17 @@ img.hover:hover {
     background-color: #fcb041;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #26a9e0;
+    color: #fff !important;
+}
+
+.dropdown-item.active::before,
+.dropdown-item:active::before {
+    background-color: unset !important;
+}
+
 .contact p {
     font-size: 12px;
 }
@@ -199,6 +210,7 @@ a.more-btn {
 .login-wrapper,
 .destination_wrapper,
 .about-wrapper {
+    overflow-x: hidden;
     padding-top: 100px;
     padding-bottom: 100px;
     position: relative;
@@ -392,6 +404,12 @@ a.more-btn {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* Contact Us */
+.map-section {
+    padding: 2%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /* Footer Section */

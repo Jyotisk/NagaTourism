@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="parallax-image">
+        <div>
+            <h3 class="parallax-title">Tour Operator</h3>
+        </div>
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -11,26 +16,27 @@
         <div class="container mt-3 mb-5 ">
             <div class="row mb-4 g-4">
                 <div class="col-md-12">
-                    <div class='card'>
+                    <h3 class="head-title">Tour Operator</h3>
+                    <div class='card mt-3'>
                         <div class='card-header text-center'>
                             <h3>GOVERNMNET APPROVED TOUR OPERATOR</h3>
                         </div>
                         <div class='card-body'>
                             <div class="table-responsive">
-                            <table class="table travel_operator-list w-100 table-striped">
-                            <thead>
-                                <th>Sl No</th>
-                                <th>Name of the Operator</th>
-                                <th>Address</th>
-                                <th>Contact Number</th>
-                                <th>Alt Contact Number</th>
-                                <th>Email</th>
-                                <th>Alt Email</th>
-                            </thead>
-                            <tbody>
+                                <table class="table travel_operator-list w-100 table-striped">
+                                    <thead>
+                                        <th>Sl No</th>
+                                        <th>Name of the Operator</th>
+                                        <th>Address</th>
+                                        <th>Contact Number</th>
+                                        <th>Alt Contact Number</th>
+                                        <th>Email</th>
+                                        <th>Alt Email</th>
+                                    </thead>
+                                    <tbody>
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -67,8 +73,12 @@
         "ajax": {
             "url": "{{ route('TravelOperatorLists')}}",
         },
-        "columns": [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
             {
                 "data": "name"
             },

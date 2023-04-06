@@ -101,6 +101,17 @@ img.hover:hover {
     background-color: #fcb041;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #26a9e0;
+    color: #fff !important;
+}
+
+.dropdown-item.active::before,
+.dropdown-item:active::before {
+    background-color: unset !important;
+}
+
 .contact p {
     font-size: 12px;
 }
@@ -871,7 +882,8 @@ footer .copyright p {
     #carouselImageSlider .carousel-item {
         height: 610px;
     }
-    .video-blog-wrapper, .video-wrapper {
+    .video-blog-wrapper,
+    .video-wrapper {
         height: 50vh;
     }
 }

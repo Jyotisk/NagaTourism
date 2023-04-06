@@ -7,6 +7,7 @@ use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
 use App\Models\Event\EventDetail;
+use App\Models\DesignatedOfficial\DesignatedOfficialDetail;
 
 class HomeController extends Controller
 {
@@ -59,7 +60,7 @@ class HomeController extends Controller
     {
         return view('public_about.about_districts');
     }
-    
+
     public function offroad()
     {
         return view('public_offroad.nagaland_offroad');

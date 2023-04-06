@@ -68,17 +68,22 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
+                                <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
+                                <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Nagaland Offroad</a>
+                            <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Accomodations
                             </a>
                             <ul class="dropdown-menu">
@@ -92,7 +97,7 @@
                             <a class="nav-link" href="#">Store</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
@@ -439,7 +444,7 @@
                                             <div class="d-flex flex-column justify-content-between">
                                                 <h6>{{$event->event_title}}</h6>
                                                 <p class="mb-0 main-text">
-                                                {{Str::limit($event->event_description, 100)}}
+                                                    {{Str::limit($event->event_description, 100)}}
 
                                                 </p>
                                             </div>
@@ -999,10 +1004,11 @@
                                 Quick Links
                             </li>
                             <li>
-                                <a href="#">Blog</a>
+                                <a href="{{Route('blog')}}">Blog</a>
                             </li>
-                            <li><a href="#">Downloads</a></li>
-                            <li><a href="#">News and Events</a></li>
+                            <li><a href=" #">Downloads</a>
+                            </li>
+                            <li><a href="{{Route('events')}}">News and Events</a></li>
                             <li><a href="#">Video Section</a></li>
                             <li><a href="#">Site Policy</a></li>
                         </ul>

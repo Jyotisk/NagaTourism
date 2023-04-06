@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="parallax-image">
+        <div>
+            <h3 class="parallax-title">Hotels</h3>
+        </div>
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -11,7 +16,8 @@
         <div class="container mt-5 mb-5 ">
             <div class="row mb-4 g-4">
                 <div class="col-md-12">
-                    <div class='card'>
+                    <h3 class="head-title">Hotels</h3>
+                    <div class='card mt-3'>
                         <div class='card-header text-center'>
                             <h3>LIST OF HOTELS IN KOHIMA </h3>
                         </div>
@@ -67,8 +73,12 @@
         "ajax": {
             "url": "{{ route('Hotellists')}}",
         },
-        "columns": [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
 
             {
                 "data": "hotel_name"
