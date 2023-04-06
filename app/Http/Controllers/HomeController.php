@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
+use App\Models\DesignatedOfficial\DesignatedOfficialDetail;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,7 @@ class HomeController extends Controller
         $visitors->ip_address = $ip;
         $visitors->save();
 
-        $destination = DestinationDetail::limit(5)->where('status', 1)->select('id','header', 'image', 'description')->get();
+        $destination = DestinationDetail::limit(5)->where('status', 1)->select('id', 'header', 'image', 'description')->get();
         return view('welcome', compact('destination'));
     }
 
@@ -43,5 +44,18 @@ class HomeController extends Controller
     public function about_nagaland()
     {
         return view('public_about.about_nagaland');
+    }
+
+    public function PublicOfficialList()
+    {
+        $to_list = DesignatedOfficialDetail::where(['status' => 1, 'official_type' => 1])->get();
+        return datatables()->of($to_list)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function about_districts()
+    {
+        return view('public_about.about_districts');
     }
 }
