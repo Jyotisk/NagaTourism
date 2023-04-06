@@ -7,7 +7,7 @@ use App\Models\Destination\DestinationDetail;
 use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
 use App\Models\Event\EventDetail;
-
+use App\Models\DesignatedOfficial\DesignatedOfficialDetail;
 class HomeController extends Controller
 {
     public function index()
