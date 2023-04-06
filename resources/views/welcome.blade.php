@@ -852,22 +852,21 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
+                            @foreach($blogs AS $blog)
                             <div class="card h-100 d-flex flex-column flex-lg-row">
-                                <img class="hover" src="{{asset('img/things_1.jpg')}}" alt="Blog Picture">
+                                <img class="hover" src="{{ url('storage/'."$blog->blog_banner") }}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 main-text">
                                             <i class="fa-regular fa-clock"></i>
-                                            12 March, 2023
+                                            <h6>{{$blog->created_at->toDateString()}}</h6>
+
                                         </p>
                                         <p class="mb-0">
-                                            SKOCH Awards:
-                                            Nagaland Offroad
-                                            Popular Vote
+                                        {{$blog->blog_title}}
                                         </p>
                                         <p class="mb-0 main-text">
-                                            The Popular vote
-                                            carries a 15% weightage (upto 1.5 marks). This is added to the jury score...
+                                        
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -878,8 +877,8 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card h-100 d-flex flex-column flex-lg-row">
+                            @endforeach
+                            <!-- <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/blog-1.png')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -904,9 +903,9 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="card h-100 d-flex flex-column flex-lg-row">
+                            <!-- <div class="card h-100 d-flex flex-column flex-lg-row">
                                 <img class="hover" src="{{asset('img/blog-2.png')}}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
@@ -958,7 +957,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

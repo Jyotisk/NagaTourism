@@ -42,6 +42,9 @@ Route::get('/RegisteredGuideLists', [PublicAccomocationController::class, 'Regis
 
 // Blog Page Routes
 Route::get('/blog', [PublicBlogController::class, 'blog'])->name('blog');
+Route::get('/search-blogs', [PublicBlogController::class, 'SearchBlogs'])->name('SearchBlogs');
+Route::get('/blog-details/{id}', [PublicBlogController::class, 'blog_details'])->name('blog_details');
+
 // Destination Routes
 Route::get('/destination', [PublicDestinationController::class, 'destination'])->name('destination');
 Route::get('/search-destination', [PublicDestinationController::class, 'SearchDestination'])->name('SearchDestination');
