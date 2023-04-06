@@ -41,6 +41,10 @@ img.hover:hover {
     color: #333;
 }
 
+.table-responsive {
+    overflow-x: scroll;
+}
+
 .navbar {
     z-index: 11;
 }

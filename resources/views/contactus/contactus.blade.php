@@ -1,7 +1,9 @@
 <style>
     .phone {
-        background-color: #8ed1fc !important;
-        padding-left: 50px;
+        background-color: #27aae0 !important;
+        padding: 50px;
+        height: 100%;
+        color: #fff;
     }
 
     .listHeader {
@@ -36,6 +38,11 @@
 </style>
 
 <x-guest-layout>
+    <div class="parallax-image">
+        <div>
+            <h3 class="parallax-title">Contact Us</h3>
+        </div>
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -47,74 +54,101 @@
         <div class="bg-mask">
             <img src="{{asset('img/pic-2.jpg')}}" />
         </div>
-        <div class="container mt-2 mb-1" style="width:70%">
-            <div class="row mb-2 g-4">
-                <h4>Contact us</h4>
-                <p>Directorate of Tourism, Opp: Indoor Stadium, <br>Raj Bhawan Road, Kohima -797001, Nagaland<br><br>nagalandtourism2014@gmail.com</p>
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h3 class="head-title">Contact us</h3>
+                    <p class="main-text">Directorate of Tourism, Opp: Indoor Stadium, <br>Raj Bhawan Road, Kohima -797001, Nagaland<br><br>nagalandtourism2014@gmail.com</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-12 col-lg-4">
+                        <div class="card w-100 h-100">
+                            <div class="card-body">
+                                <div class="phone">
+                                    <p>Phone: 91 370 2243124</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card w-100 h-100">
+                            <div class="card-body">
+                                <div class="phone">
+                                    <p>ILP queries <span class="m-3">8837222758</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card w-100 h-100">
+                            <div class="card-body">
+                                <div class="phone">
+                                    <p>Incredible India Tourist infoline: <span class="ms-3">1800-11-1363</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row mb-2 mt-3 ms-1 g-4 phone">
-                <p>Phone: 91 370 2243124</p>
-            </div>
-            <div class="row mb-2 mt-3 ms-1 g-4 phone">
-                <p>ILP queries <span class="m-3">8837222758</span></p>
-            </div>
-            <div class="row mb-2 mt-3 ms-1 g-4 phone">
-                <p>Incredible India Tourist infoline: <span class="ms-3">1800-11-1363</span></p>
-            </div>
-            <div class="row mb-2 mt-5 ms-1 g-4 listHeader justify-content-center">
+
+            <div class="row listHeader justify-content-center">
                 list of designated officials
             </div>
-            <div class="row mb-2 ms-1 g-4">
-                <table class="table table-bordered desgOfficial">
-                    <thead class="text-white bg-primary">
-                        <th class="text-center">Sl.No</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Designation</th>
-                        <th class="text-center">Contact No</th>
-                    </thead>
-                    <tbody class="tableBody">
-                        <?php $i = 1; ?>
-                        @foreach($desgoffcials as $key)
-                        <tr>
-                            <td class="text-center">{{$i}}</td>
-                            <td>{{$key->name}}</td>
-                            <td>{{$key->designation}}</td>
-                            <td class="text-center">{{$key->contact_no}}</td>
-                        </tr>
-                        <?php $i++ ?>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered desgOfficial">
+                        <thead class="text-white bg-primary">
+                            <th class="text-center">Sl.No</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Designation</th>
+                            <th class="text-center">Contact No</th>
+                        </thead>
+                        <tbody class="tableBody">
+                            <?php $i = 1; ?>
+                            @foreach($desgoffcials as $key)
+                            <tr>
+                                <td class="text-center">{{$i}}</td>
+                                <td>{{$key->name}}</td>
+                                <td>{{$key->designation}}</td>
+                                <td class="text-center">{{$key->contact_no}}</td>
+                            </tr>
+                            <?php $i++ ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="row mb-2 mt-3 ms-1 g-4">
+            <div class="row">
                 <h5>Secretariat Staff Contact No.</h5>
             </div>
-            <div class="row mb-2 ms-1 g-4">
-                <table class="table table-bordered secretariatStaff">
-                    <thead>
-                        <th class="text-center">Sl.No</th>
-                        <th class="text-center">Name</th>
-                        <th class="text-center">Designation</th>
-                        <th class="text-center">Contact No</th>
-                    </thead>
-                    <tbody>
-                        <?php $i = 1; ?>
-                        @foreach ($secoffcials as $key)
-                        <tr>
-                            <td class="text-center">{{$i}}</td>
-                            <td class="text-center">{{$key->name}}</td>
-                            <td class="text-center">{{$key->designation}}</td>
-                            <td class="text-center">{{$key->contact_no}}</td>
-                        </tr>
-                        <?php $i++ ?>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-bordered secretariatStaff">
+                        <thead>
+                            <th class="text-center">Sl.No</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Designation</th>
+                            <th class="text-center">Contact No</th>
+                        </thead>
+                        <tbody>
+                            <?php $i = 1; ?>
+                            @foreach ($secoffcials as $key)
+                            <tr>
+                                <td class="text-center">{{$i}}</td>
+                                <td class="text-center">{{$key->name}}</td>
+                                <td class="text-center">{{$key->designation}}</td>
+                                <td class="text-center">{{$key->contact_no}}</td>
+                            </tr>
+                            <?php $i++ ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="row mb-4 map-section">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229925.06521765393!2d93.77515223816751!3d25.784461023567815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374621b02c3bec6f%3A0x8efdc40f38ffd140!2sDirectorate%20Of%20Tourism!5e0!3m2!1sen!2sin!4v1680551162614!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-            <div class="row mb-2 mt-3 ms-1 g-3">
+            <div class="row">
                 <h4>Get in Touch</h4>
                 <div class="col-md-7" style="background-color: #F4F4F4; padding:2%">
                     <form id="queryForm">
