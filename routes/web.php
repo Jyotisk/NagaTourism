@@ -51,6 +51,9 @@ Route::get('/destination-details/{id}', [PublicDestinationController::class, 'de
 Route::get('/about-us', [HomeController::class, 'about_us'])->name('about-us');
 Route::get('/about-nagaland', [HomeController::class, 'about_nagaland'])->name('about-nagaland');
 //event page
+Route::get('/about-districts', [HomeController::class, 'about_districts'])->name('about-districts');
+Route::get('/offroad', [HomeController::class, 'offroad'])->name('offroad');
+Route::get('/PublicOfficialList', [HomeController::class, 'PublicOfficialList'])->name('PublicOfficialList');
 
 Route::get('/events', [PublicEventController::class, 'events'])->name('events');
 Route::get('/search-events', [PublicEventController::class, 'SearchEvents'])->name('SearchEvents');

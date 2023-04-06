@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="parallax-image">
+        <div>
+            <h3 class="parallax-title">About Us</h3>
+        </div>
+    </div>
     <div class="about-wrapper">
         <div class="bg-mask">
             <img src="{{asset('img/pic-2.jpg')}}" />
@@ -38,6 +43,9 @@
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Contact Number</th>
+                                <th>Alt. Number</th>
+                                <th>Email</th>
+                                <th>Alt. Email</th>
                             </thead>
                             <tbody>
 
@@ -167,7 +175,7 @@
         },
 
         "ajax": {
-            "url": "{{ route('HomestayLists')}}",
+            "url": "{{ route('OfficialList')}}",
         },
         "columns": [{
                 data: 'DT_RowIndex',
@@ -177,57 +185,10 @@
             },
 
             {
-                "data": "homestay_name"
+                "data": "name"
             },
             {
-                "data": "location"
-            },
-            {
-                "data": "contact_no"
-            },
-            {
-                "data": "alt_contact_no"
-            },
-
-        ],
-
-    });
-
-    $('.secretariat-list').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "responsive": true,
-        "scrollX": true,
-        buttons: [
-            // 'copyHtml5',
-            // 'excelHtml5',
-            // 'csvHtml5',
-            // 'pdfHtml5'
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        dom: 'Blfrtip',
-        "language": {
-            "processing": 'Loading data...'
-        },
-
-        "ajax": {
-            "url": "{{ route('HomestayLists')}}",
-        },
-        "columns": [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                orderable: false,
-                searchable: false
-            },
-
-            {
-                "data": "homestay_name"
-            },
-            {
-                "data": "location"
+                "data": "designation"
             },
             {
                 "data": "contact_no"
@@ -235,99 +196,11 @@
             {
                 "data": "alt_contact_no"
             },
-
-        ],
-
-    });
-
-    $('.engineer-list').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "responsive": true,
-        "scrollX": true,
-        buttons: [
-            // 'copyHtml5',
-            // 'excelHtml5',
-            // 'csvHtml5',
-            // 'pdfHtml5'
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        dom: 'Blfrtip',
-        "language": {
-            "processing": 'Loading data...'
-        },
-
-        "ajax": {
-            "url": "{{ route('HomestayLists')}}",
-        },
-        "columns": [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                orderable: false,
-                searchable: false
-            },
-
             {
-                "data": "homestay_name"
+                "data": "email"
             },
             {
-                "data": "location"
-            },
-            {
-                "data": "contact_no"
-            },
-            {
-                "data": "alt_contact_no"
-            },
-
-        ],
-
-    });
-
-    $('.statistical-list').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "responsive": true,
-        "scrollX": true,
-        buttons: [
-            // 'copyHtml5',
-            // 'excelHtml5',
-            // 'csvHtml5',
-            // 'pdfHtml5'
-        ],
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        dom: 'Blfrtip',
-        "language": {
-            "processing": 'Loading data...'
-        },
-
-        "ajax": {
-            "url": "{{ route('HomestayLists')}}",
-        },
-        "columns": [{
-                data: 'DT_RowIndex',
-                name: 'DT_RowIndex',
-                orderable: false,
-                searchable: false
-            },
-
-            {
-                "data": "homestay_name"
-            },
-            {
-                "data": "location"
-            },
-            {
-                "data": "contact_no"
-            },
-            {
-                "data": "alt_contact_no"
+                "data": "alt_email"
             },
 
         ],

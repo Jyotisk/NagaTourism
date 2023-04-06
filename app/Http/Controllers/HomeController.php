@@ -46,4 +46,22 @@ class HomeController extends Controller
     {
         return view('public_about.about_nagaland');
     }
+
+    public function PublicOfficialList()
+    {
+        $to_list = DesignatedOfficialDetail::where(['status' => 1, 'official_type' => 1])->get();
+        return datatables()->of($to_list)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function about_districts()
+    {
+        return view('public_about.about_districts');
+    }
+    
+    public function offroad()
+    {
+        return view('public_offroad.nagaland_offroad');
+    }
 }
