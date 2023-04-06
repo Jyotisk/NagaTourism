@@ -7,38 +7,44 @@
         <div class="container">
             <div class="row g-4 mb-4">
                 <div class="col-12 col-lg-8 order-last order-lg-first body-fix">
-                    @foreach($blogs AS $blog)
                     <div class="dest-card card mb-4">
                         <div class="card-header">
-                            <img class="destination-pic" src="{{ url('storage/'."$blog->blog_banner") }}" alt="Destination Picture">
-                            <div class="date-field">
-                                <p class="mb-0">
-                                    {{$blog->day}}
-                                </p>
-                                <p class="mb-0">{{$blog->month}}</p>
-                            </div>
+                            <img class="destination-pic" src="{{ url('storage/'."$blogs->blog_banner") }}" alt="Destination Picture">
                         </div>
                         <div class="card-body mt-5">
-                            <h3 class="text-center">
-                                <a href="{{url('blog-details')}}/{{$blog->id}}">{{$blog->blog_title}}</a>
+                            <h3 class="text-start">
+                                {{$blogs->blog_title}}
                             </h3>
-                            <p class="mb-0 date-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                                {{$blog->month}} {{$blog->day}}, {{$blog->year}}
+                            <div class="d-flex align-items-center justify-content-between">
+                                <p class="date-text">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    {{$blogs->month}} {{$blogs->day}}, {{$blogs->year}}
+
+                                </p>
+                                @if(isset($blogs->blog_creator_name))
+                                <p class="text-uppercase">
+                                    By, {{$blogs->blog_creator_name}}
+                                </p>
+                                @endif
+                            </div>
+                            @if(isset($blogs->blog_description))
+                            <p class="" style="text-align: justify; text-justify: inter-word">
+                                {{!!$blogs->blog_description!!}}
                             </p>
+                            @endif
+
                         </div>
                     </div>
-                    @endforeach
+                  
                 </div>
+
                 <div class="col-12 col-lg-4 order-first order-lg-last">
-                    @if(isset($messege))
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{Route('blog')}}">Blogs</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{$messege}}</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{$blogs->category_name}}</li>
                         </ol>
                     </nav>
-                    @endif
                     <div class="card">
                         <div class="card-header">
                             Search

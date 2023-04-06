@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\VisitorCountDetail;
 use App\Models\Event\EventDetail;
 use App\Models\DesignatedOfficial\DesignatedOfficialDetail;
+use App\Models\Blog\Blog;
 class HomeController extends Controller
 {
     public function index()
@@ -34,7 +35,8 @@ class HomeController extends Controller
 
         $destination = DestinationDetail::limit(5)->where('status', 1)->select('id','header', 'image', 'description')->orderBY('id','DESC')->get();
         $events=EventDetail::limit(4)->where('status', 1)->select('id','event_title','event_date', 'event_image_main', 'event_description','created_at')->orderBY('id','DESC')->get();
-        return view('welcome', compact('destination','events'));
+       $blogs=Blog::select('id','blog_title','blog_description', 'blog_banner','created_at')->where('blog_active_status',1)->limit(4)->get();
+        return view('welcome', compact('destination','events','blogs'));
     }
 
     public function about_us()
