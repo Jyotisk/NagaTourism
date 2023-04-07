@@ -69,13 +69,18 @@ img.hover:hover {
 
 .table-responsive {
     overflow-x: scroll;
+    scrollbar-width: none;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 .navbar {
     z-index: 11;
 }
 
-.navbar.scrolled {
+.menu-bar.scrolled {
     /* opacity: 0; */
     animation: fadeIn 0.5s ease-in both;
     background-color: #f8f9fa !important;

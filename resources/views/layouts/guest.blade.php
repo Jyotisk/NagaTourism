@@ -55,7 +55,7 @@
         <!-- End of Header Social and Login Sections -->
 
         <!-- Slider, Nav Bar and News Section -->
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar menu-bar navbar-expand-lg bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{{Route('index')}}">
                     <img src="{{asset('/img/logo.svg')}}" alt="Logo">
@@ -209,7 +209,7 @@
 
 <script>
     $(window).scroll(function() {
-        $('nav').toggleClass('fixed-top scrolled', $(this).scrollTop() > 200);
+        $('.menu-bar').toggleClass('fixed-top scrolled', $(this).scrollTop() > 200);
     });
 
     $(function() {

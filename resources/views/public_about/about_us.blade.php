@@ -43,9 +43,9 @@
                                 <th>Name</th>
                                 <th>Designation</th>
                                 <th>Contact Number</th>
-                                <th>Alt. Number</th>
+                                <!-- <th>Alt. Number</th>
                                 <th>Email</th>
-                                <th>Alt. Email</th>
+                                <th>Alt. Email</th> -->
                             </thead>
                             <tbody>
 
@@ -175,7 +175,7 @@
         },
 
         "ajax": {
-            "url": "{{ route('OfficialList')}}",
+            "url": "{{ route('PublicOfficialList')}}",
         },
         "columns": [{
                 data: 'DT_RowIndex',
@@ -193,15 +193,171 @@
             {
                 "data": "contact_no"
             },
+            // {
+            //     "data": "alt_contact_no"
+            // },
+            // {
+            //     "data": "email"
+            // },
+            // {
+            //     "data": "alt_email"
+            // },
+
+        ],
+
+    });
+    $('.secretariat-list').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": true,
+        "scrollX": true,
+        buttons: [
+            // 'copyHtml5',
+            // 'excelHtml5',
+            // 'csvHtml5',
+            // 'pdfHtml5'
+        ],
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        dom: 'Blfrtip',
+        "language": {
+            "processing": 'Loading data...'
+        },
+
+        "ajax": {
+            "url": "{{ route('PublicOfficialList')}}",
+        },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
+
             {
-                "data": "alt_contact_no"
+                "data": "name"
             },
             {
-                "data": "email"
+                "data": "designation"
             },
             {
-                "data": "alt_email"
+                "data": "contact_no"
             },
+            // {
+            //     "data": "alt_contact_no"
+            // },
+            // {
+            //     "data": "email"
+            // },
+            // {
+            //     "data": "alt_email"
+            // },
+
+        ],
+
+    });
+    $('.engineer-list').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": true,
+        "scrollX": true,
+        buttons: [
+            // 'copyHtml5',
+            // 'excelHtml5',
+            // 'csvHtml5',
+            // 'pdfHtml5'
+        ],
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        dom: 'Blfrtip',
+        "language": {
+            "processing": 'Loading data...'
+        },
+
+        "ajax": {
+            "url": "{{ route('PublicOfficialList')}}",
+        },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
+
+            {
+                "data": "name"
+            },
+            {
+                "data": "designation"
+            },
+            {
+                "data": "contact_no"
+            },
+            // {
+            //     "data": "alt_contact_no"
+            // },
+            // {
+            //     "data": "email"
+            // },
+            // {
+            //     "data": "alt_email"
+            // },
+
+        ],
+
+    });
+    $('.statistical-list').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": true,
+        "scrollX": true,
+        buttons: [
+            // 'copyHtml5',
+            // 'excelHtml5',
+            // 'csvHtml5',
+            // 'pdfHtml5'
+        ],
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        dom: 'Blfrtip',
+        "language": {
+            "processing": 'Loading data...'
+        },
+
+        "ajax": {
+            "url": "{{ route('PublicOfficialList')}}",
+        },
+        "columns": [{
+                data: 'DT_RowIndex',
+                name: 'DT_RowIndex',
+                orderable: false,
+                searchable: false
+            },
+
+            {
+                "data": "name"
+            },
+            {
+                "data": "designation"
+            },
+            {
+                "data": "contact_no"
+            },
+            // {
+            //     "data": "alt_contact_no"
+            // },
+            // {
+            //     "data": "email"
+            // },
+            // {
+            //     "data": "alt_email"
+            // },
 
         ],
 
