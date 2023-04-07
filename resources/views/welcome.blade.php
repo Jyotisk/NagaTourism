@@ -1107,7 +1107,7 @@
                 $("#hornbill").removeClass("d-block");
                 $("#hornbill").addClass("d-none");
             }
-            $(".video-nagaland").attr("autoplay", "false");
+            $(".video-nagaland").attr("autoplay", "true");
             $(".video-nagaland").attr("controls", "true");
         } else {
             if ($(".video-overlay").hasClass("d-none") && $("#hornbill").hasClass("d-none")) {
