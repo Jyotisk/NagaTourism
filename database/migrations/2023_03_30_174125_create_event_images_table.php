@@ -16,7 +16,8 @@ class CreateEventImagesTable extends Migration
         Schema::create('event_images', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('event_details')->onDelete('cascade');
+            // $table->foreign('event_id')->references('id')->on('event_details')->onDelete('cascade');
+            // $table->foreign('event_id');
             $table->string('event_image');
             $table->boolean('status')->default(TRUE);
             $table->timestamps();

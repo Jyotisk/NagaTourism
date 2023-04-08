@@ -16,7 +16,8 @@ class CreateBlogPointwisesTable extends Migration
         Schema::create('blog_pointwises', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('blog_id')->unsigned();
-            $table->foreign('blog_id')->references('id')->on('blogs');
+            // $table->foreign('blog_id')->references('id')->on('blogs');
+            // $table->foreign('blog_id');
             $table->string('point_name');
             $table->timestamps();
         });

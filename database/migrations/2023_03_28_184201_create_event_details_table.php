@@ -21,10 +21,10 @@ class CreateEventDetailsTable extends Migration
             $table->text('event_description');
             $table->bigInteger('insert_by');
             $table->boolean('wheather_active')->default(TRUE);
-            $table->timestamps();
             $table->bigInteger('status');
             $table->bigInteger('add_image_status');
             $table->bigInteger('add_activity_status');
+            $table->timestamps();
         });
     }
 
