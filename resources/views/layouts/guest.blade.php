@@ -14,40 +14,62 @@
 </head>
 
 <body>
+    <div id="fixed-social">
+        <div>
+            <a href="#" class="fixed-facebook" target="_blank">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="fixed-twitter" target="_blank">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="fixed-instagrem" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="fixed-tumblr" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+        </div>
+    </div>
     <div class="position-relative">
 
-        <!-- Header Social and Login Sections -->
-        <header class="contact pt-1 pb-1">
+        <header class="pt-3 pb-3 d-none d-lg-block">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center gap-3">
-                                <p class="mb-0">Connect with us</p>
-                                <i class="fa-brands fa-facebook" style="color: #1877f2; font-size: 22px;"></i>
-                                <i class="fa-brands fa-instagram" style="color: #e1306c; font-size: 22px;"></i>
-                                <i class="fa-brands fa-twitter" style="color: #1da1f2; font-size: 22px;"></i>
-                                <i class="fa-brands fa-youtube" style="color: #ff0000; font-size: 22px;"></i>
-                            </div>
-                            <div class="d-flex align-items-center gap-3">
-                                <a href="{{url('login')}}">
-                                    <i class="fa-regular fa-lock-keyhole"></i>
-                                    @if(Auth::User())
-                                    <span>Dashboard</span>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-
-                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                            <span class="text-danger">Log Out</span>
-                                        </x-dropdown-link>
-                                    </form>
-                                    @else
-                                    <span>Login</span>
-                                    @endif
-                                </a>
-                            </div>
+                            <a class="navbar-brand" href="#">
+                                <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo" />
+                            </a>
+                            <h3>Department of Tourism, &nbsp;Government of Nagaland</h3>
+                            <a class="navbar-brand" href="#">
+                                <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo" />
+                            </a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Header for Small Screen -->
+        <header class="pt-3 pb-3 d-lg-none">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <a class="navbar-brand" href="#">
+                                <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo" />
+                            </a>
+                            <a class="navbar-brand" href="#">
+                                <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo" />
+                            </a>
+                        </div>
+                        <h3 class="text-center mt-2">Department of Tourism, &nbsp;Government of Nagaland</h3>
                     </div>
                 </div>
             </div>
@@ -55,16 +77,16 @@
         <!-- End of Header Social and Login Sections -->
 
         <!-- Slider, Nav Bar and News Section -->
-        <nav class="navbar menu-bar navbar-expand-lg bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{Route('index')}}">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container justify-content-end">
+                {{-- <a class="navbar-brand" href="#">
                     <img src="{{asset('/img/logo.svg')}}" alt="Logo">
-                </a>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <div class="collapse navbar-collapse justify-content-evenly" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{Route('index')}}">Home</a>
                         </li>
@@ -76,11 +98,35 @@
                                 <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item " href="#">Service-1</a></li>
+                                <li><a class="dropdown-item" href="#">Service-2</a></li>
+                                <li><a class="dropdown-item" href="#">Service-3</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('offroad') ? 'active' : '' }}" href="{{Route('offroad')}}">Nagaland Offroad</a>
+                            <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Publication-1</a></li>
+                                <li><a class="dropdown-item" href="#">Publication-2</a></li>
+                                <li><a class="dropdown-item" href="#">Publication-3</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Departments-1</a></li>
+                                <li><a class="dropdown-item" href="#">Departments-2</a></li>
+                                <li><a class="dropdown-item" href="#">Departments-3</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,12 +143,40 @@
                             <a class="nav-link" href="#">Store</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::is('GetContactus') ? 'active' : '' }}" href="{{Route('GetContactus')}}">Contact</a>
+                            <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>
                         </li>
+                        @if(Auth::User())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item {{ Route::is('login') ? 'active' : '' }}" href="{{Route('login')}}">Dashboard</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                            <span class="text-danger">Log Out</span>
+                                        </x-dropdown-link>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{Route('login')}}">Log In</a>
+                        </li>
+                        @endif
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
                         </li> -->
                     </ul>
+                    <!-- <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
                 </div>
             </div>
         </nav>

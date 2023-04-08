@@ -28,7 +28,7 @@ use App\Http\Controllers\Event\PublicEventController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class, 'index'])->name('index');
+// Route::get('/', [HomeController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/hotels', [PublicAccomocationController::class, 'Hotels'])->name('Hotels');
@@ -62,7 +62,7 @@ Route::get('/events', [PublicEventController::class, 'events'])->name('events');
 Route::get('/search-events', [PublicEventController::class, 'SearchEvents'])->name('SearchEvents');
 Route::get('/event-details/{id}', [PublicEventController::class, 'event_details'])->name('event_details');
 
-Route::get('/welcome2', [HomeController::class, 'welcome2'])->name('welcome2');
+Route::get('/', [HomeController::class, 'welcome2'])->name('index');
 
 
 

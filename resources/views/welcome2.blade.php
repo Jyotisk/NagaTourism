@@ -181,6 +181,30 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>
                         </li>
+                        @if(Auth::User())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profile
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item {{ Route::is('login') ? 'active' : '' }}" href="{{Route('login')}}">Dashboard</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                            <span class="text-danger">Log Out</span>
+                                        </x-dropdown-link>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{Route('login')}}">Log In</a>
+                        </li>
+                        @endif
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
                         </li> -->
@@ -952,7 +976,7 @@
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <a href="#" class="more-btn">
+                                        <a href="{{url('blog-details')}}/{{$blog->id}}" class="more-btn">
                                             See more
                                             <i class="fa-solid fa-chevron-right"></i>
                                         </a>
@@ -1046,7 +1070,7 @@
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="more-btn" href="#">
+                            <a class="more-btn" href="{{Route('blog')}}">
                                 View all
                                 <i class="fa-solid fa-chevron-right"></i>
                             </a>
