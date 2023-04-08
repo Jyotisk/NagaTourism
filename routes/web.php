@@ -62,6 +62,9 @@ Route::get('/events', [PublicEventController::class, 'events'])->name('events');
 Route::get('/search-events', [PublicEventController::class, 'SearchEvents'])->name('SearchEvents');
 Route::get('/event-details/{id}', [PublicEventController::class, 'event_details'])->name('event_details');
 
+Route::get('/welcome2', [HomeController::class, 'welcome2'])->name('welcome2');
+
+
 
 Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
     //accomodation
