@@ -141,24 +141,35 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
-                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
+                            <li><a class="dropdown-item" href="#">Mission</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">Vision</a></li>
+                            <li><a class="dropdown-item" href="#">Organisation Structure</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">Key Personal</a></li>
                             <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="#">Service-1</a></li>
-                            <li><a class="dropdown-item" href="#">Service-2</a></li>
-                            <li><a class="dropdown-item" href="#">Service-3</a></li>
+                            <li><a class="dropdown-item {{ Route::is('offroad') ? 'active' : '' }}" href="{{Route('offroad')}}">Nagaland Offroad</a></li>
+                            <li><a class="dropdown-item {{ Route::is('events') ? 'active' : '' }}" href="{{Route('events')}}">Festivals</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('blog') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="#">Article</a></li>
+                            <li><a class="dropdown-item" href="{{Route('blog')}}">Blog</a></li>
+                            <li><a class="dropdown-item" href="#">Newsletter</a></li>
+                            <li><a class="dropdown-item" href="#">Administrative Calender</a></li>
+                            <li><a class="dropdown-item" href="#">Budget Publication</a></li>
+
+                        </ul>
                     </li>
+                   
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinations</a>
                         <div class="destination-menu dropdown-menu">
@@ -438,30 +449,49 @@
                         <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
                     </li> -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tourist Corner</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Publication-1</a></li>
-                            <li><a class="dropdown-item" href="#">Publication-2</a></li>
-                            <li><a class="dropdown-item" href="#">Publication-3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Departments-1</a></li>
-                            <li><a class="dropdown-item" href="#">Departments-2</a></li>
-                            <li><a class="dropdown-item" href="#">Departments-3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Accomodations
-                        </a>
-                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Covid-19 Guideline</a></li>
+                            <li><a class="dropdown-item" href="#">Tourism Brochure</a></li>
+                            <li><a class="dropdown-item" href="#">Tourism Service Provider</a></li>
+                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Tourism Guides</a></li>
+                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Transport Services</a></li>
                             <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
                             <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
-                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
-                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
+                            <li><a class="dropdown-item" href="#">Books/Coffee Table</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-SERVICES</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Inbound Tourism & Inner Line Permit</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Hotel/Resort Service Provider</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Tourist Guide</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Homestay Service Provider</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Photographer/Videographer</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Content Creator/Blog Writer</a></li>
+                            <li><a class="dropdown-item" href="#">E-Marketplace</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Booking</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Online Properties Booking</a></li>
+                            <li><a class="dropdown-item" href="#">Online Package Booking</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Department</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tenders</a></li>
+                            <li><a class="dropdown-item" href="#">RTI</a></li>
+                            <li><a class="dropdown-item" href="#">GOs/Order/Circular</a></li>
+                            <li><a class="dropdown-item" href="#">Notice</a></li>
+                            <li><a class="dropdown-item" href="#">News/Announcement</a></li>
                         </ul>
                     </li>
                     <!--<li class="nav-item">-->
@@ -513,29 +543,40 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-evenly" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+            <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
-                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
+                            <li><a class="dropdown-item" href="#">Mission</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">Vision</a></li>
+                            <li><a class="dropdown-item" href="#">Organisation Structure</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">Key Personal</a></li>
                             <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Events</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="#">Service-1</a></li>
-                            <li><a class="dropdown-item" href="#">Service-2</a></li>
-                            <li><a class="dropdown-item" href="#">Service-3</a></li>
+                            <li><a class="dropdown-item {{ Route::is('offroad') ? 'active' : '' }}" href="{{Route('offroad')}}">Nagaland Offroad</a></li>
+                            <li><a class="dropdown-item {{ Route::is('events') ? 'active' : '' }}" href="{{Route('events')}}">Festivals</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('blog') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="#">Article</a></li>
+                            <li><a class="dropdown-item" href="{{Route('blog')}}">Blog</a></li>
+                            <li><a class="dropdown-item" href="#">Newsletter</a></li>
+                            <li><a class="dropdown-item" href="#">Administrative Calender</a></li>
+                            <li><a class="dropdown-item" href="#">Budget Publication</a></li>
+
+                        </ul>
                     </li>
+                   
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinations</a>
                         <div class="destination-menu dropdown-menu">
@@ -808,36 +849,56 @@
                                     </a>
                                 </li>
                             </ul>
+
                         </div>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
                     </li> -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tourist Corner</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Publication-1</a></li>
-                            <li><a class="dropdown-item" href="#">Publication-2</a></li>
-                            <li><a class="dropdown-item" href="#">Publication-3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Departments-1</a></li>
-                            <li><a class="dropdown-item" href="#">Departments-2</a></li>
-                            <li><a class="dropdown-item" href="#">Departments-3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Accomodations
-                        </a>
-                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Covid-19 Guideline</a></li>
+                            <li><a class="dropdown-item" href="#">Tourism Brochure</a></li>
+                            <li><a class="dropdown-item" href="#">Tourism Service Provider</a></li>
+                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Tourism Guides</a></li>
+                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Transport Services</a></li>
                             <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
                             <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
-                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
-                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
+                            <li><a class="dropdown-item" href="#">Books/Coffee Table</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('offroad')||Route::is('events') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-SERVICES</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Inbound Tourism & Inner Line Permit</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Hotel/Resort Service Provider</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Tourist Guide</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Homestay Service Provider</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Photographer/Videographer</a></li>
+                            <li><a class="dropdown-item" href="#">Registration of Content Creator/Blog Writer</a></li>
+                            <li><a class="dropdown-item" href="#">E-Marketplace</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Booking</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Online Properties Booking</a></li>
+                            <li><a class="dropdown-item" href="#">Online Package Booking</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Department</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Tenders</a></li>
+                            <li><a class="dropdown-item" href="#">RTI</a></li>
+                            <li><a class="dropdown-item" href="#">GOs/Order/Circular</a></li>
+                            <li><a class="dropdown-item" href="#">Notice</a></li>
+                            <li><a class="dropdown-item" href="#">News/Announcement</a></li>
                         </ul>
                     </li>
                     <!--<li class="nav-item">-->
@@ -874,10 +935,6 @@
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
                         </li> -->
                 </ul>
-                <!-- <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
             </div>
         </div>
     </nav>
