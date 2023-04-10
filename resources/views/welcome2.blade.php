@@ -53,207 +53,872 @@
                             </div>
                             <div class="d-flex align-items-center gap-3">
                                 <a href="{{url('login')}}">
-                                    <i class="fa-regular fa-lock-keyhole"></i>
-                                    @if(Auth::User())
-                                    <span>Dashboard</span>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+        <i class="fa-regular fa-lock-keyhole"></i>
+        @if(Auth::User())
+        <span>Dashboard</span>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
 
-                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                            <span class="text-danger">Log Out</span>
-                                        </x-dropdown-link>
-                                    </form>
-                                    @else
-                                    <span>Login</span>
-                                    @endif
-                                </a>
-                            </div>
-                        </div>
+                <span class="text-danger">Log Out</span>
+            </x-dropdown-link>
+        </form>
+        @else
+        <span>Login</span>
+        @endif
+        </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </header> --}}
+    <header class="pt-3 pb-3 d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a class="navbar-brand" href="#">
+                            <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo" />
+                        </a>
+                        <h3 class="govt-name">
+                            <span>Department of Tourism</span>
+                            <br />
+                            <span class="second-name">
+                                Government of Nagaland
+                            </span>
+                        </h3>
+                        <a class="navbar-brand" href="#">
+                            <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo" />
+                        </a>
                     </div>
                 </div>
             </div>
-        </header> --}}
-        <header class="pt-3 pb-3 d-none d-lg-block">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <a class="navbar-brand" href="#">
-                                <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo"/>
-                            </a>
-                            <h3>Department of Tourism, &nbsp;Government of Nagaland</h3>
-                            <a class="navbar-brand" href="#">
-                                <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo"/>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Header for Small Screen -->
-        <header class="pt-3 pb-3 d-lg-none">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <a class="navbar-brand" href="#">
-                                <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo"/>
-                            </a>
-                            <a class="navbar-brand" href="#">
-                                <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo"/>
-                            </a>
-                        </div>
-                        <h3 class="text-center mt-2">Department of Tourism, &nbsp;Government of Nagaland</h3>
+    <!-- Header for Small Screen -->
+    <header class="pt-3 pb-3 d-lg-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a class="navbar-brand" href="#">
+                            <img class="logo-1" src="{{asset('img/footer_logo.png')}}" alt="Logo" />
+                        </a>
+                        <a class="navbar-brand" href="#">
+                            <img class="logo-2" src="{{asset('img/nagaland_logo.png')}}" alt="Logo" />
+                        </a>
                     </div>
+                    <h3 class="govt-name">
+                        <span>
+                            Department of Tourism
+                        </span>
+                        <br />
+                        <span class="second-name">
+                            Government of Nagaland
+                        </span>
+                    </h3>
                 </div>
             </div>
-        </header>
-        <!-- End of Header Social and Login Sections -->
+        </div>
+    </header>
+    <!-- End of Header Social and Login Sections -->
 
-        <!-- Slider, Nav Bar and News Section -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container justify-content-end">
-                {{-- <a class="navbar-brand" href="#">
-                    <img src="{{asset('/img/logo.svg')}}" alt="Logo">
-                </a> --}}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-evenly" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
-                                <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
-                                <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item " href="#">Service-1</a></li>
-                                <li><a class="dropdown-item" href="#">Service-2</a></li>
-                                <li><a class="dropdown-item" href="#">Service-3</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Publication-1</a></li>
-                                <li><a class="dropdown-item" href="#">Publication-2</a></li>
-                                <li><a class="dropdown-item" href="#">Publication-3</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Departments-1</a></li>
-                                <li><a class="dropdown-item" href="#">Departments-2</a></li>
-                                <li><a class="dropdown-item" href="#">Departments-3</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Accomodations
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
-                                <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
-                                <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
-                                <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Store</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>
-                        </li>
-                        @if(Auth::User())
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Profile
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item {{ Route::is('login') ? 'active' : '' }}" href="{{Route('login')}}">Dashboard</a></li>
+    <!-- Slider, Nav Bar and News Section -->
+    <nav class="navbar navbar-expand-lg d-none d-lg-block menu-bar">
+        <div class="container justify-content-end">
+            <a class="navbar-brand" href="#">
+                <img src="{{asset('/img/logo.svg')}}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-evenly" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="#">Service-1</a></li>
+                            <li><a class="dropdown-item" href="#">Service-2</a></li>
+                            <li><a class="dropdown-item" href="#">Service-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinations</a>
+                        <div class="destination-menu dropdown-menu">
+                            <ul>
                                 <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+                                    <h3 class="drop-title">Kohima District "First District"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Kohima World War-II</a>
+                                </li>
+                                <li>
+                                    <a href="#">Kohima Cathedral</a>
+                                </li>
+                                <li>
+                                    <a href="#">State Museum</a>
+                                </li>
+                                <li>
+                                    <a href="#">Naga Heritage Village(Kisam)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dzuleke</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dzukou Valley</a>
+                                </li>
 
-                                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                            <span class="text-danger">Log Out</span>
-                                        </x-dropdown-link>
-                                    </form>
+                                <li>
+                                    <h3 class="drop-title">Mokokchung District "Land of Pioneers"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Sungkotenem</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mopong Ki</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dr. E.W. Clark Monument</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atu Tenem</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Tuensang District "Land of Culture"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Taimuphu</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Mon District "Land of Anghs"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Wood Carvings at Shangnyu</a>
+                                </li>
+                                <li>
+                                    <a href="#">Angphang</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tangnyu</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Longwa and Human Skulls Exhibits at Sheanghah Chingnyu</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Phek District "Land of Tradition"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Shilloi Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Zanibu Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cane Handicrafts at Reguri Village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Longchamtsam(Melancholy Lake)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chida Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tso Tawo(Spirit Stone) at Khezhakeno</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Wokha District "Land of Plenty"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Tourist village at Old Riphyim</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tsumang Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Wokha Town</a>
+                                </li>
+                                <li>
+                                    <a href="#">DHEP</a>
+                                </li>
+                                <li>
+                                    <a href="#">Amur Falcon Roosting Site at
+                                        Pangti village
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Zunheboto District "Land of Warriors"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Wildlife Sanctuary at Satoi village under Satakha</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ghosu Wild life Bird Sanctuary at Ghukiye village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Dimapur District "Commercial District"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Ruins of Medieval Kachari Kingdom</a>
+                                </li>
+                                <li>
+                                    <a href="#">Green Park</a>
+                                </li>
+                                <li>
+                                    <a href="#">NEZCC Museum</a>
+                                </li>
+                                <li>
+                                    <a href="#">Niathu Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Noune Resort</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Kiphire District "Land of Minerals"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Mount Saramati</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tongkhin (Anatonger village)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Likhimro Hydro Project</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Longleng District "Land of Handicrafts"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Ahom Raja Caves at Bhumnyu and Bura Namsang</a>
+                                </li>
+                                <li>
+                                    <a href="#">Shamnyu Lake at Pongo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tangha Lake at Tangha</a>
+                                </li>
+                                <li>
+                                    <a href="#">Stone Pillars at Yongtap/ Yachem village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Peren District "Green Districts"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Mt. Pauna</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ntangki National Park</a>
+                                </li>
+                                <li>
+                                    <a href="#">Benrei Tourist Village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Noklak District-‘Frontier District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">International Trade Centre</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dan (Pangsha)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Wui (Pottery and air Blacksmiths)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Choklangan (Weaving and Wildlife)</a>
+                                </li>
+                                <li>
+                                    <a href="#">New Pangsha (VG Memorial Museum)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Peshu (Slate village)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Khullioh
+                                        Mountain Ranges
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Kingjung and Chiphur (Rock Bees and Caves)
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Tseminyu District ‘Historical District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Sendenyu Biodiversity Wildlife Sanctuary</a>
+                                </li>
+                                <li>
+                                    <a href="#">Nsonji Lake</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Niuland District ‘Land of Diversity’</h3>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Chumoukedima District ‘Land of Opportunities’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Diezephe Craft Village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Seithekema Waterfall</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tsiepama Mid Way Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Niathu Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Noune
+                                        Resort
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Shamator District ‘Brotherhood District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Y. Anner village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Langa at Langa village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Kemephu/Teimefu at Waphur village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mihtsuhlong (Man eating stone) at Y. Anner village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ttsungtuke at Kiutsukiup village
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Yakomuzung at Yakor village
+                                    </a>
                                 </li>
                             </ul>
-                        </li>
-                        @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{Route('login')}}">Log In</a>
-                        </li>
-                        @endif
-                        <!-- <li class="nav-item">
+
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Publication-1</a></li>
+                            <li><a class="dropdown-item" href="#">Publication-2</a></li>
+                            <li><a class="dropdown-item" href="#">Publication-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Departments-1</a></li>
+                            <li><a class="dropdown-item" href="#">Departments-2</a></li>
+                            <li><a class="dropdown-item" href="#">Departments-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Accomodations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
+                            <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
+                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
+                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
+                        </ul>
+                    </li>
+                    <!--<li class="nav-item">-->
+                    <!--    <a class="nav-link" href="#">Store</a>-->
+                    <!--</li>-->
+                    <!--<li class="nav-item">-->
+                    <!--    <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>-->
+                    <!--</li>-->
+                    @if(Auth::User())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('login') ? 'active' : '' }}" href="{{Route('login')}}">Dashboard</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        <span class="text-danger">Log Out</span>
+                                    </x-dropdown-link>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{Route('login')}}">Log In</a>
+                    </li>
+                    @endif
+                    <!-- <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
                         </li> -->
-                    </ul>
-                    <!-- <form class="d-flex" role="search">
+                </ul>
+                <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nav bar for mobile screen -->
+    <nav class="navbar navbar-expand-lg d-lg-none menu-bar">
+        <div class="container justify-content-end">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-evenly" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('about-us')||Route::is('about-nagaland')||Route::is('about-districts') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('about-us') ? 'active' : '' }}" href="{{Route('about-us')}}">About Us</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-nagaland') ? 'active' : '' }}" href="{{Route('about-nagaland')}}">About Nagaland</a></li>
+                            <li><a class="dropdown-item {{ Route::is('about-districts') ? 'active' : '' }}" href="{{Route('about-districts')}}">About Districts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Services</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="#">Service-1</a></li>
+                            <li><a class="dropdown-item" href="#">Service-2</a></li>
+                            <li><a class="dropdown-item" href="#">Service-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{Route('offroad')}}">Nagaland Offroad</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Destinations</a>
+                        <div class="destination-menu dropdown-menu">
+                            <ul>
+                                <li>
+                                    <h3 class="drop-title">Kohima District "First District"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Kohima World War-II</a>
+                                </li>
+                                <li>
+                                    <a href="#">Kohima Cathedral</a>
+                                </li>
+                                <li>
+                                    <a href="#">State Museum</a>
+                                </li>
+                                <li>
+                                    <a href="#">Naga Heritage Village(Kisam)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dzuleke</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dzukou Valley</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Mokokchung District "Land of Pioneers"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Sungkotenem</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mopong Ki</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dr. E.W. Clark Monument</a>
+                                </li>
+                                <li>
+                                    <a href="#">Atu Tenem</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Tuensang District "Land of Culture"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Taimuphu</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Mon District "Land of Anghs"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Wood Carvings at Shangnyu</a>
+                                </li>
+                                <li>
+                                    <a href="#">Angphang</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tangnyu</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chi</a>
+                                </li>
+                                <li>
+                                    <a href="#">Longwa and Human Skulls Exhibits at Sheanghah Chingnyu</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Phek District "Land of Tradition"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Shilloi Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Zanibu Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Cane Handicrafts at Reguri Village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Longchamtsam(Melancholy Lake)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Chida Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tso Tawo(Spirit Stone) at Khezhakeno</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Wokha District "Land of Plenty"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Tourist village at Old Riphyim</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tsumang Lake</a>
+                                </li>
+                                <li>
+                                    <a href="#">Wokha Town</a>
+                                </li>
+                                <li>
+                                    <a href="#">DHEP</a>
+                                </li>
+                                <li>
+                                    <a href="#">Amur Falcon Roosting Site at
+                                        Pangti village
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Zunheboto District "Land of Warriors"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Wildlife Sanctuary at Satoi village under Satakha</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ghosu Wild life Bird Sanctuary at Ghukiye village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Dimapur District "Commercial District"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Ruins of Medieval Kachari Kingdom</a>
+                                </li>
+                                <li>
+                                    <a href="#">Green Park</a>
+                                </li>
+                                <li>
+                                    <a href="#">NEZCC Museum</a>
+                                </li>
+                                <li>
+                                    <a href="#">Niathu Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Noune Resort</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Kiphire District "Land of Minerals"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Mount Saramati</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tongkhin (Anatonger village)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Likhimro Hydro Project</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Longleng District "Land of Handicrafts"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Ahom Raja Caves at Bhumnyu and Bura Namsang</a>
+                                </li>
+                                <li>
+                                    <a href="#">Shamnyu Lake at Pongo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tangha Lake at Tangha</a>
+                                </li>
+                                <li>
+                                    <a href="#">Stone Pillars at Yongtap/ Yachem village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Peren District "Green Districts"</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Mt. Pauna</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ntangki National Park</a>
+                                </li>
+                                <li>
+                                    <a href="#">Benrei Tourist Village</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Noklak District-‘Frontier District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">International Trade Centre</a>
+                                </li>
+                                <li>
+                                    <a href="#">Dan (Pangsha)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Wui (Pottery and air Blacksmiths)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Choklangan (Weaving and Wildlife)</a>
+                                </li>
+                                <li>
+                                    <a href="#">New Pangsha (VG Memorial Museum)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Peshu (Slate village)</a>
+                                </li>
+                                <li>
+                                    <a href="#">Khullioh
+                                        Mountain Ranges
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Kingjung and Chiphur (Rock Bees and Caves)
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Tseminyu District ‘Historical District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Sendenyu Biodiversity Wildlife Sanctuary</a>
+                                </li>
+                                <li>
+                                    <a href="#">Nsonji Lake</a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Niuland District ‘Land of Diversity’</h3>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Chumoukedima District ‘Land of Opportunities’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Diezephe Craft Village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Seithekema Waterfall</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tsiepama Mid Way Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Niathu Resort</a>
+                                </li>
+                                <li>
+                                    <a href="#">Noune
+                                        Resort
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <h3 class="drop-title">Shamator District ‘Brotherhood District’</h3>
+                                </li>
+                                <li>
+                                    <a href="#">Y. Anner village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Langa at Langa village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Kemephu/Teimefu at Waphur village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Mihtsuhlong (Man eating stone) at Y. Anner village</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ttsungtuke at Kiutsukiup village
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Yakomuzung at Yakor village
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link {{ Route::is('destination') ? 'active' : '' }}" href="{{Route('destination')}}">Destinations</a>
+                    </li> -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publication</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Publication-1</a></li>
+                            <li><a class="dropdown-item" href="#">Publication-2</a></li>
+                            <li><a class="dropdown-item" href="#">Publication-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departments</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Departments-1</a></li>
+                            <li><a class="dropdown-item" href="#">Departments-2</a></li>
+                            <li><a class="dropdown-item" href="#">Departments-3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ Route::is('Hotels')||Route::is('Homestay')||Route::is('TravelOperators')||Route::is('RegisteredGuide') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Accomodations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('Hotels') ? 'active' : '' }}" href="{{Route('Hotels')}}">Hotels</a></li>
+                            <li><a class="dropdown-item {{ Route::is('Homestay') ? 'active' : '' }}" href="{{Route('Homestay')}}">Homestay</a></li>
+                            <li><a class="dropdown-item {{ Route::is('TravelOperators') ? 'active' : '' }}" href="{{Route('TravelOperators')}}">Travel Operators</a></li>
+                            <li><a class="dropdown-item {{ Route::is('RegisteredGuide') ? 'active' : '' }}" href="{{Route('RegisteredGuide')}}">Registered Guide</a></li>
+                        </ul>
+                    </li>
+                    <!--<li class="nav-item">-->
+                    <!--    <a class="nav-link" href="#">Store</a>-->
+                    <!--</li>-->
+                    <!--<li class="nav-item">-->
+                    <!--    <a class="nav-link" href="{{Route('GetContactus')}}">Contact</a>-->
+                    <!--</li>-->
+                    @if(Auth::User())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item {{ Route::is('login') ? 'active' : '' }}" href="{{Route('login')}}">Dashboard</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        <span class="text-danger">Log Out</span>
+                                    </x-dropdown-link>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{Route('login')}}">Log In</a>
+                    </li>
+                    @endif
+                    <!-- <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa-sharp fa-solid fa-magnifying-glass"></i>&nbsp;Search</a>
+                        </li> -->
+                </ul>
+                <!-- <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> -->
+            </div>
+        </div>
+    </nav>
+    <div class="slider-wrapper position-relative">
+        <!-- Carousel -->
+        <div id="carouselImageSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="img-overlay">
+                        <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 1">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="head-title">Stalingrad of the East</h3>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="img-overlay">
+                        <img src="{{asset('img/pic-2.jpg')}}" class="d-block w-100" alt="Slider Image 2">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="head-title">Stalingrad of the East</h3>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="img-overlay">
+                        <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 3">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="head-title">Stalingrad of the East</h3>
+                        <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
+                    </div>
                 </div>
             </div>
-        </nav>
-        <div class="slider-wrapper position-relative">
-            <!-- Carousel -->
-            <div id="carouselImageSlider" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselImageSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="img-overlay">
-                            <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 1">
-                        </div>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="head-title">Stalingrad of the East</h3>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="img-overlay">
-                            <img src="{{asset('img/pic-2.jpg')}}" class="d-block w-100" alt="Slider Image 2">
-                        </div>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="head-title">Stalingrad of the East</h3>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="img-overlay">
-                            <img src="{{asset('img/pic-1.webp')}}" class="d-block w-100" alt="Slider Image 3">
-                        </div>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3 class="head-title">Stalingrad of the East</h3>
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque provident, qui quis rem consequuntur numquam cum adipisci neque modi vitae dolor commodi itaque praesentium corporis perspiciatis quo placeat voluptatibus aspernatur?</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselImageSlider" data-bs-slide="prev">
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselImageSlider" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
@@ -261,49 +926,49 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button> -->
-            </div>
-            <!-- End of Carousel -->
+        </div>
+        <!-- End of Carousel -->
 
-            <!-- News Section -->
-            <div class="news-section">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12 col-md-2 col-xxl-1 d-flex align-items-center justiy-content-center border-left">
-                                <span class="card-text">
-                                    News
-                                </span>
-                            </div>
-                            <div class="col-12 col-md-10 col-xxl-11 align-self-center">
-                                <div id="carouselNewsSlider" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
-                                        </div>
+        <!-- News Section -->
+        <div class="news-section">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-2 col-xxl-1 d-flex align-items-center justiy-content-center border-left">
+                            <span class="card-text">
+                                News
+                            </span>
+                        </div>
+                        <div class="col-12 col-md-10 col-xxl-11 align-self-center">
+                            <div id="carouselNewsSlider" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNewsSlider" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselNewsSlider" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
+                                    <div class="carousel-item">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, unde?</p>
+                                    </div>
                                 </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselNewsSlider" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselNewsSlider" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End of News Section -->
         </div>
-        <!-- End of Slider, Nav Bar and News section -->
+        <!-- End of News Section -->
+    </div>
+    <!-- End of Slider, Nav Bar and News section -->
     </div>
     <!-- About Section -->
     <div class="about-wrapper">
@@ -393,7 +1058,7 @@
                             @foreach($destination AS $destiny)
                             <div class="swiper-slide">
                                 <div class="card h-100">
-                                    <img class="hover" src="{{ url('storage/'."$destiny->image") }}" alt="Visit Now Pic">
+                                    <img class="hover" src="{{ url('storage/app/public/'."$destiny->image") }}" alt="Visit Now Pic">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <a href="{{url('destination-details')}}/{{$destiny->id}}">
@@ -544,7 +1209,7 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="row g-3">
                                         <div class="col-12 col-lg-3">
-                                            <img class="event-pic" src="{{ url('storage/'."$event->event_image_main") }}" alt="Events Pic">
+                                            <img class="event-pic" src="{{ url('storage/app/public/'."$event->event_image_main") }}" alt="Events Pic">
                                         </div>
                                         <div class="col-12 col-lg-9 d-flex">
                                             <div class="d-flex flex-column justify-content-between">
@@ -960,19 +1625,19 @@
                         <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
                             @foreach($blogs AS $blog)
                             <div class="card h-100 d-flex flex-column flex-lg-row">
-                                <img class="hover" src="{{ url('storage/'."$blog->blog_banner") }}" alt="Blog Picture">
+                                <img class="hover" src="{{ url('storage/app/public/'."$blog->blog_banner") }}" alt="Blog Picture">
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-column gap-2">
                                         <p class="mb-0 main-text">
                                             <i class="fa-regular fa-clock"></i>
-                                            <h6>{{$blog->created_at->toDateString()}}</h6>
+                                        <h6>{{$blog->created_at->toDateString()}}</h6>
 
                                         </p>
                                         <p class="mb-0">
-                                        {{$blog->blog_title}}
+                                            {{$blog->blog_title}}
                                         </p>
                                         <p class="mb-0 main-text">
-                                        
+
                                         </p>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -1113,6 +1778,8 @@
                             </li>
                             <li><a href=" #">Downloads</a>
                             </li>
+                            <li><a href=" #">Store</a>
+                            </li>
                             <li><a href="{{Route('events')}}">News and Events</a></li>
                             <li><a href="#">Video Section</a></li>
                             <li><a href="#">Site Policy</a></li>
@@ -1131,6 +1798,7 @@
                             <li><a href="#">Profile</a></li>
                             <li><a href="#">Documentation</a></li>
                             <li><a href="#">More About Us</a></li>
+                            <li><a href="{{Route('GetContactus')}}">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-lg-3">
@@ -1179,7 +1847,7 @@
 
 <script>
     $(window).scroll(function() {
-        $('nav').toggleClass('fixed-top scrolled', $(this).scrollTop() > 200);
+        $('.menu-bar').toggleClass('fixed-top scrolled', $(this).scrollTop() > 200);
     });
 
     $(function() {
