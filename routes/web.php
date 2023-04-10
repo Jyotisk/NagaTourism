@@ -28,7 +28,7 @@ use App\Http\Controllers\Event\PublicEventController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [HomeController::class, 'index'])->name('index');
+// Route::get('/', [HomeController::class, 'index'])->name('index');
 require __DIR__ . '/auth.php';
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/hotels', [PublicAccomocationController::class, 'Hotels'])->name('Hotels');
@@ -62,7 +62,7 @@ Route::get('/events', [PublicEventController::class, 'events'])->name('events');
 Route::get('/search-events', [PublicEventController::class, 'SearchEvents'])->name('SearchEvents');
 Route::get('/event-details/{id}', [PublicEventController::class, 'event_details'])->name('event_details');
 
-Route::get('/welcome2', [HomeController::class, 'welcome2'])->name('welcome2');
+Route::get('/', [HomeController::class, 'welcome2'])->name('index');
 
 
 
@@ -93,74 +93,71 @@ Route::middleware(['admin'])->middleware(['super_admin'])->group(function () {
         Route::post('/GetEditTravelOperatorData', [AccomodationController::class, 'GetEditTravelOperatorData'])->name('GetEditTravelOperatorData');
         Route::post('/DeleteTravelOperatorData', [AccomodationController::class, 'DeleteTravelOperatorData'])->name('DeleteTravelOperatorData');
 
-    Route::get('add-registered-guide', [AccomodationController::class, 'GetAddRegisteredGuide'])->name('GetAddRegisteredGuide');
-    Route::post('AddRegisteredGuide', [AccomodationController::class, 'AddRegisteredGuide'])->name('AddRegisteredGuide');
-    Route::get('registered-guide-list', [AccomodationController::class, 'RegisteredGuideList'])->name('RegisteredGuideList');
-    Route::get('DatatableRegisteredGuideList', [AccomodationController::class, 'DatatableRegisteredGuideList'])->name('DatatableRegisteredGuideList');
-    Route::post('EditRegisteredGuideData', [AccomodationController::class, 'EditRegisteredGuideData'])->name('EditRegisteredGuideData');
-    Route::post('GetEditRegisteredGuideData', [AccomodationController::class, 'GetEditRegisteredGuideData'])->name('GetEditRegisteredGuideData');
-    Route::post('DeleteRegisteredGuideData', [AccomodationController::class, 'DeleteRegisteredGuideData'])->name('DeleteRegisteredGuideData');
+        Route::get('add-registered-guide', [AccomodationController::class, 'GetAddRegisteredGuide'])->name('GetAddRegisteredGuide');
+        Route::post('AddRegisteredGuide', [AccomodationController::class, 'AddRegisteredGuide'])->name('AddRegisteredGuide');
+        Route::get('registered-guide-list', [AccomodationController::class, 'RegisteredGuideList'])->name('RegisteredGuideList');
+        Route::get('DatatableRegisteredGuideList', [AccomodationController::class, 'DatatableRegisteredGuideList'])->name('DatatableRegisteredGuideList');
+        Route::post('EditRegisteredGuideData', [AccomodationController::class, 'EditRegisteredGuideData'])->name('EditRegisteredGuideData');
+        Route::post('GetEditRegisteredGuideData', [AccomodationController::class, 'GetEditRegisteredGuideData'])->name('GetEditRegisteredGuideData');
+        Route::post('DeleteRegisteredGuideData', [AccomodationController::class, 'DeleteRegisteredGuideData'])->name('DeleteRegisteredGuideData');
+    });
 
+    //event
+    Route::group(['prefix' => 'event'], function () {
+        Route::get('add-event', [EventController::class, 'GetAddEvent'])->name('GetAddEvent');
+        Route::post('addevent', [EventController::class, 'AddEvent'])->name('AddEvent');
+        Route::get('event-list', [EventController::class, 'eventList'])->name('eventlList');
+        Route::get('datatable-event-list', [EventController::class, 'DatatableEventList'])->name('DatatableEventList');
+        Route::post('GetEditEventData', [EventController::class, 'GetEditEventData'])->name('GetEditEventData');
+        Route::post('EditEventData', [EventController::class, 'EditEventData'])->name('EditEventData');
+        Route::post('DeleteEventData', [EventController::class, 'DeleteEventData'])->name('DeleteEventData');
+    });
+
+    Route::get('/add-registered-guide', [AccomodationController::class, 'GetAddRegisteredGuide'])->name('GetAddRegisteredGuide');
+    Route::post('/AddRegisteredGuide', [AccomodationController::class, 'AddRegisteredGuide'])->name('AddRegisteredGuide');
+    Route::get('/registered-guide-list', [AccomodationController::class, 'RegisteredGuideList'])->name('RegisteredGuideList');
+    Route::get('/DatatableRegisteredGuideList', [AccomodationController::class, 'DatatableRegisteredGuideList'])->name('DatatableRegisteredGuideList');
+    Route::post('/EditRegisteredGuideData', [AccomodationController::class, 'EditRegisteredGuideData'])->name('EditRegisteredGuideData');
+    Route::post('/GetEditRegisteredGuideData', [AccomodationController::class, 'GetEditRegisteredGuideData'])->name('GetEditRegisteredGuideData');
+    Route::post('/DeleteRegisteredGuideData', [AccomodationController::class, 'DeleteRegisteredGuideData'])->name('DeleteRegisteredGuideData');
 });
 
-//event
-Route::group(['prefix' => 'event'], function () {
-    Route::get('add-event', [EventController::class, 'GetAddEvent'])->name('GetAddEvent');
-    Route::post('addevent', [EventController::class, 'AddEvent'])->name('AddEvent');
-    Route::get('event-list', [EventController::class, 'eventList'])->name('eventlList');
-    Route::get('datatable-event-list', [EventController::class, 'DatatableEventList'])->name('DatatableEventList');
-    Route::post('GetEditEventData', [EventController::class, 'GetEditEventData'])->name('GetEditEventData');
-    Route::post('EditEventData', [EventController::class, 'EditEventData'])->name('EditEventData');
-    Route::post('DeleteEventData', [EventController::class, 'DeleteEventData'])->name('DeleteEventData');
+Route::group(['prefix' => 'designated-official'], function () {
+    Route::get('/add-official', [DesignatedOfficialController::class, 'GetAddOfficial'])->name('GetAddOfficial');
+    Route::post('/AddOfficial', [DesignatedOfficialController::class, 'AddOfficial'])->name('AddOfficial');
+    Route::get('/official-list', [DesignatedOfficialController::class, 'OfficialList'])->name('OfficialList');
+    Route::get('/DatatableOfficialList', [DesignatedOfficialController::class, 'DatatableOfficialList'])->name('DatatableOfficialList');
+    Route::post('/EditOfficialData', [DesignatedOfficialController::class, 'EditOfficialData'])->name('EditOfficialData');
+    Route::post('/GetEditOfficialData', [DesignatedOfficialController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
+    Route::post('/DeleteOfficialData', [DesignatedOfficialController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
 });
 
-        Route::get('/add-registered-guide', [AccomodationController::class, 'GetAddRegisteredGuide'])->name('GetAddRegisteredGuide');
-        Route::post('/AddRegisteredGuide', [AccomodationController::class, 'AddRegisteredGuide'])->name('AddRegisteredGuide');
-        Route::get('/registered-guide-list', [AccomodationController::class, 'RegisteredGuideList'])->name('RegisteredGuideList');
-        Route::get('/DatatableRegisteredGuideList', [AccomodationController::class, 'DatatableRegisteredGuideList'])->name('DatatableRegisteredGuideList');
-        Route::post('/EditRegisteredGuideData', [AccomodationController::class, 'EditRegisteredGuideData'])->name('EditRegisteredGuideData');
-        Route::post('/GetEditRegisteredGuideData', [AccomodationController::class, 'GetEditRegisteredGuideData'])->name('GetEditRegisteredGuideData');
-        Route::post('/DeleteRegisteredGuideData', [AccomodationController::class, 'DeleteRegisteredGuideData'])->name('DeleteRegisteredGuideData');
-    });
+Route::group(['prefix' => 'destination'], function () {
+    Route::get('/add-destination', [DestinationController::class, 'GetAddDestination'])->name('GetAddDestination');
+    Route::post('/AddDestination', [DestinationController::class, 'AddDestination'])->name('AddDestination');
+    Route::get('/destination-list', [DestinationController::class, 'DestinationList'])->name('DestinationList');
+    Route::get('/DatatableDestinatioList', [DestinationController::class, 'DatatableDestinatioList'])->name('DatatableDestinatioList');
+    Route::post('/ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
+    Route::post('/EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
+    Route::post('/DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
+});
 
-    Route::group(['prefix' => 'designated-official'], function () {
-        Route::get('/add-official', [DesignatedOfficialController::class, 'GetAddOfficial'])->name('GetAddOfficial');
-        Route::post('/AddOfficial', [DesignatedOfficialController::class, 'AddOfficial'])->name('AddOfficial');
-        Route::get('/official-list', [DesignatedOfficialController::class, 'OfficialList'])->name('OfficialList');
-        Route::get('/DatatableOfficialList', [DesignatedOfficialController::class, 'DatatableOfficialList'])->name('DatatableOfficialList');
-        Route::post('/EditOfficialData', [DesignatedOfficialController::class, 'EditOfficialData'])->name('EditOfficialData');
-        Route::post('/GetEditOfficialData', [DesignatedOfficialController::class, 'GetEditOfficialData'])->name('GetEditOfficialData');
-        Route::post('/DeleteOfficialData', [DesignatedOfficialController::class, 'DeleteOfficialData'])->name('DeleteOfficialData');
-    });
+//contactus
+Route::get('contact-us', [ContactController::class, 'GetContactus'])->name('GetContactus');
+Route::post('AddQuery', [ContactController::class, 'AddQuery'])->name('AddQuery');
 
-    Route::group(['prefix' => 'destination'], function () {
-        Route::get('/add-destination', [DestinationController::class, 'GetAddDestination'])->name('GetAddDestination');
-        Route::post('/AddDestination', [DestinationController::class, 'AddDestination'])->name('AddDestination');
-        Route::get('/destination-list', [DestinationController::class, 'DestinationList'])->name('DestinationList');
-        Route::get('/DatatableDestinatioList', [DestinationController::class, 'DatatableDestinatioList'])->name('DatatableDestinatioList');
-        Route::post('/ViewDestinationData', [DestinationController::class, 'ViewDestinationData'])->name('ViewDestinationData');
-        Route::post('/EditDestinationData', [DestinationController::class, 'EditDestinationData'])->name('EditDestinationData');
-        Route::post('/DeleteDestinationData', [DestinationController::class, 'DeleteDestinationData'])->name('DeleteDestinationData');
-    });
-
-    //contactus
-        Route::get('contact-us', [ContactController::class, 'GetContactus'])->name('GetContactus');
-        Route::post('AddQuery', [ContactController::class, 'AddQuery'])->name('AddQuery');
-
-    //Blogs
-    Route::group(['prefix' => 'blog'], function () {
-        Route::get('add-blog', [BlogController::class, 'GetAddBlog'])->name('AddBlog');
-        Route::post('post-new-blog', [BlogController::class, 'PostNewBlog'])->name('PostNewBlog');
-        Route::get('blog-list', [BlogController::class, 'GetBlogList'])->name('BlogList');
-        Route::get('datatable-blog-list', [BlogController::class, 'DatatableBlogList'])->name('DatatableBlogList');
-        Route::post('/DeleteBlogData', [BlogController::class, 'DeleteBlogData'])->name('DeleteBlogData');
-
-    });
+//Blogs
+Route::group(['prefix' => 'blog'], function () {
+    Route::get('add-blog', [BlogController::class, 'GetAddBlog'])->name('AddBlog');
+    Route::post('post-new-blog', [BlogController::class, 'PostNewBlog'])->name('PostNewBlog');
+    Route::get('blog-list', [BlogController::class, 'GetBlogList'])->name('BlogList');
+    Route::get('datatable-blog-list', [BlogController::class, 'DatatableBlogList'])->name('DatatableBlogList');
+    Route::post('/DeleteBlogData', [BlogController::class, 'DeleteBlogData'])->name('DeleteBlogData');
+});
 
 
 Route::middleware(['public_user'])->group(function () {
-Route::group(['prefix' => 'user'], function () {
-    Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('UserDashboard');
+    });
 });
-});
-
